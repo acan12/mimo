@@ -10,6 +10,6 @@ public class MimoActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        String x = "1";
+        String x = "1"; 
     }
 }
