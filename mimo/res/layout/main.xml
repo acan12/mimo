@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="wrap_content">
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    /><Button android:text="Map" android:id="@+id/button1" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:background="#ffffff" android:orientation="vertical">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent" android:background="#ababab"
+        android:orientation="horizontal" android:layout_height="wrap_content" android:gravity="center_horizontal" android:layout_margin="5dp">
+        <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:id="@+id/textView1" android:textColor="#000000" android:layout_marginLeft="3dp" android:text="Login Form" android:textStyle="normal|bold"></TextView>
+    </LinearLayout>  
+    
+    <ScrollView android:layout_width="fill_parent" android:id="@+id/scrollView1" android:layout_gravity="center" android:layout_height="400dp">
+        <LinearLayout android:layout_width="fill_parent" android:id="@+id/linearLayout1" android:layout_height="fill_parent">
+            <TextView android:textAppearance="?android:attr/textAppearanceLarge" android:layout_height="wrap_content" android:id="@+id/textView3" android:layout_width="wrap_content" android:textColor="#000000" android:text="Username" android:paddingRight="1dp"></TextView>
+            <EditText android:id="@+id/editText1" android:layout_height="wrap_content" android:layout_weight="1" android:layout_width="wrap_content" android:inputType="textPersonName" android:width="10dp">
+                <requestFocus></requestFocus>
+            </EditText>
+        </LinearLayout>
+    </ScrollView>  
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:orientation="horizontal">
+        <Button android:layout_height="wrap_content" android:id="@+id/Button01" android:layout_width="wrap_content" android:text="Button"></Button>
+        
+        
+    </LinearLayout>
 </LinearLayout>
