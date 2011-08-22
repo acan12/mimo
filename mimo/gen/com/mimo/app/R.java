@@ -25,17 +25,30 @@ public final class R {
         public static final int Button09=0x7f050005;
         public static final int Button10=0x7f050004;
         public static final int Button11=0x7f050003;
-        public static final int EditText01=0x7f050013;
-        public static final int LinearLayout01=0x7f050012;
+        public static final int EditText01=0x7f05001d;
+        public static final int EditText02=0x7f050020;
+        public static final int ImageButton01=0x7f050012;
+        public static final int ImageButton02=0x7f050011;
+        public static final int ImageButton03=0x7f050022;
+        public static final int ImageButton04=0x7f050021;
+        public static final int LinearLayout01=0x7f05001c;
+        public static final int LinearLayout02=0x7f05001a;
+        public static final int LinearLayout03=0x7f05001f;
         public static final int TextView01=0x7f050010;
-        public static final int TextView02=0x7f050011;
+        public static final int TextView02=0x7f050019;
+        public static final int TextView03=0x7f05001b;
         public static final int button1=0x7f05000f;
-        public static final int editText1=0x7f050015;
+        public static final int imageButton4=0x7f050013;
+        public static final int imageButton5=0x7f050014;
+        public static final int imageButton6=0x7f050015;
+        public static final int imageButton7=0x7f050016;
+        public static final int imageButton8=0x7f050017;
+        public static final int imageButton9=0x7f050018;
         public static final int linearLayout1=0x7f050002;
         public static final int scrollView1=0x7f050001;
         public static final int textView1=0x7f050000;
         public static final int textView2=0x7f05000d;
-        public static final int textView3=0x7f050014;
+        public static final int textView3=0x7f05001e;
     }
     public static final class layout {
         public static final int layout_activitylist=0x7f030000;
