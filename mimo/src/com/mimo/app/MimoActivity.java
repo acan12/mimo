@@ -17,7 +17,8 @@ import android.widget.Button;
 public class MimoActivity extends MapActivity {
 	double lat= -6.19638013839722;
 	double lng= 106.837997436523;
-	
+	double lat2= -6.195894;
+	double lng2= 106.835901;
 	
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -32,11 +33,11 @@ public class MimoActivity extends MapActivity {
 		
 		setContentView(R.layout.main);
 		GeoPoint point = getPoint(lat, lng);
-		GeoPoint point2 = getPoint(lat, lng);
+		GeoPoint point2 = getPoint(lat2, lng2);
 		MapView mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		mv.getController().setCenter(point);
-		mv.getController().setZoom(17);
+		mv.getController().setZoom(15);
 		
 		List<Overlay> mapOverlays = mv.getOverlays();
         Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
@@ -45,9 +46,11 @@ public class MimoActivity extends MapActivity {
         itemizedoverlay.addOverlay(overlayitem);
         mapOverlays.add(itemizedoverlay);
         
-        OverlayItem overlayitem2 = new OverlayItem(point2, "Alien 2", "Alien location");
-        itemizedoverlay.addOverlay(overlayitem2);
-        mapOverlays.add(itemizedoverlay);
+        Drawable drawable2 = this.getResources().getDrawable(R.drawable.alien);
+        MapOverlays itemizedoverlay2 = new MapOverlays(drawable2, this);
+        OverlayItem overlayitem2 = new OverlayItem(point2, "Halo, Apa kabar!", "I'm in Jakarta!");
+        itemizedoverlay2.addOverlay(overlayitem2);
+        mapOverlays.add(itemizedoverlay2);
         
        
 	} 
