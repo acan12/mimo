@@ -18,7 +18,19 @@ public final class R {
     }
     public static final class drawable {
         public static final int alien=0x7f020000;
-        public static final int icon=0x7f020001;
+        public static final int bread=0x7f020001;
+        public static final int butcher2=0x7f020002;
+        public static final int candy=0x7f020003;
+        public static final int cheese=0x7f020004;
+        public static final int eggs=0x7f020005;
+        public static final int farmstand=0x7f020006;
+        public static final int fruits=0x7f020007;
+        public static final int grocery=0x7f020008;
+        public static final int icon=0x7f020009;
+        public static final int japanese_sweet2=0x7f02000a;
+        public static final int liquor=0x7f02000b;
+        public static final int patisserie=0x7f02000c;
+        public static final int sandwich_2=0x7f02000d;
     }
     public static final class id {
         public static final int Button01=0x7f06000e;
@@ -32,9 +44,9 @@ public final class R {
         public static final int Button09=0x7f060005;
         public static final int Button10=0x7f060004;
         public static final int Button11=0x7f060003;
+        public static final int Chk=0x7f06002d;
         public static final int EditText01=0x7f06001b;
         public static final int EditText02=0x7f06001e;
-        public static final int FROM_CELL=0x7f06002d;
         public static final int ImageButton01=0x7f060012;
         public static final int ImageButton02=0x7f060011;
         public static final int ImageButton03=0x7f060016;
@@ -51,12 +63,12 @@ public final class R {
         public static final int LinearLayout01=0x7f06001a;
         public static final int LinearLayout02=0x7f060018;
         public static final int LinearLayout03=0x7f06001d;
-        public static final int TO_CELL=0x7f06002e;
-        public static final int TRAIN_CELL=0x7f06002c;
         public static final int TextView01=0x7f060010;
         public static final int TextView02=0x7f060017;
         public static final int TextView03=0x7f060019;
+        public static final int bottomtext=0x7f060030;
         public static final int button1=0x7f06000f;
+        public static final int icon=0x7f06002e;
         public static final int imageButton1=0x7f06002b;
         public static final int imageButton4=0x7f060013;
         public static final int imageButton5=0x7f060014;
@@ -68,6 +80,8 @@ public final class R {
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f06000d;
         public static final int textView3=0x7f06001c;
+        public static final int toptext=0x7f06002f;
+        public static final int txt=0x7f06002c;
     }
     public static final class layout {
         public static final int layout_activitylist=0x7f030000;
@@ -81,5 +95,7 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
+        public static final int hello=0x7f050001;
+        public static final int main_no_items=0x7f050002;
     }
 }
