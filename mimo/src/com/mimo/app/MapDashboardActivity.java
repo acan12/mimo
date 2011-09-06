@@ -105,8 +105,6 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 		switch (v.getId()){
 			case R.id.ListLink:
-//				Intent i = new Intent(this, ActivitiesLIstActivity.class);
-//				startActivity(i);  
 
 				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 				dialog.setTitle("List of Your activities:  ");
@@ -115,7 +113,6 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						Log.d("---x-------------------debug: ", "which="+which);
 						GeoPoint point2 = null;
 						int icon = R.drawable.alien;
 						if(which == 1){
