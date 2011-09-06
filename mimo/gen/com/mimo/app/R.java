@@ -26,11 +26,17 @@ public final class R {
         public static final int farmstand=0x7f020006;
         public static final int fruits=0x7f020007;
         public static final int grocery=0x7f020008;
-        public static final int icon=0x7f020009;
-        public static final int japanese_sweet2=0x7f02000a;
-        public static final int liquor=0x7f02000b;
-        public static final int patisserie=0x7f02000c;
-        public static final int sandwich_2=0x7f02000d;
+        public static final int headphone=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int icon=0x7f02000b;
+        public static final int japanese_sweet2=0x7f02000c;
+        public static final int liquor=0x7f02000d;
+        public static final int map=0x7f02000e;
+        public static final int map_icon=0x7f02000f;
+        public static final int message_icon=0x7f020010;
+        public static final int news_icon=0x7f020011;
+        public static final int patisserie=0x7f020012;
+        public static final int sandwich2=0x7f020013;
     }
     public static final class id {
         public static final int Button01=0x7f06000e;
@@ -44,11 +50,10 @@ public final class R {
         public static final int Button09=0x7f060005;
         public static final int Button10=0x7f060004;
         public static final int Button11=0x7f060003;
-        public static final int Chk=0x7f06002d;
         public static final int EditText01=0x7f06001b;
         public static final int EditText02=0x7f06001e;
         public static final int ImageButton01=0x7f060012;
-        public static final int ImageButton02=0x7f060011;
+        public static final int ImageButton02=0x7f06002b;
         public static final int ImageButton03=0x7f060016;
         public static final int ImageButton04=0x7f060015;
         public static final int ImageButton05=0x7f06002a;
@@ -57,31 +62,35 @@ public final class R {
         public static final int ImageButton08=0x7f060027;
         public static final int ImageButton09=0x7f060026;
         public static final int ImageButton10=0x7f060025;
-        public static final int ImageButton11=0x7f060024;
-        public static final int ImageButton12=0x7f060023;
-        public static final int ImageButton13=0x7f060022;
         public static final int LinearLayout01=0x7f06001a;
         public static final int LinearLayout02=0x7f060018;
         public static final int LinearLayout03=0x7f06001d;
+        public static final int ListLink=0x7f060022;
+        public static final int MapButton=0x7f060011;
         public static final int TextView01=0x7f060010;
         public static final int TextView02=0x7f060017;
         public static final int TextView03=0x7f060019;
-        public static final int bottomtext=0x7f060030;
+        public static final int bottomtext=0x7f060033;
+        public static final int bread_loc=0x7f060023;
+        public static final int butcher_loc=0x7f060024;
         public static final int button1=0x7f06000f;
-        public static final int icon=0x7f06002e;
-        public static final int imageButton1=0x7f06002b;
+        public static final int icon=0x7f060031;
+        public static final int icon_dialog=0x7f06002d;
+        public static final int imageButton1=0x7f06002c;
         public static final int imageButton4=0x7f060013;
         public static final int imageButton5=0x7f060014;
+        public static final int imageView1=0x7f06002f;
         public static final int linearLayout1=0x7f060002;
         public static final int linearLayout2=0x7f060020;
+        public static final int linearLayout3=0x7f060030;
         public static final int mapview=0x7f06001f;
         public static final int scroll=0x7f060021;
         public static final int scrollView1=0x7f060001;
         public static final int textView1=0x7f060000;
         public static final int textView2=0x7f06000d;
         public static final int textView3=0x7f06001c;
-        public static final int toptext=0x7f06002f;
-        public static final int txt=0x7f06002c;
+        public static final int title=0x7f06002e;
+        public static final int toptext=0x7f060032;
     }
     public static final class layout {
         public static final int layout_activity=0x7f030000;
@@ -91,8 +100,9 @@ public final class R {
         public static final int layout_login=0x7f030004;
         public static final int layout_mapview=0x7f030005;
         public static final int layout_schedule_fragment=0x7f030006;
-        public static final int main=0x7f030007;
-        public static final int row=0x7f030008;
+        public static final int list_row_dialog=0x7f030007;
+        public static final int main=0x7f030008;
+        public static final int row=0x7f030009;
     }
     public static final class string {
         public static final int app_name=0x7f050000;

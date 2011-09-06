@@ -13,18 +13,14 @@
         <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="30dp">
             <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapButton" android:src="@drawable/map_icon" android:padding="10dp"></ImageButton>
             <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ImageButton01" android:src="@drawable/news_icon" android:padding="10dp"></ImageButton>
+            <ImageButton android:src="@drawable/message_icon" android:layout_height="wrap_content" android:id="@+id/imageButton4" android:padding="10dp" android:background="@null" android:layout_width="wrap_content"></ImageButton>
         </LinearLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:gravity="center_horizontal" android:padding="30dp">
-            <ImageButton android:layout_height="wrap_content" android:src="@drawable/message_icon" android:layout_width="wrap_content" android:id="@+id/imageButton4" android:background="@null" android:padding="10dp"></ImageButton>
             <ImageButton android:layout_height="wrap_content" android:src="@drawable/news_icon" android:layout_width="wrap_content" android:id="@+id/imageButton5" android:background="@null" android:padding="10dp"></ImageButton>
+            <ImageButton android:src="@drawable/news_icon" android:layout_height="wrap_content" android:id="@+id/ImageButton04" android:padding="10dp" android:background="@null" android:layout_width="wrap_content"></ImageButton>
+            <ImageButton android:src="@drawable/message_icon" android:layout_height="wrap_content" android:id="@+id/ImageButton03" android:padding="10dp" android:background="@null" android:layout_width="wrap_content"></ImageButton>
 
-        </LinearLayout> 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent"
-            android:orientation="horizontal" android:layout_height="wrap_content" android:gravity="center" android:padding="20dp">
-            <ImageButton android:background="@null" android:src="@drawable/news_icon" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="10dp" android:id="@+id/ImageButton04"></ImageButton>
-            <ImageButton android:background="@null" android:src="@drawable/message_icon" android:layout_height="wrap_content" android:layout_width="wrap_content" android:padding="10dp" android:id="@+id/ImageButton03"></ImageButton>
         </LinearLayout> 
         
     </LinearLayout>  

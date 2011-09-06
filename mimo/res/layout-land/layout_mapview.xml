@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-    <TextView
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/txt"
-    />
-    <CheckBox
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/Chk"
-    android:text="This is a check box"
-    android:checked="false"
-
-    />
+    android:layout_height="fill_parent" android:background="#ababab" android:orientation="horizontal">
+    
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/linearLayout1" android:scrollbars="vertical" android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="360dp">
+            <com.google.android.maps.MapView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mapview"
+                android:clickable="true"
+                android:apiKey="04ToJMcHjUZd2A99JOzz6zj2C8bjy1YT1X_2dXw" android:background="#ffffff" android:layout_height="fill_parent" android:layout_width="fill_parent"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/linearLayout2" android:scrollbars="vertical" android:orientation="vertical" android:layout_height="fill_parent" android:gravity="right" android:layout_width="fill_parent">
+            <ScrollView android:id="@+id/scroll" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content">
+            
+                <LinearLayout android:id="@+id/linearLayout2" android:layout_height="wrap_content" android:layout_width="wrap_content" android:scrollbars="vertical" android:gravity="left|right" android:isScrollContainer="true" android:orientation="vertical">
+                    <ImageButton android:id="@+id/ListLink" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/alien"></ImageButton>
+                    <ImageButton android:id="@+id/bread_loc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/bread"></ImageButton>
+                    <ImageButton android:id="@+id/butcher_loc" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/butcher2"></ImageButton>
+                    <ImageButton android:id="@+id/ImageButton10" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/candy"></ImageButton>
+                    <ImageButton android:id="@+id/ImageButton09" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/cheese"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton08" android:src="@drawable/eggs" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton07" android:src="@drawable/farmstand" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton06" android:src="@drawable/japanese_sweet2" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton05" android:src="@drawable/liquor" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton04" android:src="@drawable/patisserie" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton02" android:src="@drawable/alien" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton03" android:src="@drawable/sandwich2" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/ImageButton01" android:src="@drawable/sandwich2" android:layout_height="wrap_content"></ImageButton>
+                    <ImageButton android:layout_width="wrap_content" android:id="@+id/imageButton1" android:src="@drawable/sandwich2" android:layout_height="wrap_content"></ImageButton>
+                </LinearLayout>
+           </ScrollView>
+        </LinearLayout>
+    </LinearLayout>      
 </LinearLayout>
