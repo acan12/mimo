@@ -17,5 +17,6 @@
         </activity>
         <activity android:name=".MapDashboardActivity"></activity>
         <activity android:name=".ActivitiesLIstActivity"></activity>
+        <activity android:name=".DetailActivity"></activity>
     </application>
 </manifest>

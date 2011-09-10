@@ -3,4 +3,24 @@
     <string name="app_name">Mimo</string>
     <string name="hello">Hello World, SoftwarePassionView!</string>
     <string name="main_no_items">No orders to display</string>
+    <string name="title_create">Detail/ Edit Activity</string>
+    <!-- form setting in layout detail -->
+    
+    <string name="label_field_activity_name">Name</string>
+    <string name="hint_field_activity_name">Name</string>
+    <string name="label_field_description">Description</string>
+    <string name="hint_field_description">Description</string>
+    <string name="label_field_startdate">Start Date:</string>
+    <string name="hint_field_startdate">Start Date</string>
+    <string name="label_field_starttime">Start Time:</string>
+    <string name="hint_field_starttime">Start Time</string>
+    <string name="label_field_enddate">End Date:</string>
+    <string name="hint_field_enddate">End Date</string>
+    <string name="label_field_endtime">End Time:</string>
+    <string name="hint_field_endtime">End Time</string>
+    <string name="hint_field_lat">latitude</string>
+    <string name="hint_field_lng">longtitude</string>
+    <string name="button_submit">Submit</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="location">Location</string>    
 </resources>

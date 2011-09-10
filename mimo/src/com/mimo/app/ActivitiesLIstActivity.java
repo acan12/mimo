@@ -69,9 +69,9 @@ public class ActivitiesLIstActivity extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
 	     // TODO Auto-generated method stub
 	     //super.onListItemClick(l, v, position, id);
-    	String selection = ((Order)l.getItemAtPosition(position)).getOrderName();
-		Toast.makeText(this, selection, Toast.LENGTH_LONG).show();
-		Intent i = new Intent(this, MapDashboardActivity.class);
+//    	String selection = ((Order)l.getItemAtPosition(position)).getOrderName();
+//		Toast.makeText(this, selection, Toast.LENGTH_LONG).show();
+		Intent i = new Intent(this, DetailActivity.class);
 		startActivity(i); 
     }
     
