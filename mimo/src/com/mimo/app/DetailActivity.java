@@ -61,6 +61,8 @@ public class DetailActivity extends Activity implements OnClickListener{
 		btncancel.setOnClickListener(this);
 		ImageButton iconActivity = (ImageButton)findViewById(R.id.iconActivity);
 		iconActivity.setOnClickListener(this);
+		Button mapPicker = (Button)findViewById(R.id.bMapPicker);
+		mapPicker.setOnClickListener(this);
 		
 		mDateDisplay =(TextView)findViewById(R.id.tStarDate);
 		mTimeDisplay = (TextView) findViewById(R.id.tStartTime);
@@ -104,6 +106,10 @@ public class DetailActivity extends Activity implements OnClickListener{
 			break;
 		case R.id.bEndTimePicker:
 			showDialog(TIME_END_DIALOG_ID);
+			break;
+		case R.id.bMapPicker:
+			Intent mapIntent = new Intent(this, MapLocation.class);
+			this.startActivity(mapIntent);
 			break;
 		case R.id.btn_submit:
 			Intent i = new Intent(this, MapDashboardActivity.class);
