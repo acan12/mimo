@@ -12,7 +12,7 @@
         android:orientation="vertical" android:layout_height="wrap_content">
         <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="30dp">
             <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapButton" android:src="@drawable/map_icon" android:padding="10dp"></ImageButton>
-            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/ImageButton01" android:src="@drawable/news_icon" android:padding="10dp"></ImageButton>
+            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/DetailButton" android:src="@drawable/news_icon" android:padding="10dp"></ImageButton>
         </LinearLayout>
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:gravity="center_horizontal" android:padding="30dp">

@@ -125,10 +125,8 @@ public class ActivitiesLIstActivity extends ListActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
                 View v = convertView;
-//	                if (v == null) {
-                    LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                    v = vi.inflate(R.layout.row, null);
-//	                }
+                LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = vi.inflate(R.layout.row, null);
                 Order o = items.get(position);
                 if (o != null) {
                 		if(o.getDrawableImage() != 0){

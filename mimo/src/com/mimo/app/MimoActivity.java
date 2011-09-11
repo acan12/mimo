@@ -10,12 +10,21 @@ import android.widget.ImageButton;
 
 
 public class MimoActivity extends Activity implements OnClickListener{
-	ImageButton imgButton;
+	ImageButton imgButton, imgButton2;
 	
 	@Override
-    public void onClick(View src) {
-		Intent i = new Intent(this, MapDashboardActivity.class);
-		startActivity(i); 
+    public void onClick(View v) {
+		switch(v.getId()){
+			case R.id.MapButton:
+				Intent i = new Intent(this, MapDashboardActivity.class);
+				startActivity(i); 
+				break;
+			case R.id.DetailButton:
+				Intent i2 = new Intent(this, DetailActivity.class);
+				startActivity(i2); 
+				break;
+		}
+		
     } 
 
     @Override
@@ -26,5 +35,7 @@ public class MimoActivity extends Activity implements OnClickListener{
         imgButton = (ImageButton) findViewById(R.id.MapButton);
         imgButton.setOnClickListener(this);
         
+        imgButton2 = (ImageButton) findViewById(R.id.DetailButton);
+        imgButton2.setOnClickListener(this);
     }
 }
