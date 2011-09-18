@@ -105,7 +105,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 		switch (v.getId()){
 			case R.id.ListLink:
-//				Intent i = new Intent(this, ActivitiesLIstActivity.class);
+//				Intent i = new Intent(this, ActivitiesListActivity.class);
 //				startActivity(i);  
 
 				AlertDialog.Builder dialog = new AlertDialog.Builder(this);

@@ -1,5 +1,7 @@
 package com.mimo.app.adapter;
 
+import com.mimo.app.pojo.ActivityEvent;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,9 +11,16 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter {
-	public static final String KEY_ROWID = "_id";
-	public static final String KEY_TITLE = "title";
+	public static final String KEY_ROWID = "id";
 	public static final String KEY_NAME = "name";
+	public static final String KEY_ICON = "icon";
+	public static final String KEY_DESCRIPTION = "description";
+	public static final String KEY_START_DATE = "st_date";
+	public static final String KEY_END_DATE = "end_date";
+	public static final String KEY_START_TIME = "st_time";
+	public static final String KEY_END_TIME = "end_time";
+	public static final String KEY_LAT = "lat";
+	public static final String KEY_LNG = "lng";
 	private static final String TAG = "DBAdapter";
 
 	private static final String DATABASE_NAME = "mimodb";
@@ -19,10 +28,16 @@ public class DBAdapter {
 	public static final int DATABASE_VERSION = 1;
 	
 	private static final String DATABASE_CREATE =
-		"create table activities (_id integer primary key autoincrement, "
-		+"title text not null,"
-		+"name text not null, "
-		+"description text );";
+		"create table activities (id integer primary key autoincrement, "+
+		"name text not null, "+
+		"icon text not null,"+
+		"description text," +
+		"st_date text," +
+		"st_time text," +
+		"end_date text," +
+		"end_time text," +
+		"lat double," +
+		"lng double );";
 	
 	private final Context context;
 	private DatabaseHelper DBHelper;
@@ -49,7 +64,7 @@ public class DBAdapter {
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// TODO Auto-generated method stub
-			db.execSQL("DROP TABLE IF EXISTS titles");
+			db.execSQL("DROP TABLE IF EXISTS name");
 			onCreate(db);
 		}
 		
@@ -64,10 +79,17 @@ public class DBAdapter {
 		DBHelper.close();
 	}
 	
-	public long insertTitle(String title, String name){
+	public long insertTitle(ActivityEvent act){
 		ContentValues initialValues = new ContentValues();
-		initialValues.put(KEY_TITLE, title);
-		initialValues.put(KEY_NAME, name);
+		initialValues.put(KEY_NAME, act.getName());
+		initialValues.put(KEY_ICON, act.getIcon());
+		initialValues.put(KEY_DESCRIPTION, act.getDescription());
+		initialValues.put(KEY_START_DATE, act.getStart_date());
+		initialValues.put(KEY_END_DATE, act.getEnd_date());
+		initialValues.put(KEY_START_TIME, act.getStart_time());
+		initialValues.put(KEY_END_TIME, act.getEnd_time());
+		initialValues.put(KEY_LAT, act.getLat());
+		initialValues.put(KEY_LNG, act.getLng());
 		return db.insert(DATABASE_TABLE, null, initialValues);
 		
 	}
@@ -80,8 +102,15 @@ public class DBAdapter {
 		
 		return db.query(DATABASE_TABLE, new String[]{
 				KEY_ROWID,
-				KEY_TITLE,
-				KEY_NAME
+				KEY_NAME,
+				KEY_ICON,
+				KEY_DESCRIPTION,
+				KEY_START_DATE,
+				KEY_END_DATE,
+				KEY_START_TIME,
+				KEY_END_TIME,
+				KEY_LAT,
+				KEY_LNG
 		}, null, null, null, null, null);
 		
 	}
@@ -90,8 +119,15 @@ public class DBAdapter {
 		Cursor mCursor = 
 			db.query(true, DATABASE_TABLE, new String[]{
 					KEY_ROWID,
-					KEY_TITLE,
-					KEY_NAME
+					KEY_NAME,
+					KEY_ICON,
+					KEY_DESCRIPTION,
+					KEY_START_DATE,
+					KEY_END_DATE,
+					KEY_START_TIME,
+					KEY_END_TIME,
+					KEY_LAT,
+					KEY_LNG
 			}, KEY_ROWID + "=" + rowId, null, null, null, null, null);
 		if (mCursor != null){
 			mCursor.moveToFirst();
@@ -99,10 +135,17 @@ public class DBAdapter {
 		return mCursor;
 	}
 	
-	public boolean updateTitle(long rowId, String title, String name){
+	public boolean updateTitle(long rowId, ActivityEvent act){
 		ContentValues args = new ContentValues();
-		args.put(KEY_TITLE, title);
-		args.put(KEY_NAME, name);
+		args.put(KEY_NAME, act.getName());
+		args.put(KEY_ICON, act.getIcon());
+		args.put(KEY_DESCRIPTION, act.getDescription());
+		args.put(KEY_START_DATE, act.getStart_date());
+		args.put(KEY_END_DATE, act.getEnd_date());
+		args.put(KEY_START_TIME, act.getStart_time());
+		args.put(KEY_END_TIME, act.getEnd_time());
+		args.put(KEY_LAT, act.getLat());
+		args.put(KEY_LNG, act.getLng());
 		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
 	}
 }

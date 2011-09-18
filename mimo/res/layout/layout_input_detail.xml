@@ -45,6 +45,14 @@
 		            android:layout_marginRight="8dip"
 		            android:text="@string/label_field_activity_name"
 		            android:id="@+id/labelName"/>
+		        <EditText
+		            android:layout_width="fill_parent" 
+		            android:layout_height="wrap_content" 
+		            android:singleLine="true"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginRight="10dip"
+		            android:hint="@string/hint_field_activity_name"
+		            android:id="@+id/edit_name" android:marqueeRepeatLimit="marquee_forever"/>
 		        <TextView  
 		            android:layout_width="fill_parent" 
 		            android:layout_height="wrap_content" 
@@ -53,9 +61,37 @@
 		            android:layout_marginRight="8dip"
 		            android:text="@string/label_field_description"
 		            android:id="@+id/labelDescription"/>
+		        <EditText
+		            android:id="@+id/edit_description"
+		            android:layout_width="fill_parent" 
+		            android:layout_height="wrap_content" 
+		            android:singleLine="true"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginRight="10dip"
+		            android:hint="@string/hint_field_description"
+	            />
 		        <TextView android:text="Start :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelStart"></TextView>
+	            <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
+	                <EditText android:hint="@string/hint_field_startdate" android:layout_marginLeft="10dip" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="2dip" android:id="@+id/tStarDate">
+	                    <requestFocus></requestFocus>
+	                </EditText>
+	                <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bStartDatePicker"></Button>
+	                <EditText android:layout_weight="1" android:layout_height="wrap_content" android:singleLine="false" android:layout_width="wrap_content" android:hint="@string/hint_field_starttime" android:layout_marginLeft="5dip" android:layout_marginRight="2dp" android:id="@+id/tStartTime"></EditText>
+	                <Button android:layout_weight="1" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="..." android:id="@+id/bStartTimePicker"></Button>
+	            </LinearLayout>
 	            <TextView android:text="End :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelEnd"></TextView>
+	            <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
+	                <EditText android:layout_marginLeft="10dip" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_enddate" android:layout_marginRight="2dip" android:id="@+id/tEndDate"></EditText>
+	                <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bEndDatePicker"></Button>
+	                <EditText android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_endtime" android:layout_marginLeft="5dip" android:layout_marginRight="2dip" android:id="@+id/tEndTime"></EditText>
+	                <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bEndTimePicker"></Button>
+	            </LinearLayout>
 	            <TextView android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/location" android:id="@+id/labelLocation"></TextView>
+	            <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
+	                <Button android:layout_width="wrap_content" android:text="..." android:layout_height="wrap_content" android:layout_gravity="right" android:layout_weight="1" android:layout_marginLeft="10dp" android:id="@+id/bMapPicker"></Button>
+	                <EditText android:layout_marginLeft="10dip" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_lat" android:layout_marginRight="5dip" android:id="@+id/edit_lat"></EditText>
+	                <EditText android:id="@+id/edit_lng" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_lng" android:layout_marginRight="10dip"></EditText>
+	            </LinearLayout>
                 
                     <LinearLayout
 				        android:orientation="horizontal"
@@ -64,16 +100,21 @@
 				        android:layout_gravity="left"
 				        android:layout_weight="2" android:layout_margin="5dip">
 				        <Button
+				            android:id="@+id/btn_submit"
 				            android:layout_width="wrap_content"
 				            android:layout_height="wrap_content"
 				            android:layout_gravity="right"
 				            android:layout_weight="1"
-				            android:id="@+id/btn_detail" android:text="@string/button_detail"/>
+				            android:text="@string/button_submit"
+				        />
 				        <Button
+				            android:id="@+id/btn_cancel"
 				            android:layout_width="wrap_content"
 				            android:layout_height="wrap_content"
 				            android:layout_gravity="right"
-				            android:layout_weight="1" android:text="@string/button_back" android:id="@+id/btn_back"/>
+				            android:layout_weight="1"
+				            android:text="@string/button_cancel"
+				        />
 				    </LinearLayout>
 
 

@@ -4,12 +4,13 @@
     <string name="hello">Hello World, SoftwarePassionView!</string>
     <string name="main_no_items">No orders to display</string>
     <string name="title_create">Detail/ Edit Activity</string>
+    <string name="icon_name"></string>
     <!-- form setting in layout detail -->
     
     <string name="label_field_activity_name">Name</string>
-    <string name="hint_field_activity_name">Name</string>
+    <string name="hint_field_activity_name">your activity name</string>
     <string name="label_field_description">Description</string>
-    <string name="hint_field_description">Description</string>
+    <string name="hint_field_description">your activity description</string>
     <string name="label_field_startdate">Start Date:</string>
     <string name="hint_field_startdate">Start Date</string>
     <string name="label_field_starttime">Start Time:</string>
@@ -20,6 +21,8 @@
     <string name="hint_field_endtime">End Time</string>
     <string name="hint_field_lat">latitude</string>
     <string name="hint_field_lng">longtitude</string>
+    <string name="button_detail">Detail</string>
+    <string name="button_back">Back</string>
     <string name="button_submit">Submit</string>
     <string name="button_cancel">Cancel</string>
     <string name="location">Location</string>    

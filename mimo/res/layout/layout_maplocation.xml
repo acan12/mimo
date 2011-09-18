@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="#ababab" android:orientation="horizontal" android:paddingLeft="5dp">
-    
-        <LinearLayout android:id="@+id/Zoom" android:scrollbars="vertical" android:orientation="vertical" android:layout_height="fill_parent" android:layout_width="fill_parent">
-            <com.google.android.maps.MapView
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/mapview"
-                android:clickable="true"
-                android:apiKey="04ToJMcHjUZd2A99JOzz6zj2C8bjy1YT1X_2dXw" android:background="#ffffff" android:layout_height="fill_parent" android:layout_width="fill_parent" android:longClickable="true"/>
-        </LinearLayout>
-        
+    android:layout_height="fill_parent" android:orientation="vertical">
+    <!-- <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="horizontal" android:background="#ababab">
+	    <EditText android:layout_weight="1" android:id="@+id/searchText" android:layout_height="wrap_content" android:layout_width="fill_parent"></EditText>
+	    <Button android:id="@+id/search" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Search"></Button>
+    </LinearLayout> -->
+
+    <com.google.android.maps.MapView 
+        android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:enabled="true"
+        android:clickable="true"
+        android:apiKey="04ToJMcHjUZd2A99JOzz6zj2C8bjy1YT1X_2dXw"
+        />
+
+   
+
 </LinearLayout>

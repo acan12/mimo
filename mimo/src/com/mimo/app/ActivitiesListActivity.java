@@ -33,7 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-public class ActivitiesLIstActivity extends ListActivity {
+public class ActivitiesListActivity extends ListActivity {
 	
 
 	private ProgressDialog m_ProgressDialog = null;
@@ -59,7 +59,7 @@ public class ActivitiesLIstActivity extends ListActivity {
         };
         Thread thread =  new Thread(null, viewOrders, "MagentoBackground");
         thread.start();
-        m_ProgressDialog = ProgressDialog.show(ActivitiesLIstActivity.this,    
+        m_ProgressDialog = ProgressDialog.show(ActivitiesListActivity.this,    
               "Please wait...", "Retrieving data ...", true);
         
         

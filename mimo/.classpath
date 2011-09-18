@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="/Users/arys/Documents/workspace/android/lib/android-support-v4.jar"/>
 	<classpathentry kind="lib" path="/Users/arys/Documents/workspace/android/lib/commons-codec-1.5.jar"/>
 	<classpathentry kind="lib" path="/Users/arys/Documents/workspace/android/lib/scribe-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/gson-1.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

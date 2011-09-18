@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 
 public class MapOverlays extends ItemizedOverlay<OverlayItem>{
@@ -53,7 +54,7 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 	
 	public boolean onTap(int index){
 		if (mContext != null) {
-			Intent i = new Intent(mContext, ActivitiesLIstActivity.class);
+			Intent i = new Intent(mContext, ActivitiesListActivity.class);
 			mContext.startActivity(i);
 		} else {
 			Log.e("MapOverlays", "mContext is null");
@@ -85,10 +86,16 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 //            GeoPoint p = mapView.getProjection().fromPixels(
 //                (int) event.getX(),
 //                (int) event.getY());
-//                Toast.makeText(this.mContext, 
-//                    p.getLatitudeE6() / 1E6 + "," + 
-//                    p.getLongitudeE6() /1E6 , 
-//                    Toast.LENGTH_SHORT).show();
+////                Toast.makeText(this.mContext, 
+////                    p.getLatitudeE6() / 1E6 + "," + 
+////                    p.getLongitudeE6() /1E6 , 
+////                    Toast.LENGTH_SHORT).show();
+//            List<Overlay> mapOverlays = mapView.getOverlays();
+//            Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.cheese);
+//            MapOverlays itemizedoverlay = new MapOverlays(drawable, this.mContext);
+//            OverlayItem overlayitem = new OverlayItem(p, null, "You are in Butcher Location.");
+//            itemizedoverlay.addOverlay(overlayitem);
+//            mapOverlays.add(itemizedoverlay);
 //        }                            
 //        return false;
 //    }   
