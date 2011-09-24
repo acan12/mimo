@@ -4,7 +4,7 @@
     <string name="hello">Hello World, SoftwarePassionView!</string>
     <string name="main_no_items">No orders to display</string>
     <string name="title_create">Detail/ Edit Activity</string>
-    <string name="icon_name"></string>
+    <string name="icon_name">-- please choose activity icon --</string>
     <!-- form setting in layout detail -->
     
     <string name="label_field_activity_name">Name</string>
@@ -24,6 +24,7 @@
     <string name="button_detail">Detail</string>
     <string name="button_back">Back</string>
     <string name="button_submit">Submit</string>
+    <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>
     <string name="location">Location</string>    
 </resources>

@@ -9,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBAdapter {
 	public static final String KEY_ROWID = "id";
@@ -79,7 +80,7 @@ public class DBAdapter {
 		DBHelper.close();
 	}
 	
-	public long insertTitle(ActivityEvent act){
+	public long insertRecord(ActivityEvent act){
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(KEY_NAME, act.getName());
 		initialValues.put(KEY_ICON, act.getIcon());
@@ -94,11 +95,11 @@ public class DBAdapter {
 		
 	}
 	
-	public boolean deleteTitle(long rowId){
+	public boolean deleteRecord(long rowId){
 		return db.delete(DATABASE_TABLE, KEY_ROWID + "="+rowId, null) > 0;
 	}
 		
-	public Cursor getAllTitles(){
+	public Cursor getAllRecord(){
 		
 		return db.query(DATABASE_TABLE, new String[]{
 				KEY_ROWID,
@@ -115,7 +116,7 @@ public class DBAdapter {
 		
 	}
 	
-	public Cursor getTitle(long rowId) throws SQLException{
+	public Cursor getRecord(long rowId) throws SQLException{
 		Cursor mCursor = 
 			db.query(true, DATABASE_TABLE, new String[]{
 					KEY_ROWID,
@@ -123,8 +124,8 @@ public class DBAdapter {
 					KEY_ICON,
 					KEY_DESCRIPTION,
 					KEY_START_DATE,
-					KEY_END_DATE,
 					KEY_START_TIME,
+					KEY_END_DATE,
 					KEY_END_TIME,
 					KEY_LAT,
 					KEY_LNG
@@ -135,7 +136,8 @@ public class DBAdapter {
 		return mCursor;
 	}
 	
-	public boolean updateTitle(long rowId, ActivityEvent act){
+	public boolean updateRecord(ActivityEvent act){
+		Log.d("test:", "----------ID: "+act.getId());
 		ContentValues args = new ContentValues();
 		args.put(KEY_NAME, act.getName());
 		args.put(KEY_ICON, act.getIcon());
@@ -146,6 +148,6 @@ public class DBAdapter {
 		args.put(KEY_END_TIME, act.getEnd_time());
 		args.put(KEY_LAT, act.getLat());
 		args.put(KEY_LNG, act.getLng());
-		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + act.getId(), null) > 0;
 	}
 }

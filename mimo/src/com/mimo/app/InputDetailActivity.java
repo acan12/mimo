@@ -21,6 +21,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,38 +41,62 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class InputDetailActivity extends Activity implements OnClickListener{
+public class InputDetailActivity extends Activity implements OnClickListener, Configuration{
 
 	static final int DATE_DIALOG_ID = 0;
 	static final int TIME_DIALOG_ID = 1;
 	static final int DATE_END_DIALOG_ID = 2;
 	static final int TIME_END_DIALOG_ID = 3;
+	
+	private static final int DB_CREATE =1;
+	private static final int DB_UPDATE =2;
+	private static final int DB_DELETE =3;
+	private static final int DB_SELECT =4;
+	
 	private int mYear;
 	private int mMonth;
 	private int mDay;
 	private int mhour;
 	private int mminute;
 	private Icons idIcon = new Icons();
+	private ActivityEvent a;
 	
 	private TextView mDateDisplay, mDateDisplayEnd;
 	private TextView mTimeDisplay, mTimeDisplayEnd;
 	
-	double lat2= -6.195894;
-	double lng2= 106.835901;
+	private double lat2= -6.195894;
+	private double lng2= 106.835901;
+	
+	private int action;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.layout_input_detail);
 		
-		TextView eIcon = (TextView)findViewById(R.id.icon_label);
-		eIcon.setText(idIcon.getLabels()[0]);
+		Bundle bundle = getIntent().getExtras();
+		action = bundle.getInt("param1");
+		int paramid = bundle.getInt("paramid");
+		Log.d("params: ------", "value:"+action);
+		Log.d("paramsid: ------", "value:"+paramid);
+		
+		switch(action){
+		case DB_CREATE: // create
+			setContentView(R.layout.layout_new_form);
+			
+			break;
+		case DB_UPDATE: // update
+			setContentView(R.layout.layout_form_detail);
+			reloadForm(paramid);  
+			
+			break;
+		}
+		
 		
 		Button btn = (Button)findViewById(R.id.btn_submit);
 		btn.setOnClickListener(this);
 		Button btncancel = (Button)findViewById(R.id.btn_cancel);
 		btncancel.setOnClickListener(this);
-		ImageButton iconActivity = (ImageButton)findViewById(R.id.iconActivity);
+		ImageButton iconActivity = (ImageButton)findViewById(R.id.icon_activity);
 		iconActivity.setOnClickListener(this);
 		Button mapPicker = (Button)findViewById(R.id.bMapPicker);
 		mapPicker.setOnClickListener(this);
@@ -117,82 +142,51 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 		switch (v.getId()){
 		case R.id.bStartDatePicker:
 			showDialog(DATE_DIALOG_ID);
+			
 			break;
 		case R.id.bStartTimePicker:
 			showDialog(TIME_DIALOG_ID);
+			
 			break;
 		case R.id.bEndDatePicker:
 			showDialog(DATE_END_DIALOG_ID);
+			
 			break;
 		case R.id.bEndTimePicker:
 			showDialog(TIME_END_DIALOG_ID);
+			
 			break;
 		case R.id.bMapPicker:
 			double lat2= -6.195894;
 			double lng2= 106.835901;
 			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
 			this.startActivity(mapIntent);
+			
 			break;
 		case R.id.btn_submit:
 			
-			
-			ActivityEvent a = setActivity();
-	        Log.d("test:", "----------name: "+a.getName());
-	        Log.d("test:", "----------description: "+a.getDescription());
-	        Log.d("test:", "----------startdate: "+a.getStart_date());
-	        Log.d("test:", "----------lat: "+a.getLat());
-	        
-	        updateDB(a);
-	        
-	        TextView eName = (TextView)findViewById(R.id.edit_name);
-	        eName.setText(a.getName());
+			switch(action){
+			case DB_CREATE: // create
+				setContentView(R.layout.layout_new_form);
+				uptoDB(a,DB_CREATE);
+				break;
+			case DB_UPDATE: // update
+				a =new ActivityEvent();
+				//set id activity event
+				TextView t = (TextView)findViewById(R.id.hidden_value);
+				a.setId(Integer.parseInt(t.getText().toString()));
+				setActivity(a);
+				uptoDB(a,DB_UPDATE);
+				
+				break;
+			}
 			break;
-			
 		case R.id.btn_cancel:
-//			Intent i = new Intent(this, DetailActivity.class);
-//			i.putExtra("edit_name", "xxxxxxxx");
-//			this.startActivity(i);
+			Intent i = new Intent(this, DetailActivity.class);
+			this.startActivity(i);
 			
-			ImageButton imb = (ImageButton)findViewById(R.id.iconActivity);
-			Drawable d = imb.getDrawable();
-//			Text	@string/label_field_description
-			TextView tv = (TextView)findViewById(R.id.labelName);
-			Log.d("word: ", tv.getText().toString());
 			break;
-		case R.id.iconActivity:
-			
-//			String[] labels = {"Entertainment", 
-//					"Food/Fun", 
-//					"News",
-//					"Meeting",
-//					"Flavour",
-//					"Sport",
-//					"Art",
-//					"Junk Food",
-//					"Space",
-//					"Walking",
-//					"Fitness",
-//					"Holiday",
-//					"Market",
-//					"Community",
-//					"Office"};
-//			
-//			final int[] icons = {
-//					R.drawable.alien, 
-//					R.drawable.bread, 
-//					R.drawable.butcher2, 
-//					R.drawable.candy,
-//					R.drawable.cheese,
-//					R.drawable.eggs,
-//					R.drawable.farmstand,
-//					R.drawable.fruits,
-//					R.drawable.japanese_sweet2,
-//					R.drawable.patisserie,
-//					R.drawable.sandwich2,
-//					R.drawable.alien, 
-//					R.drawable.bread, 
-//					R.drawable.butcher2, 
-//					R.drawable.candy};
+		case R.id.icon_activity:
 			
 			String[] labels = idIcon.getLabels();
 			final int[] icons = idIcon.getIcons();
@@ -203,7 +197,7 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					// TODO Auto-generated method stub
-					ImageView img =(ImageView)findViewById(R.id.iconActivity);
+					ImageView img =(ImageView)findViewById(R.id.icon_activity);
             		Drawable drawable = getResources().getDrawable(icons[which]);
             		img.setImageDrawable(drawable);
             		
@@ -216,15 +210,13 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 		}
 	}
 
-	private ActivityEvent setActivity(){
-		ActivityEvent ae = new ActivityEvent() ;
-		
+	private ActivityEvent setActivity(ActivityEvent ae){
 		//set activity name
 		TextView eName = (TextView)findViewById(R.id.edit_name);
 		ae.setName(eName.getText().toString());
 		
 		//set icon name
-		TextView eIcon = (TextView)findViewById(R.id.iconActivity);
+		TextView eIcon = (TextView)findViewById(R.id.icon_label);
 		ae.setIcon(eIcon.getText().toString());
 		
 		//set activity description
@@ -235,7 +227,6 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 		//set activity start/end date
 		TextView eStartDate = (TextView)findViewById(R.id.tStarDate);
 		ae.setStart_date(eStartDate.getText().toString());
-		
 		TextView eEndDate = (TextView)findViewById(R.id.tEndDate);
 		ae.setEnd_date(eEndDate.getText().toString());
 		
@@ -243,9 +234,8 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 		//set activity start/end time
 		TextView eStartTime = (TextView)findViewById(R.id.tStartTime);
 		ae.setStart_time(eStartTime.getText().toString());
-		
 		TextView eEndTime = (TextView)findViewById(R.id.tEndTime);
-		ae.setEnd_date(eEndTime.getText().toString());
+		ae.setEnd_time(eEndTime.getText().toString());
 		
 		
 		//set activity lat/lng value
@@ -256,12 +246,91 @@ public class InputDetailActivity extends Activity implements OnClickListener{
 		return ae;
 	}
 	
-	public boolean updateDB(ActivityEvent act){
+	private ActivityEvent reloadForm(int id){
+		DBAdapter db = new DBAdapter(this);
+		db.open();
+		Cursor c = db.getRecord(id);
+		
+		ActivityEvent ae ;
+		do{
+			ae = new ActivityEvent();
+			ae.setId(id);
+			ae.setName(c.getString(c.getColumnIndex("name")));
+			ae.setIcon(c.getString(c.getColumnIndex("icon")));
+			ae.setDescription(c.getString(c.getColumnIndex("description")));
+			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
+			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
+			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
+			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+			
+		}while(c.moveToNext());
+		db.close();
+		
+		//set icon 
+		ImageButton img =(ImageButton)findViewById(R.id.icon_activity);
+		Drawable drawable = getResources().getDrawable(idIcon.getIconFromLabel(ae.getIcon()));
+		img.setImageDrawable(drawable);
+		
+		//set id hidden activity event
+//		TextView eId = (TextView)findViewById(R.id.hidden_value);
+//		eId.setText(id);
+		
+		//set icon name
+		TextView eIcon = (TextView)findViewById(R.id.icon_label);
+		eIcon.setText(ae.getIcon());
+		
+		//set activity name
+		TextView eName = (TextView)findViewById(R.id.edit_name);
+		eName.setText(ae.getName());
+		
+		//set activity description
+		TextView eDescription = (TextView)findViewById(R.id.edit_description);
+		eDescription.setText(ae.getDescription());
+		
+		//set activity start/end date
+		TextView eStartDate = (TextView)findViewById(R.id.tStarDate);
+		eStartDate.setText(ae.getStart_date());
+
+		TextView eEndDate = (TextView)findViewById(R.id.tEndDate);
+		eEndDate.setText(ae.getEnd_date());
+
+		//set activity start/end time
+		TextView eStartTime = (TextView)findViewById(R.id.tStartTime);
+		eStartTime.setText(ae.getStart_time());
+		
+		TextView eEndTime = (TextView)findViewById(R.id.tEndTime);
+		eEndTime.setText(ae.getEnd_time());
+		
+		
+		//set activity lat/lng value
+		TextView eLat = (TextView)findViewById(R.id.edit_lat);
+		eLat.setText(""+ae.getLat());
+		
+		TextView eLng = (TextView)findViewById(R.id.edit_lng);
+		eLng.setText(""+ae.getLng());
+		
+		return ae;
+	}
+	public boolean uptoDB(ActivityEvent act, int action_type){
 		// ----------- store to Db SQLite -------
 		DBAdapter db = new DBAdapter(this);
 		db.open();
-		long id;
-		id = db.insertTitle(act);
+		switch(action_type){
+		case DB_CREATE:
+			db.insertRecord(act);
+			break;
+		case DB_UPDATE:
+			Log.d("test:", "----------masuk update ");
+			db.updateRecord(act);
+			break;
+		case DB_DELETE:
+			db.deleteRecord(act.getId());
+			break;
+		}
+		
+		
 		db.close();
 		// ----------- end SQLite --------------
 		return true;

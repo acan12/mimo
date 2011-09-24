@@ -1,5 +1,7 @@
 package com.mimo.app.pojo;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import com.mimo.app.R;
 
 public class Icons {
@@ -44,5 +46,11 @@ public class Icons {
 
 	public int[] getIcons() {
 		return icons;
+	}
+	
+	public int getIconFromLabel(String label){
+		
+		int index = ArrayUtils.indexOf(getLabels(), label);
+		return icons[index];
 	}
 }

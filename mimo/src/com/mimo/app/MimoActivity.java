@@ -20,7 +20,7 @@ public class MimoActivity extends Activity implements OnClickListener{
 				startActivity(i); 
 				break;
 			case R.id.DetailButton:
-				Intent i2 = new Intent(this, InputDetailActivity.class);
+				Intent i2 = new Intent(this, DetailActivity.class);
 				startActivity(i2); 
 				break;
 		}
