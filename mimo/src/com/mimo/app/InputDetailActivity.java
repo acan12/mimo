@@ -8,9 +8,10 @@ import java.util.List;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.adapter.DBAdapter;
-import com.mimo.app.pojo.ActivityEvent;
-import com.mimo.app.pojo.Icons;
+import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -48,6 +49,8 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 	static final int DATE_END_DIALOG_ID = 2;
 	static final int TIME_END_DIALOG_ID = 3;
 	
+	static final int RESPONSE_OK = 200; 
+	
 	private static final int DB_CREATE =1;
 	private static final int DB_UPDATE =2;
 	private static final int DB_DELETE =3;
@@ -61,8 +64,7 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 	private Icons idIcon = new Icons();
 	private ActivityEvent a;
 	
-	private TextView mDateDisplay, mDateDisplayEnd;
-	private TextView mTimeDisplay, mTimeDisplayEnd;
+	private TextView mDateDisplay, mDateDisplayEnd, mTimeDisplay, mTimeDisplayEnd;
 	
 	private double lat2= -6.195894;
 	private double lng2= 106.835901;
@@ -74,10 +76,10 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 		super.onCreate(savedInstanceState);
 		
 		Bundle bundle = getIntent().getExtras();
-		action = bundle.getInt("param1");
+		action = bundle.getInt("paramaction");
 		int paramid = bundle.getInt("paramid");
-		Log.d("params: ------", "value:"+action);
-		Log.d("paramsid: ------", "value:"+paramid);
+		Log.d("param: ------", "value:"+action);
+		Log.d("paramid: ------", "value:"+paramid);
 		
 		switch(action){
 		case DB_CREATE: // create
@@ -125,7 +127,6 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 	    mDay = c.get(Calendar.DAY_OF_MONTH);
 	    mhour = c.get(Calendar.HOUR_OF_DAY);
 	    mminute = c.get(Calendar.MINUTE);
-
 	}
 	
 	@Override
@@ -161,29 +162,40 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 			double lng2= 106.835901;
 			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
 			this.startActivity(mapIntent);
-			
+			 
 			break;
 		case R.id.btn_submit:
-			
+			a =new ActivityEvent();
 			switch(action){
 			case DB_CREATE: // create
-				setContentView(R.layout.layout_new_form);
+				setActivity(a);
 				uptoDB(a,DB_CREATE);
+				onCreateDialog(RESPONSE_OK);
+				
 				break;
 			case DB_UPDATE: // update
-				a =new ActivityEvent();
 				//set id activity event
 				TextView t = (TextView)findViewById(R.id.hidden_value);
 				a.setId(Integer.parseInt(t.getText().toString()));
 				setActivity(a);
 				uptoDB(a,DB_UPDATE);
+				onCreateDialog(RESPONSE_OK);
 				
 				break;
 			}
 			break;
 		case R.id.btn_cancel:
-			Intent i = new Intent(this, DetailActivity.class);
-			this.startActivity(i);
+			switch(action){
+			case DB_CREATE:
+				Intent i = new Intent(this, MimoActivity.class);
+				this.startActivity(i);
+				break;
+			case DB_UPDATE:
+				Intent i2 = new Intent(this, ActivitiesListActivity.class);
+				i2.putExtra("paramid", a.getId());
+				this.startActivity(i2);
+				break;
+			}
 			
 			break;
 		case R.id.icon_activity:
@@ -213,6 +225,7 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 	private ActivityEvent setActivity(ActivityEvent ae){
 		//set activity name
 		TextView eName = (TextView)findViewById(R.id.edit_name);
+		
 		ae.setName(eName.getText().toString());
 		
 		//set icon name
@@ -267,6 +280,10 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 			
 		}while(c.moveToNext());
 		db.close();
+		
+		//set hidden value
+		TextView tv= (TextView)findViewById(R.id.hidden_value);
+		tv.setText(Integer.valueOf(id).toString());
 		
 		//set icon 
 		ImageButton img =(ImageButton)findViewById(R.id.icon_activity);
@@ -460,6 +477,8 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
 	@Override
     protected Dialog onCreateDialog(int id) {
         switch (id) {
+        case RESPONSE_OK:
+        	Toast.makeText(this, "Response Ok", Toast.LENGTH_LONG).show();
         case DATE_DIALOG_ID:
             return new DatePickerDialog(this,
                         mDateSetListener,
@@ -476,4 +495,5 @@ public class InputDetailActivity extends Activity implements OnClickListener, Co
         }
         return null;
     }
+	
 }

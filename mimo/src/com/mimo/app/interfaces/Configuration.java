@@ -1,4 +1,4 @@
-package com.mimo.app;
+package com.mimo.app.interfaces;
 
 public interface Configuration {
 	static final int ACTION_ADD = 1;

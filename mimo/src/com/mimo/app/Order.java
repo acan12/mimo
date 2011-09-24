@@ -1,11 +1,19 @@
 package com.mimo.app;
 
 public class Order {
-	   
-    private String orderName;
+	
+	private String orderId;
+	private String orderName;
     private String orderStatus;
     private int drawableImage;
    
+    
+    public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
     public int getDrawableImage() {
 		return drawableImage;
 	}

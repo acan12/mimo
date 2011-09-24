@@ -22,7 +22,7 @@
                 <TextView android:layout_marginBottom="0dip" android:textSize="15dp" android:textColor="#000000" android:layout_marginTop="0dip" android:id="@+id/icon_label" android:textStyle="bold" android:layout_width="wrap_content" android:layout_marginRight="4dip" android:layout_weight="2" android:layout_height="wrap_content" android:layout_marginLeft="4dip" android:text="@string/icon_name" android:layout_gravity="center"></TextView>
             </LinearLayout>
             <LinearLayout android:layout_width="fill_parent" android:background="#ababab" android:layout_height="wrap_content" android:orientation="horizontal">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/hidden_value" android:visibility="invisible" android:text="5"></TextView>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/hidden_value" android:visibility="invisible"></TextView>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

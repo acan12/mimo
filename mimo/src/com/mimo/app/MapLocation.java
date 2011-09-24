@@ -19,8 +19,8 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.adapter.DBAdapter;
-import com.mimo.app.pojo.ActivityEvent;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
 
 public class MapLocation extends MapActivity implements OnClickListener{
 	PrintStream p = System.out;

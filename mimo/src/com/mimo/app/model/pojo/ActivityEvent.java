@@ -1,4 +1,4 @@
-package com.mimo.app.pojo;
+package com.mimo.app.model.pojo;
 
 
 

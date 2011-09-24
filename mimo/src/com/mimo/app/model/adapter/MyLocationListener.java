@@ -1,4 +1,4 @@
-package com.mimo.app.adapter;
+package com.mimo.app.model.adapter;
 
 import com.google.android.maps.MapActivity;
 

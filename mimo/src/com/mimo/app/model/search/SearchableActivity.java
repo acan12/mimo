@@ -1,3 +1,4 @@
+package com.mimo.app.model.search;
 //package com.mimo.app.search;
 //
 //import android.app.Activity;

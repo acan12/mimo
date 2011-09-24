@@ -8,6 +8,9 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
 
 import android.*;
 import android.app.Activity;
@@ -15,6 +18,7 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,12 +48,12 @@ public class ActivitiesListActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_activity);
+        setContentView(R.layout.layout_activities);
         
         m_orders = new ArrayList<Order>();
         this.m_adapter = new OrderAdapter(this, R.layout.row, m_orders);
         this.setListAdapter(this.m_adapter);
-        this.setSelection(3);
+//        this.setSelection(3);
        
         viewOrders = new Runnable(){
             @Override
@@ -67,11 +71,9 @@ public class ActivitiesListActivity extends ListActivity {
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-	     // TODO Auto-generated method stub
-	     //super.onListItemClick(l, v, position, id);
-//    	String selection = ((Order)l.getItemAtPosition(position)).getOrderName();
-//		Toast.makeText(this, selection, Toast.LENGTH_LONG).show();
-		Intent i = new Intent(this, DetailActivity.class);
+    	Order o = (Order)l.getItemAtPosition(position);
+    	Intent i = new Intent(this, DetailActivity.class);
+    	i.putExtra("paramid", Integer.parseInt(o.getOrderId()));
 		startActivity(i); 
     }
     
@@ -94,26 +96,41 @@ public class ActivitiesListActivity extends ListActivity {
             m_orders = new ArrayList<Order>();
             
             Order o;
-            for(int i=0; i<20; i++){
-            	o= new Order();
-            	o.setOrderName("SF services");
-                o.setOrderStatus("Pending kokokokokokokokokokokok");
-                if(i % 2 == 1){
-                	o.setDrawableImage(R.drawable.cheese);
-                }else if (i>5 && i<= 8) {
-                	o.setDrawableImage(R.drawable.japanese_sweet2);
-				}
-                m_orders.add(o);
-            }
-            
+            ActivityEvent ae;
+            DBAdapter db = new DBAdapter(this);
+    		db.open();
+    		Cursor c = db.getAllRecord(); //db.getRecord(5);
+    		Icons icons = new Icons();
+    		while(c.moveToNext()){
+    			ae = new ActivityEvent();
+    			ae.setName(c.getString(c.getColumnIndex("name")));
+    			ae.setIcon(c.getString(c.getColumnIndex("icon")));
+    			ae.setDescription(c.getString(c.getColumnIndex("description")));
+    			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
+    			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
+    			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
+    			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+    			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+    			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+    			
+    			o= new Order();
+    			o.setOrderId(c.getString(c.getColumnIndex("id")));
+    			o.setOrderName(ae.getIcon());
+    			o.setOrderStatus(ae.getName()+"-"+ae.getDescription()+", "+ae.getStart_date());
+    			o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
+    			
+    			m_orders.add(o);
+        	}	
+    		
             Thread.sleep(5000);
             Log.i("ARRAY", ""+ m_orders.size());
           } catch (Exception e) {
             Log.e("BACKGROUND_PROC", e.getMessage());
           }
           runOnUiThread(returnRes);
-      
 	}
+    
+    
     class OrderAdapter extends ArrayAdapter<Order> {
 
         private ArrayList<Order> items;
@@ -134,9 +151,9 @@ public class ActivitiesListActivity extends ListActivity {
 	                		Drawable drawable = v.getResources().getDrawable(o.getDrawableImage());
 	                		img.setImageDrawable(drawable);
                 		}
-                		
                         TextView tt = (TextView) v.findViewById(R.id.toptext);
                         TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+                        
                         if (tt != null) {
                               tt.setText("Name: "+o.getOrderName());                            }
                         if(bt != null){

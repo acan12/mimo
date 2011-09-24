@@ -1,6 +1,6 @@
-package com.mimo.app.adapter;
+package com.mimo.app.model.adapter;
 
-import com.mimo.app.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.ActivityEvent;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -107,8 +107,8 @@ public class DBAdapter {
 				KEY_ICON,
 				KEY_DESCRIPTION,
 				KEY_START_DATE,
-				KEY_END_DATE,
 				KEY_START_TIME,
+				KEY_END_DATE,
 				KEY_END_TIME,
 				KEY_LAT,
 				KEY_LNG

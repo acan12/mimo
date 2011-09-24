@@ -9,9 +9,10 @@ import java.util.List;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.adapter.DBAdapter;
-import com.mimo.app.pojo.ActivityEvent;
-import com.mimo.app.pojo.Icons;
+import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -51,8 +52,14 @@ public class DetailActivity extends Activity implements OnClickListener, Configu
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
+		
+		Bundle bundle = getIntent().getExtras();
+		int paramid = bundle.getInt("paramid");
+		Log.d("paramid indetail: ------", "value:"+paramid);
+		
+		
 		setContentView(R.layout.layout_detail);
-		reloadForm(5);
+		reloadForm(paramid);
 		
 		Button bDetail = (Button)findViewById(R.id.btn_detail);
 		bDetail.setOnClickListener(this);
@@ -63,28 +70,31 @@ public class DetailActivity extends Activity implements OnClickListener, Configu
 	private void reloadForm(int id){
 		DBAdapter db = new DBAdapter(this);
 		db.open();
-		Cursor c = db.getRecord(id);
+		Cursor c = db.getRecord(id); 
+		
 		
 		ActivityEvent ae ;
-		do{
-			ae = new ActivityEvent();
-			ae.setName(c.getString(c.getColumnIndex("name")));
-			ae.setIcon(c.getString(c.getColumnIndex("icon")));
-			ae.setDescription(c.getString(c.getColumnIndex("description")));
-			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
-			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
-			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+		ae = new ActivityEvent();
+		ae.setName(c.getString(c.getColumnIndex("name")));
+		ae.setIcon(c.getString(c.getColumnIndex("icon")));
+		ae.setDescription(c.getString(c.getColumnIndex("description")));
+		ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
+		ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
+		ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
+		ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+		ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+		ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 			
-		}while(c.moveToNext());
 		
 //		setActivity(ae);
 		db.close();
 		Icons idIcon = new Icons();
 		String[] labels = idIcon.getLabels();
 		final int[] icons = idIcon.getIcons();
+		
+		//set hidden value
+		TextView tv= (TextView)findViewById(R.id.hidden_value);
+		tv.setText(Integer.valueOf(id).toString());
 		
 		//set icon 
 		ImageButton img =(ImageButton)findViewById(R.id.icon_activity);
@@ -120,13 +130,13 @@ public class DetailActivity extends Activity implements OnClickListener, Configu
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch(v.getId()){
+		switch(v.getId()){ 
 		case R.id.btn_detail:
 			TextView tv = (TextView)findViewById(R.id.hidden_value);
 			
 			
 			Intent i = new Intent(this, InputDetailActivity.class);
-			i.putExtra("param1", ACTION_UPDATE);
+			i.putExtra("paramaction", ACTION_UPDATE);
 //			i.putExtra("param1", ACTION_ADD);
 			i.putExtra("paramid", Integer.parseInt(tv.getText().toString()));
 			startActivity(i);
