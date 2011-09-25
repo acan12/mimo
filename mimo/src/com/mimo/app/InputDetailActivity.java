@@ -26,9 +26,6 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 		Bundle bundle = getIntent().getExtras();
 		action = bundle.getInt("paramaction");
 		int paramid = bundle.getInt("paramid");
-		Log.d("param: ------", "value:"+action);
-		Log.d("paramid: ------", "value:"+paramid);
-		
 		switch(action){
 		case DB_CREATE: // create
 			initialize(R.layout.layout_new_form);
