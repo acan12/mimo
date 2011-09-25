@@ -98,8 +98,7 @@ public class ActivitiesListActivity extends ListActivity {
             Order o;
             ActivityEvent ae;
             DBAdapter db = new DBAdapter(this);
-    		db.open();
-    		Cursor c = db.getAllRecord(); //db.getRecord(5);
+    		Cursor c = db.getAllRecord(); //retrieve all records
     		Icons icons = new Icons();
     		while(c.moveToNext()){
     			ae = new ActivityEvent();

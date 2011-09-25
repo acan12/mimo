@@ -1,5 +1,6 @@
 package com.mimo.app.model.adapter;
 
+import com.mimo.app.model.BaseModel;
 import com.mimo.app.model.pojo.ActivityEvent;
 
 import android.content.ContentValues;
@@ -11,7 +12,7 @@ import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DBAdapter {
+public class DBAdapter extends BaseModel{
 	public static final String KEY_ROWID = "id";
 	public static final String KEY_NAME = "name";
 	public static final String KEY_ICON = "icon";
@@ -81,6 +82,7 @@ public class DBAdapter {
 	}
 	
 	public long insertRecord(ActivityEvent act){
+		this.open();
 		ContentValues initialValues = new ContentValues();
 		initialValues.put(KEY_NAME, act.getName());
 		initialValues.put(KEY_ICON, act.getIcon());
@@ -91,16 +93,20 @@ public class DBAdapter {
 		initialValues.put(KEY_END_TIME, act.getEnd_time());
 		initialValues.put(KEY_LAT, act.getLat());
 		initialValues.put(KEY_LNG, act.getLng());
-		return db.insert(DATABASE_TABLE, null, initialValues);
-		
+		long rows_affected = db.insert(DATABASE_TABLE, null, initialValues);
+		this.close();
+		return rows_affected;
 	}
 	
 	public boolean deleteRecord(long rowId){
-		return db.delete(DATABASE_TABLE, KEY_ROWID + "="+rowId, null) > 0;
+		this.open();
+		boolean rows_affected = db.delete(DATABASE_TABLE, KEY_ROWID + "="+rowId, null) > 0;
+		this.close();
+		return rows_affected;
 	}
 		
 	public Cursor getAllRecord(){
-		
+		this.open();
 		return db.query(DATABASE_TABLE, new String[]{
 				KEY_ROWID,
 				KEY_NAME,
@@ -113,10 +119,10 @@ public class DBAdapter {
 				KEY_LAT,
 				KEY_LNG
 		}, null, null, null, null, null);
-		
 	}
 	
 	public Cursor getRecord(long rowId) throws SQLException{
+		this.open();
 		Cursor mCursor = 
 			db.query(true, DATABASE_TABLE, new String[]{
 					KEY_ROWID,
@@ -133,11 +139,12 @@ public class DBAdapter {
 		if (mCursor != null){
 			mCursor.moveToFirst();
 		}
+		this.close();
 		return mCursor;
 	}
 	
 	public boolean updateRecord(ActivityEvent act){
-		Log.d("test:", "----------ID: "+act.getId());
+		this.open();
 		ContentValues args = new ContentValues();
 		args.put(KEY_NAME, act.getName());
 		args.put(KEY_ICON, act.getIcon());
@@ -148,6 +155,9 @@ public class DBAdapter {
 		args.put(KEY_END_TIME, act.getEnd_time());
 		args.put(KEY_LAT, act.getLat());
 		args.put(KEY_LNG, act.getLng());
-		return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + act.getId(), null) > 0;
+		boolean rows_affected = db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + act.getId(), null) > 0;
+		this.close();
+		return rows_affected;
 	}
 }
+                
