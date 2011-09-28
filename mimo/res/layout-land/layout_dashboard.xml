@@ -7,14 +7,24 @@
         android:orientation="horizontal" android:layout_height="wrap_content" android:gravity="center_horizontal" android:layout_margin="5dp" android:paddingTop="1dp">
         <TextView android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceLarge" android:layout_width="wrap_content" android:id="@+id/textView1" android:textColor="#000000" android:layout_marginLeft="3dp" android:textStyle="normal|bold" android:text="MIMO- dashboard"></TextView>
     </LinearLayout> 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent" 
-        android:orientation="vertical" android:layout_height="wrap_content">
-        <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="30dp">
-            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapButton" android:src="@drawable/map_icon" android:padding="10dp"></ImageButton>
-            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/news_icon" android:padding="10dp" android:id="@+id/DetailButton"></ImageButton>
-        </LinearLayout> 
-        
-    </LinearLayout>  
-     
+    <ScrollView 
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:clipChildren="true"
+            android:fadeScrollbars="true">
+		    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		        android:layout_width="fill_parent" 
+		        android:orientation="vertical" android:layout_height="wrap_content">
+		        <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="30dp">
+		            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapButton" android:src="@drawable/map_icon" android:padding="10dp"></ImageButton>
+		            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/news_icon" android:padding="10dp" android:id="@+id/DetailButton"></ImageButton>
+		            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/news_icon" android:padding="10dp" android:id="@+id/AddButton"></ImageButton>
+		        </LinearLayout> 
+		        <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_horizontal" android:layout_width="fill_parent" android:padding="30dp">
+		            <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapTestButton" android:src="@drawable/map_icon" android:padding="10dp"></ImageButton>
+		        </LinearLayout> 
+		        
+		    </LinearLayout>  
+    </ScrollView>     
 </LinearLayout>

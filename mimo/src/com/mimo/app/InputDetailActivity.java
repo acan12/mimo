@@ -64,7 +64,8 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 		case R.id.bMapPicker:
 			double lat2= -6.195894;
 			double lng2= 106.835901;
-			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
+//			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
+			Intent mapIntent = new Intent(this, MapLocation.class);
 			this.startActivity(mapIntent);
 			 
 			break;

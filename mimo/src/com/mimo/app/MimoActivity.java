@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 
 
 public class MimoActivity extends Activity implements OnClickListener{
-	ImageButton imgButton, imgButton2, imgButton3;
+	ImageButton imgButton, imgButton2, imgButton3, imgButton4;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,9 @@ public class MimoActivity extends Activity implements OnClickListener{
         
         imgButton3 = (ImageButton) findViewById(R.id.AddButton);
         imgButton3.setOnClickListener(this);
+        
+        imgButton4 = (ImageButton) findViewById(R.id.MapTestButton);
+        imgButton4.setOnClickListener(this);
     }
     
     @Override
@@ -33,6 +36,10 @@ public class MimoActivity extends Activity implements OnClickListener{
 			case R.id.MapButton:
 				Intent i = new Intent(this, MapDashboardActivity.class);
 				startActivity(i); 
+				break;
+			case R.id.MapTestButton:
+				Intent intent = new Intent(this, MapLocation.class);
+				startActivity(intent); 
 				break;
 			case R.id.DetailButton:
 				Intent i2 = new Intent(this, ActivitiesListActivity.class);
