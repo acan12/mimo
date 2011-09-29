@@ -52,7 +52,7 @@ public class DetailActivity extends DetailView implements Configuration {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
+		super.onCreate(savedInstanceState); 
 		
 		Bundle bundle = getIntent().getExtras();
 		int paramid = bundle.getInt("paramid");

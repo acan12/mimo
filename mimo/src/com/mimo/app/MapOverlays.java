@@ -25,15 +25,37 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	private Context mContext ;
+	private boolean isTouched;
+	private boolean isTapMarker=true;
+	private boolean isTap=false;
+	
 	public MapOverlays(Drawable defaultMarker) {
 		super(boundCenterBottom(defaultMarker));
 
 		// TODO Auto-generated constructor stub
 	}
-	public MapOverlays(Drawable defaultMarker, Context context) {
+	
+	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled) {
 		  super(boundCenterBottom(defaultMarker));
 		  mContext = context;
+		  isTouched = setTouchedEnabled;
 	}
+	
+	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled) {
+		  super(boundCenterBottom(defaultMarker));
+		  mContext = context;
+		  isTouched = setTouchedEnabled;
+		  isTapMarker = setTapMarkerEnabled;
+	}
+	
+	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled, boolean setTapEnabled) {
+		  super(boundCenterBottom(defaultMarker));
+		  mContext = context;
+		  isTouched = setTouchedEnabled;
+		  isTapMarker = setTapMarkerEnabled;
+		  isTap = setTapEnabled;
+	}
+	
 	@Override
 	protected OverlayItem createItem(int i) {
 		// TODO Auto-generated method stub
@@ -52,8 +74,35 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 	    populate();
 	}
 	
+	@Override
+	public boolean onTap(GeoPoint p, MapView mapView){
+		if(isTap){
+			String coord = p.getLatitudeE6() / 1E6 + "," +p.getLongitudeE6() /1E6;
+			
+			AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+			dialog.setTitle("Activity Location");
+			dialog.setMessage("You choose this location ("+coord+")");
+			dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	        	   Toast.makeText(mContext, "dodol", Toast.LENGTH_SHORT).show();
+	        	   
+	           }
+	        })
+	        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	                dialog.cancel();
+	           }
+	        });
+			dialog.show();	
+				
+		};
+		
+		return true;
+	}
+	
+	@Override
 	public boolean onTap(int index){
-		if (mContext != null) {
+		if (mContext != null && isTapMarker) {
 			Intent i = new Intent(mContext, ActivitiesListActivity.class);
 			mContext.startActivity(i);
 		} else {
@@ -78,24 +127,37 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 		return true;
 	}
 	
+	
 //	@Override
 //    public boolean onTouchEvent(MotionEvent event, MapView mapView) 
 //    {   
 //        //---when user lifts his finger---
-//        if (event.getAction() == 1) {                
+//        if (event.getAction() == 1 && isTouched) {                
 //            GeoPoint p = mapView.getProjection().fromPixels(
 //                (int) event.getX(),
 //                (int) event.getY());
-////                Toast.makeText(this.mContext, 
-////                    p.getLatitudeE6() / 1E6 + "," + 
-////                    p.getLongitudeE6() /1E6 , 
-////                    Toast.LENGTH_SHORT).show();
-//            List<Overlay> mapOverlays = mapView.getOverlays();
-//            Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.cheese);
-//            MapOverlays itemizedoverlay = new MapOverlays(drawable, this.mContext);
-//            OverlayItem overlayitem = new OverlayItem(p, null, "You are in Butcher Location.");
-//            itemizedoverlay.addOverlay(overlayitem);
-//            mapOverlays.add(itemizedoverlay);
+//            
+//    		AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
+//    		dialog.setTitle("Suggestion Location: ");
+//    		dialog.setMessage("Set Location coordinate: "+
+//    				p.getLatitudeE6() / 1E6 + "," + 
+//                    p.getLongitudeE6() /1E6 );
+//    		dialog.setPositiveButton("Close", new OnClickListener(){
+//    			
+//    			@Override
+//    			public void onClick(DialogInterface dialog, int which) {
+//    				// TODO Auto-generated method stub
+//    				dialog.dismiss();
+//    			}
+//    		});
+//    		dialog.show();
+//           
+////            List<Overlay> mapOverlays = mapView.getOverlays();
+////            Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.cheese);
+////            MapOverlays itemizedoverlay = new MapOverlays(drawable, this.mContext);
+////            OverlayItem overlayitem = new OverlayItem(p, null, "You are in Butcher Location.");
+////            itemizedoverlay.addOverlay(overlayitem);
+////            mapOverlays.add(itemizedoverlay);
 //        }                            
 //        return false;
 //    }   

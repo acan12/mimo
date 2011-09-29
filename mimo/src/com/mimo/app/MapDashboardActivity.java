@@ -54,7 +54,6 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
-		
 		setContentView(R.layout.layout_mapview);
 		GeoPoint point = getPoint(lat, lng);
 		GeoPoint point2 = getPoint(lat2, lng2);
@@ -65,13 +64,13 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 		List<Overlay> mapOverlays = mv.getOverlays();
         Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
-        MapOverlays itemizedoverlay = new MapOverlays(drawable, this);
+        MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false);
         OverlayItem overlayitem = new OverlayItem(point, "Halo, Alien!", "I'm in Jakarta!");
         itemizedoverlay.addOverlay(overlayitem);
         mapOverlays.add(itemizedoverlay);
         
         Drawable drawable2 = this.getResources().getDrawable(R.drawable.alien);
-        MapOverlays itemizedoverlay2 = new MapOverlays(drawable2, this);
+        MapOverlays itemizedoverlay2 = new MapOverlays(drawable2, this, false);
         OverlayItem overlayitem2 = new OverlayItem(point2, "Halo, Alien 2!", "I'm in Bandung!");
         itemizedoverlay2.addOverlay(overlayitem2);
         mapOverlays.add(itemizedoverlay2);
@@ -137,7 +136,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 						
 						List<Overlay> mapOverlays = mv.getOverlays();
 						Drawable drawable = getResources().getDrawable(icon);
-				        MapOverlays itemizedoverlay = new MapOverlays(drawable, MapDashboardActivity.this);
+				        MapOverlays itemizedoverlay = new MapOverlays(drawable, MapDashboardActivity.this, false);
 				        OverlayItem overlayitem = new OverlayItem(point2, null, "You are in Butcher Location.");
 				        itemizedoverlay.addOverlay(overlayitem);
 				        mapOverlays.add(itemizedoverlay);
@@ -151,7 +150,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				mv.getController().setCenter(point);
 				mapOverlays = mv.getOverlays();
 				drawable = this.getResources().getDrawable(R.drawable.bread);
-		        MapOverlays itemizedoverlay = new MapOverlays(drawable, this);
+		        MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false);
 		        OverlayItem overlayitem = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Bread Location.");
 		        itemizedoverlay.addOverlay(overlayitem);
 		        mapOverlays.add(itemizedoverlay);
@@ -161,7 +160,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				mv.getController().setCenter(point);
 				mapOverlays = mv.getOverlays();
 				drawable = this.getResources().getDrawable(R.drawable.butcher2);
-		        MapOverlays itemizedoverlay2 = new MapOverlays(drawable, this);
+		        MapOverlays itemizedoverlay2 = new MapOverlays(drawable, this, false);
 		        OverlayItem overlayitem2 = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Butcher Location.");
 		        itemizedoverlay2.addOverlay(overlayitem2);
 		        mapOverlays.add(itemizedoverlay2);
