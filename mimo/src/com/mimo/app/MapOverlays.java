@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.drawable.Drawable;
+import android.sax.StartElementListener;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Toast;
@@ -20,14 +21,16 @@ import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.interfaces.Configuration;
 
-public class MapOverlays extends ItemizedOverlay<OverlayItem>{
+public class MapOverlays extends ItemizedOverlay<OverlayItem> implements Configuration{
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	private Context mContext ;
 	private boolean isTouched;
 	private boolean isTapMarker=true;
 	private boolean isTap=false;
+	private int idActivity;
 	
 	public MapOverlays(Drawable defaultMarker) {
 		super(boundCenterBottom(defaultMarker));
@@ -48,12 +51,13 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 		  isTapMarker = setTapMarkerEnabled;
 	}
 	
-	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled, boolean setTapEnabled) {
+	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled, boolean setTapEnabled, int id) {
 		  super(boundCenterBottom(defaultMarker));
 		  mContext = context;
 		  isTouched = setTouchedEnabled;
 		  isTapMarker = setTapMarkerEnabled;
 		  isTap = setTapEnabled;
+		  idActivity = id;
 	}
 	
 	@Override
@@ -75,17 +79,28 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem>{
 	}
 	
 	@Override
-	public boolean onTap(GeoPoint p, MapView mapView){
+	public boolean onTap(final GeoPoint gp, MapView mapView){
 		if(isTap){
-			String coord = p.getLatitudeE6() / 1E6 + "," +p.getLongitudeE6() /1E6;
+			String coord = gp.getLatitudeE6() / 1E6 + "," +gp.getLongitudeE6() /1E6;
 			
 			AlertDialog.Builder dialog = new AlertDialog.Builder(mContext);
 			dialog.setTitle("Activity Location");
 			dialog.setMessage("You choose this location ("+coord+")");
 			dialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
-	        	   Toast.makeText(mContext, "dodol", Toast.LENGTH_SHORT).show();
+	        	   Intent i = new Intent(mContext, InputDetailActivity.class);
+	        	   p.println("----tap overlay----paramid:"+idActivity);
+	        	   if(idActivity == 0) 
+	        	   {i.putExtra("paramaction", DB_CREATE); }
+	        	   else
+	        	   {i.putExtra("paramaction", DB_UPDATE);}
+	        	   p.println("----from mapoverlay lat:"+gp.getLatitudeE6()/1E6);
+	        	   p.println("----from mapoverlay lon:"+gp.getLongitudeE6()/1E6);
 	        	   
+	        	   i.putExtra("paramid", idActivity);
+	        	   i.putExtra("paramlat", gp.getLatitudeE6() / 1E6);
+	        	   i.putExtra("paramlng", gp.getLongitudeE6() / 1E6);
+	   			   mContext.startActivity(i);
 	           }
 	        })
 	        .setNegativeButton("No", new DialogInterface.OnClickListener() {

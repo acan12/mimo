@@ -142,7 +142,7 @@ public class FormInputView extends BaseView implements OnClickListener, Configur
 			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 			
 		}while(c.moveToNext());
-		db.close();
+		
 		
 		//set hidden value
 		TextView tv= (TextView)findViewById(R.id.hidden_value);
@@ -190,7 +190,6 @@ public class FormInputView extends BaseView implements OnClickListener, Configur
 		
 		TextView eLng = (TextView)findViewById(R.id.edit_lng);
 		eLng.setText(""+ae.getLng());
-		
 		return ae;
 	}
 	

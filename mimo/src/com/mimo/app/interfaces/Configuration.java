@@ -1,5 +1,7 @@
 package com.mimo.app.interfaces;
 
+import java.io.PrintStream;
+
 import com.mimo.app.model.pojo.ActivityEvent;
 
 public interface Configuration {
@@ -18,4 +20,5 @@ public interface Configuration {
 	
 	static final int RESPONSE_OK = 200;
 	
+	static final PrintStream p = System.out ;
 }

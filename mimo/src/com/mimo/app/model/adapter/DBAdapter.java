@@ -107,7 +107,7 @@ public class DBAdapter extends BaseModel{
 		
 	public Cursor getAllRecord(){
 		this.open();
-		return db.query(DATABASE_TABLE, new String[]{
+		Cursor c =  db.query(DATABASE_TABLE, new String[]{
 				KEY_ROWID,
 				KEY_NAME,
 				KEY_ICON,
@@ -119,6 +119,7 @@ public class DBAdapter extends BaseModel{
 				KEY_LAT,
 				KEY_LNG
 		}, null, null, null, null, null);
+		return c;
 	}
 	
 	public Cursor getRecord(long rowId) throws SQLException{

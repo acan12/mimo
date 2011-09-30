@@ -19,16 +19,25 @@ import android.widget.TextView;
 public class InputDetailActivity extends FormInputView implements Configuration{
 	
 	private ActivityEvent a;
+	private int paramid;
 
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
 		Bundle bundle = getIntent().getExtras();
 		action = bundle.getInt("paramaction");
-		int paramid = bundle.getInt("paramid");
+		paramid = bundle.getInt("paramid");
+		
+		double paramlat = bundle.getDouble("paramlat");
+		double paramlng = bundle.getDouble("paramlng");
+		p.println("paramlat :  "+paramlat);
+		p.println("paramlng :  "+paramlng);
+		a = new ActivityEvent();
+		
 		switch(action){
 		case DB_CREATE: // create
 			initialize(R.layout.layout_new_form);
+			a.setId(0);
 			
 			break;
 		case DB_UPDATE: // update
@@ -37,7 +46,13 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 			
 			break;
 		}
+		TextView tLat = (TextView)findViewById(R.id.edit_lat);
+		TextView tLng = (TextView)findViewById(R.id.edit_lng);
 		
+		if(paramlat!=0&&paramlng!=0){
+			tLat.setText(""+paramlat);
+			tLng.setText(""+paramlng);
+		}
 	}
 	
 	
@@ -66,6 +81,8 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 			double lng2= 106.835901;
 //			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
 			Intent mapIntent = new Intent(this, MapLocation.class);
+			p.println("......get id:"+paramid);
+			mapIntent.putExtra("paramid", paramid);
 			this.startActivity(mapIntent);
 			 
 			break;
