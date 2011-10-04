@@ -20,8 +20,16 @@ public class ActivityEvent {
 	private double lat;
 	private double lng;
 	
+	private int count_record;
 	
 	
+	
+	public int getCount_record() {
+		return count_record;
+	}
+	public void setCount_record(int count_record) {
+		this.count_record = count_record;
+	}
 	public double getLat() {
 		return lat;
 	}

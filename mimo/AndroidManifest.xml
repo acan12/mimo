@@ -22,6 +22,8 @@
         <activity android:name=".InputDetailActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".MapLocation"></activity>
+        <activity android:name=".ButtonListActivity"></activity>
+        <activity android:name=".TestMapButtonListActivity"></activity>
         
         <!-- <activity android:name=".SearchableActivity" >
 	        <intent-filter>

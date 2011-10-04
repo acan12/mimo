@@ -1,6 +1,8 @@
 package com.mimo.app;
 
-import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.android.maps.GeoPoint;
@@ -8,6 +10,11 @@ import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.view.list.ListDialogView;
 
 import android.*;
 import android.app.Activity;
@@ -15,6 +22,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.LabeledIntent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,26 +31,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MapDashboardActivity extends MapActivity implements OnClickListener {
+public class MapDashboardActivity extends MapActivity implements OnClickListener, Configuration {
 	double lat= -6.19638013839722;
 	double lng= 106.837997436523;
-	double lat2= -6.195894;
-	double lng2= 106.835901;
 	
-	double lat3 = -6.24984979629517;
-	double lng3 = 106.78800201416;
+	Hashtable iconHash ;
 	
-	double lat4 = -6.198254;
-	double lng4 = 106.841086;
+	ActivityEvent ae;
 	
 	
 	@Override
@@ -56,34 +64,51 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 		setContentView(R.layout.layout_mapview);
 		GeoPoint point = getPoint(lat, lng);
-		GeoPoint point2 = getPoint(lat2, lng2);
 		MapView mv = (MapView) findViewById(R.id.mapview);
 		mv.setBuiltInZoomControls(true);
 		mv.getController().setCenter(point);
 		mv.getController().setZoom(13);
 		
-		List<Overlay> mapOverlays = mv.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
-        MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false);
-        OverlayItem overlayitem = new OverlayItem(point, "Halo, Alien!", "I'm in Jakarta!");
-        itemizedoverlay.addOverlay(overlayitem);
-        mapOverlays.add(itemizedoverlay);
-        
-        Drawable drawable2 = this.getResources().getDrawable(R.drawable.alien);
-        MapOverlays itemizedoverlay2 = new MapOverlays(drawable2, this, false);
-        OverlayItem overlayitem2 = new OverlayItem(point2, "Halo, Alien 2!", "I'm in Bandung!");
-        itemizedoverlay2.addOverlay(overlayitem2);
-        mapOverlays.add(itemizedoverlay2);
-        
-       ImageButton imgbtn = (ImageButton)findViewById(R.id.ListLink);
-       imgbtn.setOnClickListener(this);
-       
-       ImageButton imgbtn2 = (ImageButton)findViewById(R.id.bread_loc);
-       imgbtn2.setOnClickListener(this);
-       
-       ImageButton imgbtn3 = (ImageButton)findViewById(R.id.butcher_loc);
-       imgbtn3.setOnClickListener(this);
+        // counting dynamic button image
+		Hashtable h = getIconButton();
+		Iterator it = h.keySet().iterator();
+		String[] iconLabel = new String[h.keySet().size()];
+		int i=0;
+		while(it.hasNext()){
+			iconLabel[i++] = (String)it.next();
+		}
+        reloadButtonImage(iconLabel);
 	} 
+	
+	private Hashtable getIconButton(){
+		ae = new ActivityEvent();
+		DBAdapter db = new DBAdapter(this);
+		Cursor c = db.getIconsUniqRecord();    
+		iconHash = new Hashtable();//String[Icons.getIcons().length];
+		while(c.moveToNext()){
+			String key = c.getString(c.getColumnIndex("icon"));
+			String value = c.getString(c.getColumnIndex("count_record"));
+			iconHash.put(key, value);
+		}
+		
+		return iconHash;
+	}
+	
+	private void reloadButtonImage(String[] iconLabel){
+		LinearLayout ll = (LinearLayout) findViewById(R.id.imgbutton_linearLayout);
+		LayoutInflater inflater = LayoutInflater.from(this);
+		Icons icons = new Icons();
+		for(int i=0; i<iconLabel.length; i++){ 
+			ImageButton imb = new ImageButton(this);
+			imb.setId(icons.getIndexFromLabel(iconLabel[i]));
+			imb.setImageResource(icons.getIconFromLabel(iconLabel[i]));
+			inflater.inflate(R.layout.list_button, null);
+			ll.addView(imb);
+			imb.setOnClickListener(this);
+		}
+		
+	}
+	
 	
 	private GeoPoint getPoint(double lat, double lng){
 		return new GeoPoint((int)(lat*1000000.0), (int)(lng*1000000.0));
@@ -98,139 +123,84 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		List<Overlay> mapOverlays ;
 		GeoPoint point;
 		Drawable drawable;
-		
-		String[] items = {"airplanes", "animals", "cars", "colors", "flowers", "letters", "monsters", "numbers", "shapes", "smileys", "sports", "stars", "smileys", "sports", "stars"};
-		
-		
-		switch (v.getId()){
-			case R.id.ListLink:
-//				Intent i = new Intent(this, ActivitiesListActivity.class);
-//				startActivity(i);  
-
-				AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-				dialog.setTitle("List of Your activities:  ");
-				dialog.setAdapter(getDialogAdapter(items), new DialogInterface.OnClickListener() {
-
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						// TODO Auto-generated method stub
-						Log.d("---x-------------------debug: ", "which="+which);
-						GeoPoint point2 = null;
-						int icon = R.drawable.alien;
-						if(which == 1){
-							mv.getController().setZoom(17);
-							point2 = getPoint(lat3, lng3);
-							mv.getController().setCenter(point2);
-							icon = R.drawable.bread;
-						}else if(which == 2){
-							mv.getController().setZoom(17);
-							point2 = getPoint(lat, lng);
-							mv.getController().setCenter(point2);
-							icon = R.drawable.cheese;
-						}else{
-							mv.getController().setZoom(17);
-							point2 = getPoint(lat2, lng2);
-							mv.getController().setCenter(point2);
-							
-						}
-						
-						List<Overlay> mapOverlays = mv.getOverlays();
-						Drawable drawable = getResources().getDrawable(icon);
-				        MapOverlays itemizedoverlay = new MapOverlays(drawable, MapDashboardActivity.this, false);
-				        OverlayItem overlayitem = new OverlayItem(point2, null, "You are in Butcher Location.");
-				        itemizedoverlay.addOverlay(overlayitem);
-				        mapOverlays.add(itemizedoverlay);
-						
-					}});
-				dialog.show();
-
-			break;
-			case R.id.bread_loc:
-				point = getPoint(lat3, lng3);
-				mv.getController().setCenter(point);
-				mapOverlays = mv.getOverlays();
-				drawable = this.getResources().getDrawable(R.drawable.bread);
-		        MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false);
-		        OverlayItem overlayitem = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Bread Location.");
-		        itemizedoverlay.addOverlay(overlayitem);
-		        mapOverlays.add(itemizedoverlay);
-			break;
-			case R.id.butcher_loc:
-				point = getPoint(lat4, lng4);
-				mv.getController().setCenter(point);
-				mapOverlays = mv.getOverlays();
-				drawable = this.getResources().getDrawable(R.drawable.butcher2);
-		        MapOverlays itemizedoverlay2 = new MapOverlays(drawable, this, false);
-		        OverlayItem overlayitem2 = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Butcher Location.");
-		        itemizedoverlay2.addOverlay(overlayitem2);
-		        mapOverlays.add(itemizedoverlay2);
-			break;
+		final Icons icons = new Icons() ;
+		Log.d("check click value: ","getId="+v.getId());
+		String key = Icons.getLabels()[v.getId()];
+		int value = Integer.parseInt(""+iconHash.get(key));
+		if(	value > 1 ){
+			showEventDialog(mv, icons);
+		}else{
+			ae = new ActivityEvent();
+			DBAdapter db = new DBAdapter(this);
+			Cursor c = db.getRecordByIcon(key);
+			while(c.moveToNext()){
+				ae.setIcon(key);
+				ae.setName(c.getString(c.getColumnIndex("name")));
+				ae.setDescription(c.getString(c.getColumnIndex("description")));
+				ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+				ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+			}
+			point = getPoint(ae.getLat(), ae.getLng());
+			mv.getController().setCenter(point);
+			mapOverlays = mv.getOverlays();
+			drawable = this.getResources().getDrawable(new Icons().getIconFromLabel(ae.getIcon()));
+			MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, this);
+	        OverlayItem overlayitem = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Bread Location.");
+	        itemizedoverlay.addOverlay(overlayitem);
+	        mapOverlays.add(itemizedoverlay);
 		}
-		
-		
 	}
 
-	private ListAdapter getDialogAdapter(final String[] items) {
-		// TODO Auto-generated method stub
-		final int[] icons = {
-						R.drawable.alien, 
-						R.drawable.bread, 
-						R.drawable.butcher2, 
-						R.drawable.candy,
-						R.drawable.cheese,
-						R.drawable.eggs,
-						R.drawable.farmstand,
-						R.drawable.fruits,
-						R.drawable.japanese_sweet2,
-						R.drawable.patisserie,
-						R.drawable.sandwich2,
-						R.drawable.alien, 
-						R.drawable.bread, 
-						R.drawable.butcher2, 
-						R.drawable.candy};
-		ListAdapter adapter = new ArrayAdapter<String>(
-                getApplicationContext(), R.layout.list_row_dialog, items) {
-               
-	        ViewHolder holder;
-	        Drawable icon;
-	 
-	        class ViewHolder {
-	                ImageView icon;
-	                TextView title;
-	        }
-	 
-	        public View getView(int position, View convertView,
-	                        ViewGroup parent) {
-	                final LayoutInflater inflater = (LayoutInflater) getApplicationContext()
-	                                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	 
-	                if (convertView == null) {
-	                        convertView = inflater.inflate(
-	                                        R.layout.list_row_dialog, null);
-	 
-	                        holder = new ViewHolder();
-	                        holder.icon = (ImageView) convertView
-	                                        .findViewById(R.id.icon_dialog);
-	                        holder.title = (TextView) convertView
-	                                        .findViewById(R.id.title);
-	                        convertView.setTag(holder);
-	                } else {
-	                        // view already defined, retrieve view holder
-	                        holder = (ViewHolder) convertView.getTag();
-	                }              
-	 
-	                
-	                Drawable tile = getResources().getDrawable(icons[position]); //this is an image from the drawables folder
-	               
-	                holder.title.setText(items[position]);
-	                holder.icon.setImageDrawable(tile);
-	 
-	                
-            	
-	                return convertView;
-	        };
+	private void showEventDialog(final MapView mv, final Icons icons) {
+		final ListDialogView lDialog = new ListDialogView(this, null, R.layout.list_row_dialog);
+		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+		final ListAdapter adapter = lDialog.getDialogAdapter(getListEvent(Icons.getLabels()[2]));
 		
-		};
-		return adapter;
-	};
+		dialog.setTitle("List of Your activities:  ");
+		dialog.setAdapter(adapter, new DialogInterface.OnClickListener() {
+			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				TextView title = (TextView)adapter.getView(which, null, null).findViewById(R.id.title);
+				TextView loc = (TextView)adapter.getView(which, null, null).findViewById(R.id.hidden_value_loc);
+				TextView iconlabel = (TextView)adapter.getView(which, null, null).findViewById(R.id.hidden_value_iconlabel);
+				GeoPoint point_link = null;
+				
+				double lat = Double.parseDouble(loc.getText().toString().split(",")[0]);
+				double lng = Double.parseDouble(loc.getText().toString().split(",")[1]);
+				int icon = icons.getIconFromLabel(iconlabel.getText().toString());
+				mv.getController().setZoom(13);
+				point_link = getPoint(lat, lng);
+				mv.getController().setCenter(point_link);
+				
+				
+				List<Overlay> mapOverlays = mv.getOverlays();
+				Drawable drawable = getResources().getDrawable(icon);
+		        MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, MapDashboardActivity.this);
+		        OverlayItem overlayitem = new OverlayItem(point_link, null, "");
+		        itemizedoverlay.addOverlay(overlayitem);
+		        mapOverlays.add(itemizedoverlay);
+			}
+		});
+		
+		dialog.show();
+	}
+	 
+	private ArrayList getListEvent(String icon){
+		ArrayList<ActivityEvent> mActivity= new ArrayList<ActivityEvent>();
+		ActivityEvent aev = null;
+		DBAdapter db = new DBAdapter(this);
+		Cursor c = db.getRecordByIcon(icon);
+		while(c.moveToNext()){
+			aev = new ActivityEvent();
+			aev.setIcon(c.getString(c.getColumnIndex("icon")));
+			aev.setName(c.getString(c.getColumnIndex("name")));
+			aev.setDescription(c.getString(c.getColumnIndex("description")));
+			aev.setLat(c.getDouble(c.getColumnIndex("lat")));
+			aev.setLng(c.getDouble(c.getColumnIndex("lng")));
+			mActivity.add(aev);
+		}
+		return mActivity;
+	}
 };

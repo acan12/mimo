@@ -21,12 +21,15 @@
     <string name="hint_field_endtime">End Time</string>
     <string name="hint_field_lat">latitude</string>
     <string name="hint_field_lng">longtitude</string>
+    <string name="location">Location</string>    
+    
+    <!-- button -->    
     <string name="button_detail">Detail</string>
     <string name="button_back">Back</string>
     <string name="button_submit">Submit</string>
     <string name="button_save">Save</string>
     <string name="button_cancel">Cancel</string>
-    <string name="location">Location</string>    
+    <string name="button_delete">Delete</string>
     
     <!-- search functionality -->
     <string name="search_label">Dictionary</string>

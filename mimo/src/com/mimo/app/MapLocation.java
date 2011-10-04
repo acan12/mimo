@@ -59,10 +59,10 @@ public class MapLocation extends MapActivity{
 		
 		mv.setBuiltInZoomControls(true);
 		mv.getController().setCenter(point);
-		mv.getController().setZoom(17);
+		mv.getController().setZoom(13);
 		
 		List<Overlay> mapOverlays = mv.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
+        Drawable drawable = this.getResources().getDrawable(R.drawable.marker_green);
         MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false, false, true, paramid);
         OverlayItem overlayitem = new OverlayItem(point, "", "");
         itemizedoverlay.addOverlay(overlayitem);
@@ -86,7 +86,7 @@ public class MapLocation extends MapActivity{
 					
 					while (locations.hasNext()) {
 						if(i>0){mapLoc.setVisibility(View.VISIBLE); }else{
-							mapLoc.setVisibility(View.INVISIBLE);
+							mapLoc.setVisibility(View.GONE);
 						}
 						Address loc = locations.next();
 						locInfo += String.format("Location: %f, %f \n", loc.getLatitude(), loc.getLongitude());   
@@ -101,16 +101,16 @@ public class MapLocation extends MapActivity{
 					setMarkerOnMapLocation(mv, newPoint);
 					hidden.setText(""+(i-1));
 					
-					final int i2 = i;
+					final int resultSize = i;
 					mapLoc.setOnClickListener(new View.OnClickListener() {
                        public void onClick(View v) {
-                    	  int ix = Integer.parseInt((String)hidden.getText());
+                    	  int nextSize = Integer.parseInt((String)hidden.getText());
                     	  
-                    	  GeoPoint newPoint = new GeoPoint((int)(lat[ix]* 1E6), (int)(lon[ix]*1E6));
+                    	  GeoPoint newPoint = new GeoPoint((int)(lat[nextSize]* 1E6), (int)(lon[nextSize]*1E6));
        				   	  mv.getController().animateTo(newPoint);
        				   	  setMarkerOnMapLocation(mv, newPoint);
-       				   	  if(ix == 0){ix = i2;}
-       				   	  hidden.setText(""+(--ix));
+       				   	  if(nextSize == 0){nextSize = resultSize;}
+       				   	  hidden.setText(""+(--nextSize));
                        }
                        
                     });  

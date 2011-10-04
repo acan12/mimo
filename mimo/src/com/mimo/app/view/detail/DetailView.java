@@ -25,6 +25,8 @@ public class DetailView extends BaseView implements OnClickListener{
 		bDetail.setOnClickListener(this);
 		Button bBack = (Button)findViewById(R.id.btn_back);
 		bBack.setOnClickListener(this);
+		Button bDelete = (Button)findViewById(R.id.btn_delete);
+		bDelete.setOnClickListener(this);
 	}
 	
 	protected void showDetail(int id){

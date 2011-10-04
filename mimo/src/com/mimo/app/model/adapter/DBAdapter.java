@@ -105,6 +105,12 @@ public class DBAdapter extends BaseModel{
 		return rows_affected;
 	}
 		
+	public Cursor getIconsUniqRecord(){
+		this.open();
+		Cursor c = db.rawQuery("select count(*) as count_record, icon from activities group by icon", null);
+		return c;
+	}
+	
 	public Cursor getAllRecord(){
 		this.open();
 		Cursor c =  db.query(DATABASE_TABLE, new String[]{
@@ -118,7 +124,7 @@ public class DBAdapter extends BaseModel{
 				KEY_END_TIME,
 				KEY_LAT,
 				KEY_LNG
-		}, null, null, null, null, null);
+		}, null, null, null, null, KEY_ICON);
 		return c;
 	}
 	
@@ -141,6 +147,24 @@ public class DBAdapter extends BaseModel{
 			mCursor.moveToFirst();
 		}
 		this.close();
+		return mCursor;
+	}
+	
+	public Cursor getRecordByIcon(String iconLabel) throws SQLException{
+		this.open();
+		Cursor mCursor = 
+			db.query(true, DATABASE_TABLE, new String[]{
+					KEY_ROWID,
+					KEY_NAME,
+					KEY_ICON,
+					KEY_DESCRIPTION,
+					KEY_START_DATE,
+					KEY_START_TIME,
+					KEY_END_DATE,
+					KEY_END_TIME,
+					KEY_LAT,
+					KEY_LNG
+			}, KEY_ICON + "='" + iconLabel + "'", null, null, null, null, null);
 		return mCursor;
 	}
 	

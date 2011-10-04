@@ -5,23 +5,24 @@ import org.apache.commons.lang.ArrayUtils;
 import com.mimo.app.R;
 
 public class Icons {
-	String[] labels = {"Entertainment", 
-			"Food/Fun", 
-			"News",
-			"Meeting",
-			"Flavour",
-			"Sport",
-			"Art",
-			"Junk Food",
-			"Space",
-			"Walking",
-			"Fitness",
-			"Holiday",
-			"Market",
-			"Community",
-			"Office"};
+	private static final String[] labels = {
+			"Entertainment",  	//0
+			"Food/Fun", 		//1
+			"News",				//2
+			"Meeting",			//3
+			"Flavour",			//4
+			"Sport",			//5
+			"Art",				//6
+			"Junk Food",		//7
+			"Space",			//8
+			"Walking",			//9
+			"Fitness",			//10
+			"Holiday",			//11
+			"Market",			//12
+			"Community",		//13
+			"Office"};			//14
 	
-	final int[] icons = {
+	private static final int[] icons = {
 			R.drawable.alien, 
 			R.drawable.bread, 
 			R.drawable.butcher2, 
@@ -40,17 +41,27 @@ public class Icons {
 	
 	
 
-	public String[] getLabels() {
+	public static String[] getLabels() {
 		return labels;
 	}
 
-	public int[] getIcons() {
+	public static int[] getIcons() {
 		return icons;
+	}
+	
+	public int getIndexFromLabel(String label){
+		return ArrayUtils.indexOf(getLabels(), label);
 	}
 	
 	public int getIconFromLabel(String label){
 		
 		int index = ArrayUtils.indexOf(getLabels(), label);
 		return icons[index];
+	}
+	
+	public String getLabelFromIcon(int icon){
+		
+		int index = ArrayUtils.indexOf(getIcons(), icon);
+		return labels[index];
 	}
 }

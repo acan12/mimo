@@ -28,7 +28,7 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem> implements Configu
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	private Context mContext ;
 	private boolean isTouched;
-	private boolean isTapMarker=true;
+	private boolean isTapMarker;
 	private boolean isTap=false;
 	private int idActivity;
 	
@@ -40,24 +40,24 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem> implements Configu
 	
 	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled) {
 		  super(boundCenterBottom(defaultMarker));
-		  mContext = context;
-		  isTouched = setTouchedEnabled;
+		  this.mContext = context;
+		  this.isTouched = setTouchedEnabled;
 	}
 	
 	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled) {
 		  super(boundCenterBottom(defaultMarker));
-		  mContext = context;
-		  isTouched = setTouchedEnabled;
-		  isTapMarker = setTapMarkerEnabled;
+		  this.mContext = context;
+		  this.isTouched = setTouchedEnabled;
+		  this.isTapMarker = true;
 	}
 	
 	public MapOverlays(Drawable defaultMarker, Context context, boolean setTouchedEnabled, boolean setTapMarkerEnabled, boolean setTapEnabled, int id) {
 		  super(boundCenterBottom(defaultMarker));
-		  mContext = context;
-		  isTouched = setTouchedEnabled;
-		  isTapMarker = setTapMarkerEnabled;
-		  isTap = setTapEnabled;
-		  idActivity = id;
+		  this.mContext = context;
+		  this.isTouched = setTouchedEnabled;
+		  this.isTapMarker = true;
+		  this.isTap = setTapEnabled;
+		  this.idActivity = id;
 	}
 	
 	@Override
@@ -111,13 +111,19 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem> implements Configu
 			dialog.show();	
 				
 		};
+		Log.d("test value :", "isTapMarker="+isTapMarker);
+//		else if(isTapMarker){
+//			Intent i = new Intent(mContext, ActivitiesListActivity.class);
+//			mContext.startActivity(i);
+//		}
 		
 		return true;
 	}
 	
 	@Override
 	public boolean onTap(int index){
-		if (mContext != null && isTapMarker) {
+		Log.d("MapOverlays", "mContext is nullxxxxxxxxxxxxxxx");
+		if (mContext != null) {
 			Intent i = new Intent(mContext, ActivitiesListActivity.class);
 			mContext.startActivity(i);
 		} else {

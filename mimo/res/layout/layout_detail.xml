@@ -2,20 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+    android:layout_height="fill_parent">
 
     <!-- Title Area on top -->
     <LinearLayout
-    android:id="@+id/layout_form"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    >
-    <LinearLayout
+	    android:id="@+id/layout_form"
+	    android:orientation="vertical"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content">
+      <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-    android:background="#ababab" android:orientation="vertical">
+        android:background="#ababab" android:orientation="vertical">
         <LinearLayout android:layout_height="wrap_content" android:background="#ababab" android:layout_width="fill_parent" android:orientation="vertical">
             <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:background="#ababab" android:layout_width="fill_parent">
                 <ImageButton android:id="@+id/icon_activity" android:paddingLeft="5dp" android:visibility="visible" android:paddingRight="15dp" android:layout_height="wrap_content" android:background="@null" android:src="@drawable/alien" android:layout_width="wrap_content" android:paddingTop="10dp"></ImageButton>
@@ -28,45 +26,43 @@
                     android:layout_height="wrap_content" 
                     android:id="@+id/hidden_value" 
                     android:visibility="invisible">
-                 </TextView> 
+                </TextView> 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+      </LinearLayout>
 
-    <!-- Form entry on top -->
+      <!-- Form entry on top -->
 
-        <ScrollView 
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:clipChildren="true"
-            android:fadeScrollbars="true">
-            <LinearLayout 
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-            >
-		        <TextView  
-		            android:layout_width="fill_parent" 
-		            android:layout_height="wrap_content" 
-		            android:layout_gravity="center_horizontal"
-		            android:layout_marginLeft="8dip"
-		            android:layout_marginRight="8dip"
-		            android:text="@string/label_field_activity_name"
-		            android:id="@+id/labelName"/>
-		        <TextView  
-		            android:layout_width="fill_parent" 
-		            android:layout_height="wrap_content" 
-		            android:layout_gravity="center_horizontal"
-		            android:layout_marginLeft="8dip"
-		            android:layout_marginRight="8dip"
-		            android:text="@string/label_field_description"
-		            android:id="@+id/labelDescription"/>
-		        <TextView android:text="Start :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelStart"></TextView>
+      <ScrollView 
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:fillViewport="true"
+          android:clipChildren="true"
+          android:fadeScrollbars="true">
+          <LinearLayout 
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content">
+			        <TextView  
+			            android:layout_width="fill_parent" 
+			            android:layout_height="wrap_content" 
+			            android:layout_gravity="center_horizontal"
+			            android:layout_marginLeft="8dip"
+			            android:layout_marginRight="8dip"
+			            android:text="@string/label_field_activity_name"
+			            android:id="@+id/labelName"/>
+			        <TextView  
+			            android:layout_width="fill_parent" 
+			            android:layout_height="wrap_content" 
+			            android:layout_gravity="center_horizontal"
+			            android:layout_marginLeft="8dip"
+			            android:layout_marginRight="8dip"
+			            android:text="@string/label_field_description"
+			            android:id="@+id/labelDescription"/>
+			        <TextView android:text="Start :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelStart"></TextView>
 	            <TextView android:text="End :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelEnd"></TextView>
 	            <TextView android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/location" android:id="@+id/labelLocation"></TextView>
-                
-                    <LinearLayout
+              <LinearLayout
 				        android:orientation="horizontal"
 				        android:layout_width="fill_parent"
 				        android:layout_height="wrap_content"
@@ -83,18 +79,17 @@
 				            android:layout_height="wrap_content"
 				            android:layout_gravity="right"
 				            android:layout_weight="1" android:text="@string/button_back" android:id="@+id/btn_back"/>
-				    </LinearLayout>
-
-
-            <!-- Repeat label-text and edit-text until done ... -->
-
-            </LinearLayout>
-        </ScrollView>
-
-
-    <!-- "spring" between form and wizard buttons. -->
-
-        </LinearLayout>
-
-
+				        
+		          </LinearLayout>
+		          <Button
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_weight="1" 
+                    android:text="@string/button_delete" 
+                    android:id="@+id/btn_delete" 
+                    android:layout_width="fill_parent"
+                    android:layout_margin="5dip"/>
+	          </LinearLayout>
+	      </ScrollView>
+    </LinearLayout>
 </LinearLayout>

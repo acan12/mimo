@@ -53,7 +53,6 @@ public class ActivitiesListActivity extends ListActivity {
         m_orders = new ArrayList<Order>();
         this.m_adapter = new OrderAdapter(this, R.layout.row, m_orders);
         this.setListAdapter(this.m_adapter);
-//        this.setSelection(3);
        
         viewOrders = new Runnable(){
             @Override
@@ -61,7 +60,7 @@ public class ActivitiesListActivity extends ListActivity {
                 getOrders();
             }
         };
-        Thread thread =  new Thread(null, viewOrders, "MagentoBackground");
+        Thread thread =  new Thread(null, viewOrders, "RuntoBackground");
         thread.start();
         m_ProgressDialog = ProgressDialog.show(ActivitiesListActivity.this,    
               "Please wait...", "Retrieving data ...", true);
@@ -79,53 +78,54 @@ public class ActivitiesListActivity extends ListActivity {
     
     private Runnable returnRes = new Runnable() {
 
-        @Override
-        public void run() {
-            if(m_orders != null && m_orders.size() > 0){
-                m_adapter.notifyDataSetChanged();
-                for(int i=0;i<m_orders.size();i++)
-                m_adapter.add(m_orders.get(i));
-            }
-            m_ProgressDialog.dismiss();
-            m_adapter.notifyDataSetChanged();
-        }
+	    @Override
+	    public void run() {
+	        if(m_orders != null && m_orders.size() > 0){
+	            m_adapter.notifyDataSetChanged();
+	            for(int i=0;i<m_orders.size();i++)
+	            m_adapter.add(m_orders.get(i));
+	        }
+	        m_ProgressDialog.dismiss();
+	        m_adapter.notifyDataSetChanged();
+	    }
     };
     
     private void getOrders(){
-        try{
-            m_orders = new ArrayList<Order>();
-            
-            Order o;
-            ActivityEvent ae;
-            DBAdapter db = new DBAdapter(this);
-    		Cursor c = db.getAllRecord(); //retrieve all records
-    		Icons icons = new Icons();
-    		while(c.moveToNext()){
-    			ae = new ActivityEvent();
-    			ae.setName(c.getString(c.getColumnIndex("name")));
-    			ae.setIcon(c.getString(c.getColumnIndex("icon")));
-    			ae.setDescription(c.getString(c.getColumnIndex("description")));
-    			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-    			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-    			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-    			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
-    			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
-    			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
-    			
-    			o= new Order();
-    			o.setOrderId(c.getString(c.getColumnIndex("id")));
-    			o.setOrderName(ae.getIcon());
-    			o.setOrderStatus(ae.getName()+"-"+ae.getDescription()+", "+ae.getStart_date());
-    			o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
-    			
-    			m_orders.add(o);
-        	}	
-    		
-            Thread.sleep(5000);
-            Log.i("ARRAY", ""+ m_orders.size());
-          } catch (Exception e) {
-            Log.e("BACKGROUND_PROC", e.getMessage());
-          }
+	    try{
+	        m_orders = new ArrayList<Order>();
+	        
+	        Order o;
+	        ActivityEvent ae;
+	        DBAdapter db = new DBAdapter(this);
+			Cursor c = db.getAllRecord(); //retrieve all records
+			
+			Icons icons = new Icons();
+			while(c.moveToNext()){
+				ae = new ActivityEvent();
+				ae.setName(c.getString(c.getColumnIndex("name")));
+				ae.setIcon(c.getString(c.getColumnIndex("icon")));
+				ae.setDescription(c.getString(c.getColumnIndex("description")));
+				ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
+				ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
+				ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
+				ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+				ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+				ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+				
+				o= new Order();
+				o.setOrderId(c.getString(c.getColumnIndex("id")));
+				o.setOrderName(ae.getIcon());
+				o.setOrderStatus(ae.getName()+"-"+ae.getDescription()+", "+ae.getStart_date());
+				o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
+				
+				m_orders.add(o);
+	    	}	
+			
+	        Thread.sleep(5000);
+	        Log.i("ARRAY", ""+ m_orders.size());
+	      } catch (Exception e) {
+	        Log.e("BACKGROUND_PROC", e.getMessage());
+	      }
           runOnUiThread(returnRes);
 	}
     
@@ -135,31 +135,32 @@ public class ActivitiesListActivity extends ListActivity {
         private ArrayList<Order> items;
 
         public OrderAdapter(Context context, int textViewResourceId, ArrayList<Order> items) {
-                super(context, textViewResourceId, items);
-                this.items = items;
+	        super(context, textViewResourceId, items);
+	        this.items = items;
         }
+        
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-                View v = convertView;
-                LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                v = vi.inflate(R.layout.row, null);
-                Order o = items.get(position);
-                if (o != null) {
-                		if(o.getDrawableImage() != 0){
-	                		ImageView img =(ImageView) v.findViewById(R.id.icon);
-	                		Drawable drawable = v.getResources().getDrawable(o.getDrawableImage());
-	                		img.setImageDrawable(drawable);
-                		}
-                        TextView tt = (TextView) v.findViewById(R.id.toptext);
-                        TextView bt = (TextView) v.findViewById(R.id.bottomtext);
-                        
-                        if (tt != null) {
-                              tt.setText("Name: "+o.getOrderName());                            }
-                        if(bt != null){
-                              bt.setText("Status: "+ o.getOrderStatus());
-                        }
-                }
-                return v;
+	        View v = convertView;
+	        LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	        v = vi.inflate(R.layout.row, null);
+	        Order o = items.get(position);
+	        if (o != null) {
+	    		if(o.getDrawableImage() != 0){
+	        		ImageView img =(ImageView) v.findViewById(R.id.icon);
+	        		Drawable drawable = v.getResources().getDrawable(o.getDrawableImage());
+	        		img.setImageDrawable(drawable);
+	    		}
+	            TextView tt = (TextView) v.findViewById(R.id.toptext);
+	            TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+	            
+	            if (tt != null) {
+	                  tt.setText("Name: "+o.getOrderName());                            }
+	            if(bt != null){
+	                  bt.setText("Event: "+ o.getOrderStatus());
+	            }
+	        }
+	        return v;
         }
     }
 }

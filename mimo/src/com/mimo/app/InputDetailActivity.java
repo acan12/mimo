@@ -36,7 +36,7 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 		
 		switch(action){
 		case DB_CREATE: // create
-			initialize(R.layout.layout_new_form);
+			initialize(R.layout.layout_form_new);
 			a.setId(0);
 			
 			break;
@@ -114,7 +114,7 @@ public class InputDetailActivity extends FormInputView implements Configuration{
 				this.startActivity(i);
 				break;
 			case DB_UPDATE:
-				Intent i2 = new Intent(this, ActivitiesListActivity.class);
+				Intent i2 = new Intent(this, MimoActivity.class);
 				this.startActivity(i2);
 				break;
 			}

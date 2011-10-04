@@ -63,19 +63,31 @@ public class DetailActivity extends DetailView implements Configuration {
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
+		final Intent intent;
+		final TextView tv = (TextView)findViewById(R.id.hidden_value);
+		
 		switch(v.getId()){ 
 		case R.id.btn_detail:
-			TextView tv = (TextView)findViewById(R.id.hidden_value);
+			
 			Intent i = new Intent(this, InputDetailActivity.class);
 			i.putExtra("paramaction", ACTION_UPDATE);
 			i.putExtra("paramid", Integer.parseInt(tv.getText().toString()));
 			startActivity(i);
 			break;
 		case R.id.btn_back:
-			Intent intent = new Intent(this, MapDashboardActivity.class);
+			intent = new Intent(this, MapDashboardActivity.class);
 			startActivity(intent);
 			break;
+		case R.id.btn_delete:
+			DBAdapter db = new DBAdapter(this);
+			db.deleteRecord(Integer.parseInt(tv.getText().toString()));
+			Toast.makeText(this, "Deleted", Toast.LENGTH_LONG).show();
+			intent = new Intent(this, ActivitiesListActivity.class);
+			startActivity(intent);
+			break;
+		
 		}
+		
 	}
 
 }
