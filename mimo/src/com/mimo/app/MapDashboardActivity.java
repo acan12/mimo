@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
@@ -14,6 +15,7 @@ import com.mimo.app.interfaces.Configuration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.view.BalloonLayout;
 import com.mimo.app.view.list.ListDialogView;
 
 import android.*;
@@ -39,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,10 +50,10 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	double lat= -6.19638013839722;
 	double lng= 106.837997436523;
 	
-	Hashtable iconHash ;
-	
+	Hashtable iconHash;
 	ActivityEvent ae;
 	
+	MapDashboardOverlays itemizedOverlay;
 	
 	@Override
 	protected boolean isRouteDisplayed() {
@@ -141,13 +144,19 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 			}
 			point = getPoint(ae.getLat(), ae.getLng());
-			mv.getController().setCenter(point);
+			
 			mapOverlays = mv.getOverlays();
 			drawable = this.getResources().getDrawable(new Icons().getIconFromLabel(ae.getIcon()));
-			MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, this);
-	        OverlayItem overlayitem = new OverlayItem(point, "coord: "+point.getLatitudeE6()+", "+point.getLongitudeE6(), "You are in Bread Location.");
-	        itemizedoverlay.addOverlay(overlayitem);
-	        mapOverlays.add(itemizedoverlay);
+	        
+	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
+	        OverlayItem overlayItem = new OverlayItem(point, 
+	        		"label: "+ae.getIcon(), "Title: \n"+ae.getName());		
+	        itemizedOverlay.addOverlay(overlayItem);
+	        itemizedOverlay.onParentTap(0);
+			mapOverlays.add(itemizedOverlay);
+	        final MapController mc = mv.getController();
+			mc.animateTo(point);
+			mc.setZoom(16);
 		}
 	}
 
@@ -177,9 +186,10 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				
 				List<Overlay> mapOverlays = mv.getOverlays();
 				Drawable drawable = getResources().getDrawable(icon);
-		        MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, MapDashboardActivity.this);
-		        OverlayItem overlayitem = new OverlayItem(point_link, null, "");
+				MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, mv, true);
+		        OverlayItem overlayitem = new OverlayItem(point_link, "label: "+iconlabel.getText().toString(), "Title: \n"+title.getText().toString());
 		        itemizedoverlay.addOverlay(overlayitem);
+		        itemizedoverlay.onParentTap(0);
 		        mapOverlays.add(itemizedoverlay);
 			}
 		});

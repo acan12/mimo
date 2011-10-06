@@ -9,10 +9,11 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import com.google.android.maps.ItemizedOverlay;
+import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 import com.mimo.app.interfaces.Configuration;
 
-public class MapDashboardOverlays extends ItemizedOverlay<OverlayItem> implements Configuration{
+public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> implements Configuration{
 
 		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 		private Context mContext ;
@@ -20,14 +21,19 @@ public class MapDashboardOverlays extends ItemizedOverlay<OverlayItem> implement
 		
 		
 		public MapDashboardOverlays(Drawable defaultMarker) {
-			super(boundCenterBottom(defaultMarker));
+			super(boundCenterBottom(defaultMarker), null, false);
 
 			// TODO Auto-generated constructor stub
 		}
 		
 		public MapDashboardOverlays(Drawable defaultMarker, Context context) {
-			  super(boundCenterBottom(defaultMarker));
+			  super(boundCenterBottom(defaultMarker), null, false);
 			  this.mContext = context;
+		}
+		
+		public MapDashboardOverlays(Drawable defaultMarker, MapView mapView, boolean setTapEnabled) {
+			  super(boundCenterBottom(defaultMarker), mapView, setTapEnabled);
+			  this.mContext = mapView.getContext();
 		}
 		
 		@Override
@@ -48,11 +54,13 @@ public class MapDashboardOverlays extends ItemizedOverlay<OverlayItem> implement
 		    populate();
 		}
 		
-		
+		public boolean onParentTap(int index){
+			super.onTap(index);
+			return true;
+		}
 		
 		@Override
 		public boolean onTap(int index){
-			Log.d("MapOverlays", "mContext is nullxxxxxxxxxxxxxxx");
 			if (mContext != null) {
 				Intent i = new Intent(mContext, ActivitiesListActivity.class);
 				mContext.startActivity(i);
