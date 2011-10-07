@@ -21,6 +21,9 @@ import com.mimo.app.view.list.ListDialogView;
 import android.*;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -131,7 +134,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		String key = Icons.getLabels()[v.getId()];
 		int value = Integer.parseInt(""+iconHash.get(key));
 		if(	value > 1 ){
-			showEventDialog(mv, icons);
+			showEventDialog(mv, key);
 		}else{
 			ae = new ActivityEvent();
 			DBAdapter db = new DBAdapter(this);
@@ -159,12 +162,35 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			mc.setZoom(16);
 		}
 	}
+	
+	private void sendStatusNotification(){
+		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		
+		final Notification notification =
+			new Notification(R.drawable.alien,"Hallo! ",System.currentTimeMillis()+5);
+		
+		Context context = getApplicationContext();
+		CharSequence contentTitle = "My notification";
+		CharSequence contentText = "Hello World!";
+		Intent notificationIntent = new Intent(this, MapDashboardActivity.class);
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
-	private void showEventDialog(final MapView mv, final Icons icons) {
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+	
+		final int HELLO_ID = 1;
+
+		nm.notify(HELLO_ID, notification);
+		nm.cancel(HELLO_ID);
+	}
+
+	private void showEventDialog(final MapView mv, final String key) {
+		sendStatusNotification();
+		
+		final Icons icons = new Icons();
 		final ListDialogView lDialog = new ListDialogView(this, null, R.layout.list_row_dialog);
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-		final ListAdapter adapter = lDialog.getDialogAdapter(getListEvent(Icons.getLabels()[2]));
-		
+		final ListAdapter adapter = lDialog.getDialogAdapter(getListEvent(key));
+		   
 		dialog.setTitle("List of Your activities:  ");
 		dialog.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			
