@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 import com.mimo.app.model.pojo.ActivityEvent;
 
-public interface Configuration {
+public interface IConfiguration {
 	static final int ACTION_ADD = 1;
 	static final int ACTION_UPDATE = 2;
 	

@@ -11,7 +11,8 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.interfaces.IBizProfileData;
+import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
@@ -49,7 +50,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MapDashboardActivity extends MapActivity implements OnClickListener, Configuration {
+public class MapDashboardActivity extends MapActivity implements OnClickListener, IConfiguration, IBizProfileData {
 	double lat= -6.19638013839722;
 	double lng= 106.837997436523;
 	
@@ -58,7 +59,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	
 	MapDashboardOverlays itemizedOverlay;
 	
-	@Override
+	@Override  
 	protected boolean isRouteDisplayed() {
 		// TODO Auto-generated method stub
 		return false;
@@ -69,12 +70,38 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.layout_mapview);
-		GeoPoint point = getPoint(lat, lng);
 		MapView mv = (MapView) findViewById(R.id.mapview);
+		
+		
+		
+		
+			
+		
+		GeoPoint point = getPoint(lat, lng);
 		mv.setBuiltInZoomControls(true);
 		mv.getController().setCenter(point);
 		mv.getController().setZoom(13);
 		
+		
+		
+		Bundle b = getIntent().getExtras();
+		if(b != null){
+			double[] domap = b.getDoubleArray("doMap");
+			if(domap.length>0){
+				Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
+		        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
+		        
+				point = getPoint(domap[1], domap[2]);
+	            OverlayItem overlayItem = new OverlayItem(point, null, null);		
+	            itemizedOverlay.addOverlay(overlayItem);
+	            itemizedOverlay.onParentTap(0);
+	            final MapController mc = mv.getController();
+	    		mc.animateTo(point);
+	    		mc.setZoom(13);
+			}
+		}
+		
+		setBizProfileToMap();
         // counting dynamic button image
 		Hashtable h = getIconButton();
 		Iterator it = h.keySet().iterator();
@@ -90,7 +117,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		ae = new ActivityEvent();
 		DBAdapter db = new DBAdapter(this);
 		Cursor c = db.getIconsUniqRecord();    
-		iconHash = new Hashtable();//String[Icons.getIcons().length];
+		iconHash = new Hashtable();
 		while(c.moveToNext()){
 			String key = c.getString(c.getColumnIndex("icon"));
 			String value = c.getString(c.getColumnIndex("count_record"));
@@ -173,6 +200,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		CharSequence contentTitle = "My notification";
 		CharSequence contentText = "Hello World!";
 		Intent notificationIntent = new Intent(this, MapDashboardActivity.class);
+		double[] loc = {R.drawable.alien, -6.278, 106.73};
+		notificationIntent.putExtra("doMap", loc);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
@@ -180,7 +209,6 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		final int HELLO_ID = 1;
 
 		nm.notify(HELLO_ID, notification);
-		nm.cancel(HELLO_ID);
 	}
 
 	private void showEventDialog(final MapView mv, final String key) {
@@ -191,7 +219,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		final ListAdapter adapter = lDialog.getDialogAdapter(getListEvent(key));
 		   
-		dialog.setTitle("List of Your activities:  ");
+		dialog.setTitle("Event: ");
 		dialog.setAdapter(adapter, new DialogInterface.OnClickListener() {
 			
 			@Override
@@ -238,5 +266,36 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			mActivity.add(aev);
 		}
 		return mActivity;
+	}
+	
+	private void setBizProfileToMap(){
+		final MapView mv = (MapView) findViewById(R.id.mapview);
+		List<Overlay> mapOverlays ;
+		mapOverlays = mv.getOverlays();
+		Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
+        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
+        
+        for(int i=0; i< biz[CARREFOUR].length; i++){
+        	GeoPoint point = getPoint(biz[CARREFOUR][i][0], biz[CARREFOUR][i][1]);
+            OverlayItem overlayItem = new OverlayItem(point, null, null);		
+            itemizedOverlay.addOverlay(overlayItem);
+            itemizedOverlay.onParentTap(0);
+    		mapOverlays.add(itemizedOverlay);
+            
+        }
+        
+        drawable = this.getResources().getDrawable(R.drawable.farmstand);
+        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
+        for(int i=0; i< biz[SEVEN_ELEVEN].length; i++){
+        	GeoPoint point = getPoint(biz[SEVEN_ELEVEN][i][0], biz[SEVEN_ELEVEN][i][1]);
+            OverlayItem overlayItem = new OverlayItem(point, null, null);		
+            itemizedOverlay.addOverlay(overlayItem);
+            itemizedOverlay.onParentTap(0);
+    		mapOverlays.add(itemizedOverlay);
+            final MapController mc = mv.getController();
+    		mc.animateTo(point);
+    		mc.setZoom(13);
+        }
+        
 	}
 };

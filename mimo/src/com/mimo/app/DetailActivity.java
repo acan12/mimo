@@ -9,7 +9,7 @@ import java.util.List;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
@@ -48,7 +48,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class DetailActivity extends DetailView implements Configuration {
+public class DetailActivity extends DetailView implements IConfiguration {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){

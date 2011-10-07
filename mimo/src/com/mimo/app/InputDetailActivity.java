@@ -1,6 +1,6 @@
 package com.mimo.app;
 
-import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.view.form.FormInputView;
@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class InputDetailActivity extends FormInputView implements Configuration{
+public class InputDetailActivity extends FormInputView implements IConfiguration{
 	
 	private ActivityEvent a;
 	private int paramid;

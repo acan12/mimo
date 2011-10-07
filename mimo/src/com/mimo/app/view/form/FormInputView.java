@@ -23,13 +23,13 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.mimo.app.R;
-import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.view.BaseView;
 
-public class FormInputView extends BaseView implements OnClickListener, Configuration{
+public class FormInputView extends BaseView implements OnClickListener, IConfiguration{
 	protected int 
 			mYear,
 			mMonth,

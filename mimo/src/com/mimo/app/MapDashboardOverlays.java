@@ -11,9 +11,9 @@ import android.util.Log;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
-import com.mimo.app.interfaces.Configuration;
+import com.mimo.app.interfaces.IConfiguration;
 
-public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> implements Configuration{
+public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> implements IConfiguration{
 
 		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 		private Context mContext ;
