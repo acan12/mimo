@@ -68,7 +68,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
-		
+		GeoPoint point;
 		setContentView(R.layout.layout_mapview);
 		MapView mv = (MapView) findViewById(R.id.mapview);
 		
@@ -77,10 +77,10 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 			
 		
-		GeoPoint point = getPoint(lat, lng);
-		mv.setBuiltInZoomControls(true);
-		mv.getController().setCenter(point);
-		mv.getController().setZoom(13);
+//		GeoPoint point = getPoint(lat, lng);
+//		mv.setBuiltInZoomControls(true);
+//		mv.getController().setCenter(point);
+//		mv.getController().setZoom(13);
 		
 		
 		
@@ -88,20 +88,29 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		if(b != null){
 			double[] domap = b.getDoubleArray("doMap");
 			if(domap.length>0){
-				Drawable drawable = this.getResources().getDrawable(R.drawable.alien);
+				List<Overlay> mapOverlays;
+				Drawable drawable = this.getResources().getDrawable((int)domap[0]);
 		        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
 		        
 				point = getPoint(domap[1], domap[2]);
-	            OverlayItem overlayItem = new OverlayItem(point, null, null);		
+				mapOverlays = mv.getOverlays();
+				OverlayItem overlayItem = new OverlayItem(point, null, null);		
 	            itemizedOverlay.addOverlay(overlayItem);
 	            itemizedOverlay.onParentTap(0);
-	            final MapController mc = mv.getController();
-	    		mc.animateTo(point);
-	    		mc.setZoom(13);
+	            mapOverlays.add(itemizedOverlay);
+	            
+	            mv.setBuiltInZoomControls(true);
+	    		mv.getController().setCenter(point);
+	    		mv.getController().setZoom(13);
+	    		
+	    		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+	    		nm.cancel(1);
 			}
+		}else{
+			setBizProfileToMap();
 		}
 		
-		setBizProfileToMap();
+		
         // counting dynamic button image
 		Hashtable h = getIconButton();
 		Iterator it = h.keySet().iterator();
@@ -192,16 +201,17 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	
 	private void sendStatusNotification(){
 		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		
+		int drawabaleId = R.drawable.candy;
 		final Notification notification =
-			new Notification(R.drawable.alien,"Hallo! ",System.currentTimeMillis()+5);
+			new Notification(drawabaleId, "Hallo! ",System.currentTimeMillis()+5);
 		
 		Context context = getApplicationContext();
 		CharSequence contentTitle = "My notification";
 		CharSequence contentText = "Hello World!";
 		Intent notificationIntent = new Intent(this, MapDashboardActivity.class);
-		double[] loc = {R.drawable.alien, -6.278, 106.73};
+		double[] loc = {drawabaleId, -6.278, 106.73};
 		notificationIntent.putExtra("doMap", loc);
+		
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
 
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
@@ -209,6 +219,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		final int HELLO_ID = 1;
 
 		nm.notify(HELLO_ID, notification);
+		
 	}
 
 	private void showEventDialog(final MapView mv, final String key) {
