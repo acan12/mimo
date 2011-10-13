@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" android:background="#ffffff" android:orientation="horizontal" android:paddingLeft="5dp">
+    android:layout_height="fill_parent" android:background="#ffffff" android:orientation="horizontal">
     
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
-        android:orientation="horizontal">
+        android:orientation="vertical">
         <LinearLayout android:id="@+id/linearLayout1" 
             android:scrollbars="vertical" 
             android:orientation="vertical" 
-            android:layout_weight=".20" 
+            android:layout_weight=".15" 
             android:layout_height="fill_parent"
             android:layout_width="fill_parent">
             <com.google.android.maps.MapView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/mapview"
                 android:clickable="true" 
-                android:apiKey="04ToJMcHjUZd2A99JOzz6zj2C8bjy1YT1X_2dXw" android:background="#ffffff" android:layout_height="fill_parent" android:layout_width="fill_parent"/>
+                android:apiKey="04ToJMcHjUZd2A99JOzz6zj2C8bjy1YT1X_2dXw" 
+                android:background="#ffffff" 
+                android:layout_height="fill_parent" 
+                android:layout_width="fill_parent"/>
         </LinearLayout>
         <LinearLayout android:id="@+id/right_linearLayout" 
-            android:scrollbars="vertical" 
-            android:orientation="vertical" 
+            android:scrollbars="horizontal" 
+            android:orientation="horizontal" 
+            android:layout_weight=".80"
             android:layout_height="fill_parent" 
-            android:layout_weight=".80" 
             android:layout_width="fill_parent">
-            <ScrollView android:id="@+id/scroll" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="wrap_content" android:fadeScrollbars="true">
+            <ScrollView android:id="@+id/scroll" android:layout_gravity="left|center_vertical" android:layout_height="wrap_content" android:layout_width="wrap_content" android:fadeScrollbars="true">
                 <LinearLayout android:id="@+id/imgbutton_linearLayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:scrollbars="vertical" android:isScrollContainer="true" android:orientation="vertical">
                 </LinearLayout>
            </ScrollView>
         </LinearLayout>
+        
     </LinearLayout>      
 </LinearLayout>
