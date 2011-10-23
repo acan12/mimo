@@ -1,5 +1,7 @@
 package com.mimo.app;
 
+import com.mimo.app.model.adapter.DBAdapter;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ public class MimoActivity extends Activity implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dashboard);
+        
         
         imgButton = (ImageButton) findViewById(R.id.MapButton);
         imgButton.setOnClickListener(this);

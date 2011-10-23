@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.ViewGroup.MarginLayoutParams;
 
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
@@ -62,7 +63,10 @@ public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> im
 		@Override
 		public boolean onTap(int index){
 			if (mContext != null) {
-				Intent i = new Intent(mContext, ActivitiesListActivity.class);
+				OverlayItem itemClicked = mOverlays.get(index);
+				
+				Intent i = new Intent(mContext, DetailActivity.class);
+				i.putExtra("paramid", Integer.parseInt(itemClicked.getTitle().split("#")[1]));
 				mContext.startActivity(i);
 			} else {
 				Log.e("MapOverlays", "mContext is null");

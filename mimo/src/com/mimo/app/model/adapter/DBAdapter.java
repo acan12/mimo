@@ -1,5 +1,11 @@
 package com.mimo.app.model.adapter;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import com.mimo.app.model.BaseModel;
 import com.mimo.app.model.pojo.ActivityEvent;
 
@@ -23,7 +29,11 @@ public class DBAdapter extends BaseModel{
 	public static final String KEY_END_TIME = "end_time";
 	public static final String KEY_LAT = "lat";
 	public static final String KEY_LNG = "lng";
+	public static final String KEY_STATUS = "status";
 	private static final String TAG = "DBAdapter";
+	private static final int OFFSET_DAY = 1;
+	
+	private ActivityEvent ae;
 
 	private static final String DATABASE_NAME = "mimodb";
 	private static final String DATABASE_TABLE = "activities";
@@ -39,7 +49,8 @@ public class DBAdapter extends BaseModel{
 		"end_date text," +
 		"end_time text," +
 		"lat double," +
-		"lng double );";
+		"lng double," +
+		"status integer default 0);";
 	
 	private final Context context;
 	private DatabaseHelper DBHelper;
@@ -62,7 +73,7 @@ public class DBAdapter extends BaseModel{
 			// TODO Auto-generated method stub
 			db.execSQL(DATABASE_CREATE);
 		}
-
+ 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 			// TODO Auto-generated method stub
@@ -105,6 +116,37 @@ public class DBAdapter extends BaseModel{
 		return rows_affected;
 	}
 		
+	public List<ActivityEvent> getMostCloselyEvent()  throws Exception{
+		Calendar caloffset = Calendar.getInstance();
+		Calendar calnow = Calendar.getInstance();
+		caloffset.add(Calendar.DATE, OFFSET_DAY);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+		List<ActivityEvent> list = new ArrayList<ActivityEvent>();
+		Log.d("tag----->", ""+(sdf.format(caloffset.getTime())));
+		this.open();
+		Cursor c = db.rawQuery("SELECT * FROM activities ", null);
+		
+		
+		Log.d("tesss masuk db most ", "masuk db most");
+		while(c.moveToNext()){
+			Log.d("tesss masuk db most ", " -> looping");
+			Date stdate = new Date();
+			stdate = sdf.parse(c.getString(c.getColumnIndex("st_date")) );
+			long diff = (caloffset.getTime().getTime() - calnow.getTime().getTime())/(1000 * 60 * 60 * 24);;
+			ae = new ActivityEvent();
+			ae.setIcon(c.getString(c.getColumnIndex("icon")));
+			ae.setName(c.getString(c.getColumnIndex("name")));
+			ae.setDescription(c.getString(c.getColumnIndex("description")));
+			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
+			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+			ae.setStatus(c.getInt(c.getColumnIndex("status")));
+			
+			ae.setStatus((diff >=0)? ActivityEvent.REMINDER_STATUS : ActivityEvent.EXPIRED_STATUS);
+			list.add(ae);
+		}
+		return list;
+	}
+	
 	public Cursor getIconsUniqRecord(){
 		this.open();
 		Cursor c = db.rawQuery("select count(*) as count_record, icon from activities group by icon", null);
@@ -123,7 +165,8 @@ public class DBAdapter extends BaseModel{
 				KEY_END_DATE,
 				KEY_END_TIME,
 				KEY_LAT,
-				KEY_LNG
+				KEY_LNG,
+				KEY_STATUS
 		}, null, null, null, null, KEY_ICON);
 		return c;
 	}
@@ -141,7 +184,8 @@ public class DBAdapter extends BaseModel{
 					KEY_END_DATE,
 					KEY_END_TIME,
 					KEY_LAT,
-					KEY_LNG
+					KEY_LNG,
+					KEY_STATUS
 			}, KEY_ROWID + "=" + rowId, null, null, null, null, null);
 		if (mCursor != null){
 			mCursor.moveToFirst();
@@ -163,7 +207,8 @@ public class DBAdapter extends BaseModel{
 					KEY_END_DATE,
 					KEY_END_TIME,
 					KEY_LAT,
-					KEY_LNG
+					KEY_LNG,
+					KEY_STATUS
 			}, KEY_ICON + "='" + iconLabel + "'", null, null, null, null, null);
 		return mCursor;
 	}
@@ -183,6 +228,15 @@ public class DBAdapter extends BaseModel{
 		boolean rows_affected = db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + act.getId(), null) > 0;
 		this.close();
 		return rows_affected;
+	}
+	
+	public boolean updateStatus(int rowid, int status){
+		this.open();
+		ContentValues args = new ContentValues();
+		args.put(KEY_STATUS, status);
+		db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowid, null);
+		this.close();
+		return true;
 	}
 }
                 

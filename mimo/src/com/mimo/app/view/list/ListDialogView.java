@@ -38,8 +38,9 @@ public class ListDialogView extends BaseAdapter{
 	public ListAdapter getDialogAdapter(ArrayList<ActivityEvent> eventItems) {
 		String icon = null; 
 		final String iconPicture ;
-		final String[] items = new String[eventItems.size()];
-		final String[] locs = new String[eventItems.size()];
+		final String[] items 	= new String[eventItems.size()];
+		final String[] ids 		= new String[eventItems.size()];
+		final String[] locs 	= new String[eventItems.size()];
 		
 		Iterator<ActivityEvent> it= eventItems.iterator(); 
 		int i = 0;
@@ -50,6 +51,7 @@ public class ListDialogView extends BaseAdapter{
 			ActivityEvent a = (ActivityEvent)it.next();
 			icon = a.getIcon();
 			items[i] = a.getIcon().toUpperCase()+" "+a.getName()+", "+a.getDescription();
+			ids[i]= ""+a.getId();
 			locs[i++]= a.getLat()+","+a.getLng();
 		}
 		
@@ -65,6 +67,7 @@ public class ListDialogView extends BaseAdapter{
 	        class ViewHolder {
 	                ImageView icon;
 	                TextView title;
+	                TextView hiddenid;
 	                TextView hiddenloc;
 	                TextView hiddenicon;
 	        }
@@ -83,6 +86,8 @@ public class ListDialogView extends BaseAdapter{
 	                                      	.findViewById(R.id.icon_dialog);
 	                        holder.title  =	(TextView) convertView
 	                                        .findViewById(R.id.title);
+	                        holder.hiddenid = (TextView) convertView
+            								.findViewById(R.id.hidden_value_id);
 	                        holder.hiddenloc = (TextView) convertView
 	                        				.findViewById(R.id.hidden_value_loc);
 	                        holder.hiddenicon = (TextView) convertView
@@ -98,6 +103,7 @@ public class ListDialogView extends BaseAdapter{
 	               
 	                holder.title.setText(items[position]);
 	                holder.icon.setImageDrawable(tile);
+	                holder.hiddenid.setText(ids[position]);
 	                holder.hiddenloc.setText(locs[position]);
 	                holder.hiddenicon.setText(iconPicture);
 //	                LinearLayout layout_row = (LinearLayout)convertView.findViewById(R.layout.list_row_dialog);

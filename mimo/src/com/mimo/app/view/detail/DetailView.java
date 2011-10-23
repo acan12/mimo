@@ -21,7 +21,7 @@ public class DetailView extends BaseView implements OnClickListener{
 	protected void initialize(int layout){
 		setContentView(layout);
 		idIcon = new Icons();
-		Button bDetail = (Button)findViewById(R.id.btn_detail);
+		Button bDetail = (Button)findViewById(R.id.btn_edit);
 		bDetail.setOnClickListener(this);
 		Button bBack = (Button)findViewById(R.id.btn_back);
 		bBack.setOnClickListener(this);

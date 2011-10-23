@@ -7,6 +7,34 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" 
         android:orientation="vertical">
+        <LinearLayout android:id="@+id/right_linearLayout" 
+            android:scrollbars="horizontal" 
+            android:orientation="horizontal" 
+            android:layout_weight=".80"
+            android:layout_height="fill_parent" 
+            android:background="@drawable/sidebar"
+            android:layout_width="fill_parent">
+            <ScrollView android:id="@+id/scroll" 
+                android:layout_gravity="left|center_vertical" 
+                android:layout_width="fill_parent" 
+                android:background="@drawable/nav"
+                android:scrollbars="horizontal" android:layout_height="wrap_content">
+                <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+									android:layout_width="wrap_content" 
+									android:fadeScrollbars="true"
+									android:layout_height="fill_parent">
+                
+	                <LinearLayout 
+	                    android:id="@+id/container_button_linearLayout" 
+	                    android:layout_height="wrap_content" 
+	                    android:layout_width="wrap_content" 
+	                    android:isScrollContainer="true"
+	                    android:orientation="horizontal">
+	                    
+	                </LinearLayout>
+                </HorizontalScrollView>
+           </ScrollView>
+        </LinearLayout>
         <LinearLayout android:id="@+id/linearLayout1" 
             android:scrollbars="vertical" 
             android:orientation="vertical" 
@@ -22,17 +50,7 @@
                 android:layout_height="fill_parent" 
                 android:layout_width="fill_parent"/>
         </LinearLayout>
-        <LinearLayout android:id="@+id/right_linearLayout" 
-            android:scrollbars="horizontal" 
-            android:orientation="horizontal" 
-            android:layout_weight=".80"
-            android:layout_height="fill_parent" 
-            android:layout_width="fill_parent">
-            <ScrollView android:id="@+id/scroll" android:layout_gravity="left|center_vertical" android:layout_height="wrap_content" android:layout_width="wrap_content" android:fadeScrollbars="true">
-                <LinearLayout android:id="@+id/imgbutton_linearLayout" android:layout_height="wrap_content" android:layout_width="wrap_content" android:scrollbars="vertical" android:isScrollContainer="true" android:orientation="vertical">
-                </LinearLayout>
-           </ScrollView>
-        </LinearLayout>
+        
         
     </LinearLayout>      
 </LinearLayout>

@@ -13,15 +13,42 @@
 	    <LinearLayout
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:background="#ababab" android:orientation="vertical">
-	        <LinearLayout android:layout_height="wrap_content" android:background="#ababab" android:layout_width="fill_parent" android:orientation="vertical">
-	            <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:background="#ababab" android:layout_width="fill_parent">
-	                <ImageButton android:id="@+id/icon_activity" android:paddingLeft="5dp" android:visibility="visible" android:paddingRight="15dp" android:layout_height="wrap_content" android:background="@null" android:src="@drawable/alien" android:layout_width="wrap_content" android:paddingTop="10dp"></ImageButton>
+	        android:orientation="vertical">
+	        <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:orientation="vertical">
+	            <LinearLayout android:layout_width="fill_parent" 
+	               android:background="@drawable/nav" 
+	               android:layout_height="wrap_content" 
+	               android:orientation="horizontal">
+	               <ImageButton android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/title_home_default" 
+                    android:background="@null"
+                    android:id="@+id/home_button">
+                </ImageButton>
+                <ImageView android:id="@+id/image_separator" 
+                    android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:src="@drawable/separator">
+                </ImageView>
+                
+                <TextView android:id="@+id/label_title" 
+                    android:gravity="center|center_vertical" 
+                    android:text="@string/label_title_edit"
+                    android:textStyle="bold" 
+                    android:layout_width="fill_parent" 
+                    android:layout_height="fill_parent">
+                </TextView>
+                <TextView android:layout_width="wrap_content" 
+                    android:layout_height="wrap_content" 
+                    android:id="@+id/hidden_value" 
+                    android:visibility="gone">
+                </TextView>
+              </LinearLayout>
+	            <LinearLayout android:layout_height="wrap_content" android:orientation="horizontal" android:background="@drawable/sidebar" android:layout_width="fill_parent">
+	                <ImageButton android:id="@+id/icon_activity" android:paddingLeft="5dp" android:visibility="visible" android:paddingRight="15dp" android:layout_height="wrap_content" android:background="@null" android:src="@drawable/marker_default" android:layout_width="wrap_content" android:paddingTop="10dp"></ImageButton>
 	                <TextView android:layout_marginBottom="0dip" android:textSize="15dp" android:textColor="#000000" android:layout_marginTop="0dip" android:id="@+id/icon_label" android:textStyle="bold" android:layout_width="wrap_content" android:layout_marginRight="4dip" android:layout_weight="2" android:layout_height="wrap_content" android:layout_marginLeft="4dip" android:text="@string/icon_name" android:layout_gravity="center"></TextView>
 	            </LinearLayout>
-	            <LinearLayout android:layout_width="fill_parent" android:background="#ababab" android:layout_height="wrap_content" android:orientation="horizontal">
-	                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/hidden_value" android:visibility="invisible"></TextView>
-	            </LinearLayout>
+	            
 	        </LinearLayout>
 	    </LinearLayout>
 	
@@ -36,7 +63,8 @@
 	        <LinearLayout 
 	             android:orientation="vertical"
 	             android:layout_width="fill_parent"
-	             android:layout_height="wrap_content">
+	             android:layout_height="wrap_content"
+	             android:background="#ffffff">
 	             <TextView android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="@string/location" android:id="@+id/labelLocation"></TextView>
                <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
                   <Button android:layout_width="wrap_content" android:text="..." android:layout_height="wrap_content" android:layout_gravity="right" android:layout_weight="1" android:layout_marginLeft="10dp" android:id="@+id/bMapPicker"></Button>
@@ -78,18 +106,77 @@
 				          />
 				       <TextView android:text="Start :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelStart"></TextView>
 			         <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
-			             <EditText android:hint="@string/hint_field_startdate" android:layout_marginLeft="10dip" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_marginRight="2dip" android:id="@+id/tStarDate"></EditText>
-			             <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bStartDatePicker"></Button>
-			             <EditText android:layout_weight="1" android:layout_height="wrap_content" android:singleLine="false" android:layout_width="wrap_content" android:hint="@string/hint_field_starttime" android:layout_marginLeft="5dip" android:layout_marginRight="2dp" android:id="@+id/tStartTime"></EditText>
-			             <Button android:layout_weight="1" android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="..." android:id="@+id/bStartTimePicker"></Button>
+			             <EditText android:hint="@string/hint_field_startdate" 
+			                 android:layout_marginLeft="10dip" 
+			                 android:maxLength="25"
+			                 android:layout_weight="1" 
+			                 android:singleLine="true" 
+			                 android:layout_marginRight="2dip" 
+			                 android:id="@+id/tStarDate"
+			                 android:layout_width="70dp" 
+                       android:layout_height="50dp">
+			             </EditText>
+			             <Button android:layout_weight="1" 
+			                 android:text="..." 
+			                 android:layout_gravity="right" 
+			                 android:layout_height="wrap_content" 
+			                 android:id="@+id/bStartDatePicker"
+			                 android:layout_width="20dp">
+			             </Button>
+			             <EditText android:layout_weight="1" 
+			                 android:singleLine="true" 
+			                 android:hint="@string/hint_field_starttime" 
+			                 android:layout_marginLeft="5dip" 
+                       android:layout_marginRight="2dp"
+			                 android:id="@+id/tStartTime"
+			                 android:layout_width="70dp" 
+                       android:layout_height="50dp">
+			             </EditText>
+			             <Button android:layout_weight="1"   
+			                 android:layout_gravity="right" 
+                       android:layout_height="wrap_content" 
+                       android:text="..." 
+			                 android:id="@+id/bStartTimePicker"
+			                 android:layout_width="20dp">
+			             </Button>
 			         </LinearLayout>
 			         <TextView android:text="End :" android:layout_marginLeft="8dip" android:layout_marginRight="8dip" android:layout_gravity="center_horizontal" android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/labelEnd"></TextView>
 			         <LinearLayout android:layout_height="0dp" android:layout_width="fill_parent" android:layout_weight="1">
-			             <EditText android:layout_marginLeft="10dip" android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_enddate" android:layout_marginRight="2dip" android:id="@+id/tEndDate"></EditText>
-			             <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bEndDatePicker"></Button>
-			             <EditText android:layout_weight="1" android:singleLine="false" android:layout_height="wrap_content" android:layout_width="wrap_content" android:hint="@string/hint_field_endtime" android:layout_marginLeft="5dip" android:layout_marginRight="2dip" android:id="@+id/tEndTime"></EditText>
-			             <Button android:layout_weight="1" android:text="..." android:layout_gravity="right" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/bEndTimePicker"></Button>
-			         </LinearLayout>
+                    <EditText 
+                      android:layout_marginLeft="10dip" 
+                      android:layout_weight="1" 
+                      android:singleLine="true" 
+                      android:hint="@string/hint_field_enddate" 
+                      android:layout_marginRight="2dip" 
+                      android:layout_width="70dp" 
+                      android:layout_height="50dp"
+                      android:id="@+id/tEndDate">
+                    </EditText>
+                    <Button android:layout_weight="1" 
+                      android:text="..." 
+                      android:layout_gravity="right" 
+                      android:layout_height="wrap_content" 
+                      android:layout_width="20dp"
+                      android:id="@+id/bEndDatePicker">
+                    </Button>
+                    <EditText 
+                      android:layout_weight="1" 
+                      android:singleLine="true"
+                      android:hint="@string/hint_field_endtime" 
+                      android:layout_marginLeft="5dip" 
+                      android:layout_marginRight="2dip"
+                      android:layout_width="70dp" 
+                      android:layout_height="50dp" 
+                      android:id="@+id/tEndTime">
+                    </EditText>
+                    <Button android:layout_weight="1" 
+                      android:text="..." 
+                      android:layout_gravity="right" 
+                      android:layout_height="wrap_content" 
+                      android:layout_width="20dp"
+                      android:id="@+id/bEndTimePicker">
+                    </Button>
+                </LinearLayout>
 			         
 			         <!-- button action -->
 			         <LinearLayout

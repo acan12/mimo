@@ -5,6 +5,11 @@
     <string name="main_no_items">No orders to display</string>
     <string name="title_create">Detail/ Edit Activity</string>
     <string name="icon_name">-- please choose activity icon --</string>
+    <string name="label_title_list">List of Event</string>
+    <string name="label_title_detail">Detail Event</string>
+    <string name="label_title_add">Add Event</string>
+    <string name="label_title_edit">Edit Event</string>
+    
     <!-- form setting in layout detail -->
     
     <string name="label_field_activity_name">Name</string>
@@ -12,19 +17,19 @@
     <string name="label_field_description">Description</string>
     <string name="hint_field_description">your activity description</string>
     <string name="label_field_startdate">Start Date:</string>
-    <string name="hint_field_startdate">Start Date</string>
+    <string name="hint_field_startdate">Date</string>
     <string name="label_field_starttime">Start Time:</string>
-    <string name="hint_field_starttime">Start Time</string>
+    <string name="hint_field_starttime">Time</string>
     <string name="label_field_enddate">End Date:</string>
-    <string name="hint_field_enddate">End Date</string>
+    <string name="hint_field_enddate">Date</string>
     <string name="label_field_endtime">End Time:</string>
-    <string name="hint_field_endtime">End Time</string>
+    <string name="hint_field_endtime">Time</string>
     <string name="hint_field_lat">latitude</string>
     <string name="hint_field_lng">longtitude</string>
     <string name="location">Location</string>    
     
     <!-- button -->    
-    <string name="button_detail">Detail</string>
+    <string name="button_edit">Edit</string>
     <string name="button_back">Back</string>
     <string name="button_submit">Submit</string>
     <string name="button_save">Save</string>

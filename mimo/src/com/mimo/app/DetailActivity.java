@@ -67,7 +67,7 @@ public class DetailActivity extends DetailView implements IConfiguration {
 		final TextView tv = (TextView)findViewById(R.id.hidden_value);
 		
 		switch(v.getId()){ 
-		case R.id.btn_detail:
+		case R.id.btn_edit:
 			
 			Intent i = new Intent(this, InputDetailActivity.class);
 			i.putExtra("paramaction", ACTION_UPDATE);

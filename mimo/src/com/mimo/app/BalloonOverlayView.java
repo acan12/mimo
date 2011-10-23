@@ -31,6 +31,7 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	private LinearLayout layout;
 	private TextView title;
 	private TextView snippet;
+	private final int CUSTOM_BALLOON_BOTTOM_OFFSET = 20;
 
 	/**
 	 * Create a new BalloonOverlayView.
@@ -43,7 +44,7 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 
 		super(context);
 
-		setPadding(10, 0, 10, balloonBottomOffset);
+		setPadding(10, 0, 10, balloonBottomOffset+this.CUSTOM_BALLOON_BOTTOM_OFFSET);
 		layout = new LinearLayout(context);
 		layout.setVisibility(VISIBLE);
 
@@ -73,7 +74,7 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	 * 
 	 * @param item - The overlay item containing the relevant view data 
 	 * (title and snippet). 
-	 */
+	 */ 
 	public void setData(Item item) {
 
 		layout.setVisibility(VISIBLE);

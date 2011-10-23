@@ -38,7 +38,7 @@ import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 public class ActivitiesListActivity extends ListActivity {
-	
+	 
 
 	private ProgressDialog m_ProgressDialog = null;
     private ArrayList<Order> m_orders = null;
@@ -101,6 +101,8 @@ public class ActivitiesListActivity extends ListActivity {
 			
 			Icons icons = new Icons();
 			while(c.moveToNext()){
+				Log.d("-------------test column status value: ", ""+c.getInt(c.getColumnIndex("status")));
+				
 				ae = new ActivityEvent();
 				ae.setName(c.getString(c.getColumnIndex("name")));
 				ae.setIcon(c.getString(c.getColumnIndex("icon")));
@@ -115,7 +117,7 @@ public class ActivitiesListActivity extends ListActivity {
 				o= new Order();
 				o.setOrderId(c.getString(c.getColumnIndex("id")));
 				o.setOrderName(ae.getIcon());
-				o.setOrderStatus(ae.getName()+"-"+ae.getDescription()+", "+ae.getStart_date());
+				o.setOrderStatus(ae.getName()+", "+ae.getDescription()+" \n At "+ae.getStart_date()+" "+ae.getStart_time()+" - "+ae.getEnd_date()+" "+ae.getEnd_time());
 				o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
 				
 				m_orders.add(o);
@@ -155,9 +157,9 @@ public class ActivitiesListActivity extends ListActivity {
 	            TextView bt = (TextView) v.findViewById(R.id.bottomtext);
 	            
 	            if (tt != null) {
-	                  tt.setText("Name: "+o.getOrderName());                            }
+	                  tt.setText(o.getOrderName());                        }
 	            if(bt != null){
-	                  bt.setText("Event: "+ o.getOrderStatus());
+	                  bt.setText(o.getOrderStatus());
 	            }
 	        }
 	        return v;

@@ -62,7 +62,7 @@ public class MapLocation extends MapActivity{
 		mv.getController().setZoom(13);
 		
 		List<Overlay> mapOverlays = mv.getOverlays();
-        Drawable drawable = this.getResources().getDrawable(R.drawable.marker_green);
+        Drawable drawable = null;
         MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false, false, true, paramid);
         OverlayItem overlayitem = new OverlayItem(point, "", "");
         itemizedoverlay.addOverlay(overlayitem);
@@ -85,7 +85,8 @@ public class MapLocation extends MapActivity{
 					Iterator<Address> locations = geocodeResults.iterator();  
 					
 					while (locations.hasNext()) {
-						if(i>0){mapLoc.setVisibility(View.VISIBLE); }else{
+						if(i>0){mapLoc.setVisibility(View.VISIBLE); }
+						else{
 							mapLoc.setVisibility(View.GONE);
 						}
 						Address loc = locations.next();
@@ -129,7 +130,6 @@ public class MapLocation extends MapActivity{
 				          LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 
 				          newPoint, MapView.LayoutParams.TOP_LEFT );
 				ImageView mapMarker = new ImageView(getApplicationContext());
-				mapMarker.setImageResource(R.drawable.marker_green);
 				mv.addView(mapMarker, mapMarkerParams);
 			}  
         	

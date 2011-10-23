@@ -16,12 +16,24 @@ public class ActivityEvent {
 	private String end_date;
 	private String start_time;
 	private String end_time;
-	
 	private double lat;
 	private double lng;
-	
+	private int status;
+	private String vMessage;
+
+	public String getMessage() {
+		return (status == REMINDER_STATUS) ? EVENT_REMINDER_MESSAGE : EVENT_EXPIRED_MESSAGE;
+	}
+	public void setMessage(String message) {
+		this.vMessage = message;
+	}
 	private int count_record;
+	public static final int CLEAR_STATUS 		= 0;
+	public static final int REMINDER_STATUS 	= 1;
+	public static final int EXPIRED_STATUS 	= 2;
 	
+	public static final String EVENT_REMINDER_MESSAGE = "Event Reminder !";
+	public static final String EVENT_EXPIRED_MESSAGE = "Event Expired !";
 	
 	
 	public int getCount_record() {
@@ -89,6 +101,12 @@ public class ActivityEvent {
 	}
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getStatus() {
+		return status;
 	}
 	
 	
