@@ -101,7 +101,6 @@ public class ActivitiesListActivity extends ListActivity {
 			
 			Icons icons = new Icons();
 			while(c.moveToNext()){
-				Log.d("-------------test column status value: ", ""+c.getInt(c.getColumnIndex("status")));
 				
 				ae = new ActivityEvent();
 				ae.setName(c.getString(c.getColumnIndex("name")));

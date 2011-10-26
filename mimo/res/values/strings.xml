@@ -5,6 +5,7 @@
     <string name="main_no_items">No orders to display</string>
     <string name="title_create">Detail/ Edit Activity</string>
     <string name="icon_name">-- please choose activity icon --</string>
+    <string name="label_title_dashboard">Dashboard</string>
     <string name="label_title_list">List of Event</string>
     <string name="label_title_detail">Detail Event</string>
     <string name="label_title_add">Add Event</string>

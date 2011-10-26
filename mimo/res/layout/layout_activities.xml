@@ -27,7 +27,7 @@
           android:layout_width="wrap_content" 
           android:layout_height="fill_parent">
       </TextView>
-      <ImageView android:id="@+id/image_separatorx" 
+      <ImageView android:id="@+id/image_separator" 
           android:layout_width="wrap_content" 
           android:layout_height="wrap_content" 
           android:src="@drawable/separator">

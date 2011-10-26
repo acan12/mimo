@@ -19,7 +19,7 @@ public class MimoActivity extends Activity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dashboard);
         
-        
+          
         imgButton = (ImageButton) findViewById(R.id.MapButton);
         imgButton.setOnClickListener(this);
         
@@ -28,10 +28,7 @@ public class MimoActivity extends Activity implements OnClickListener{
         
         imgButton3 = (ImageButton) findViewById(R.id.AddButton);
         imgButton3.setOnClickListener(this);
-        
-        imgButton4 = (ImageButton) findViewById(R.id.MapTestButton);
-        imgButton4.setOnClickListener(this);
-    }
+    } 
     
     @Override
     public void onClick(View v) {
@@ -39,10 +36,6 @@ public class MimoActivity extends Activity implements OnClickListener{
 			case R.id.MapButton:
 				Intent i = new Intent(this, MapDashboardActivity.class);
 				startActivity(i); 
-				break;
-			case R.id.MapTestButton:
-				Intent intent = new Intent(this, MapLocation.class);
-				startActivity(intent); 
 				break;
 			case R.id.DetailButton:
 				Intent i2 = new Intent(this, ActivitiesListActivity.class);
