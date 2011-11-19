@@ -1,22 +1,21 @@
 package com.mimo.app;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.mimo.app.interfaces.IApp;
 import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.view.form.FormInputView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-public class InputDetailActivity extends FormInputView implements IConfiguration{
+public class InputDetailActivity extends FormInputView implements IConfiguration, IApp{
 	
 	private ActivityEvent a;
 	private int paramid;
@@ -26,7 +25,7 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 		
 		Bundle bundle = getIntent().getExtras();
 		action = bundle.getInt("paramaction");
-		paramid = bundle.getInt("paramid");
+		paramid = bundle.getInt(PARAMS_KEY);
 		
 		double paramlat = bundle.getDouble("paramlat");
 		double paramlng = bundle.getDouble("paramlng");
@@ -77,15 +76,12 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 			
 			break;
 		case R.id.bMapPicker:
-			double lat2= -6.195894;
-			double lng2= 106.835901;
-//			Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:"+lat2+","+lng2+"?z=15"));
-			Intent mapIntent = new Intent(this, MapLocation.class);
+			Intent mapIntent = new Intent(this, MapLocationActivity.class);
 			p.println("......get id:"+paramid);
-			mapIntent.putExtra("paramid", paramid);
+			mapIntent.putExtra(PARAMS_KEY, paramid);
 			this.startActivity(mapIntent);
 			 
-			break;
+			break; 
 		case R.id.btn_submit:
 			a =new ActivityEvent();
 			DBAdapter db = new DBAdapter(this);

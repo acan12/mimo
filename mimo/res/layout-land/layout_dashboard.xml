@@ -61,7 +61,7 @@
           <TextView 
               android:layout_weight="1"
               android:gravity="left|center_vertical" 
-              android:text="Biz Location"
+              android:text="Activities"
               android:textStyle="bold" 
               android:layout_width="45dip"
               android:layout_height="fill_parent">
@@ -87,13 +87,13 @@
            android:background="@drawable/topbar_wide" 
            android:layout_height="wrap_content" 
            android:orientation="horizontal">
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/AddButton"></ImageButton>
+          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/BizButton"></ImageButton>
           <TextView 
               android:layout_weight="1"
               android:gravity="left|center_vertical" 
-              android:text="Tags"
+              android:text="Biz Location"
               android:textStyle="bold" 
-              android:layout_width="wrap_content" 
+              android:layout_width="45dip" 
               android:layout_height="fill_parent">
           </TextView>
           <ImageView android:id="@+id/image_separator" 

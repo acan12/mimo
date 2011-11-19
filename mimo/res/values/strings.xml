@@ -10,6 +10,7 @@
     <string name="label_title_detail">Detail Event</string>
     <string name="label_title_add">Add Event</string>
     <string name="label_title_edit">Edit Event</string>
+    <string name="label_title_biz_list">Biz Location</string>
     
     <!-- form setting in layout detail -->
     

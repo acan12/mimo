@@ -1,4 +1,4 @@
-package com.mimo.app;
+package com.mimo.app.view;
 
 import java.util.List;
 
@@ -14,6 +14,8 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.R;
+import com.mimo.app.R.id;
 
 /**
  * An abstract extension of ItemizedOverlay for displaying an information balloon

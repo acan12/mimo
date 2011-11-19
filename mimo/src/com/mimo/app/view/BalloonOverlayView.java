@@ -1,4 +1,4 @@
-package com.mimo.app;
+package com.mimo.app.view;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.R;
+import com.mimo.app.R.id;
+import com.mimo.app.R.layout;
 
 /**
  * A view representing a MapView marker information balloon.
@@ -31,7 +34,7 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	private LinearLayout layout;
 	private TextView title;
 	private TextView snippet;
-	private final int CUSTOM_BALLOON_BOTTOM_OFFSET = 20;
+	private static final int CUSTOM_BALLOON_BOTTOM_OFFSET = 20;
 
 	/**
 	 * Create a new BalloonOverlayView.

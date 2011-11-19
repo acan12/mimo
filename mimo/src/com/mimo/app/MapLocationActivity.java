@@ -34,10 +34,13 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.interfaces.IApp;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.view.MapOverlays;
 
-public class MapLocation extends MapActivity{
+public class MapLocationActivity extends MapActivity implements IApp{
 	PrintStream p = System.out;
 	double lat = -6.198254;
 	double lng = 106.841086;
@@ -46,9 +49,9 @@ public class MapLocation extends MapActivity{
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		Bundle bundle = getIntent().getExtras();
-		int paramid = bundle.getInt("paramid");
+		int paramid = bundle.getInt(PARAMS_KEY);
 		p.println("in maplocation id:"+paramid);
-		setContentView(R.layout.layout_maplocation);
+		setContentView(R.layout.layout_maplocation); 
 		GeoPoint point = getPoint(lat, lng);
 		
 		final EditText name = (EditText) findViewById(R.id.placename);
@@ -56,22 +59,22 @@ public class MapLocation extends MapActivity{
         final Geocoder coder = new Geocoder(getApplicationContext());
         final Button mapLoc = (Button)findViewById(R.id.next_map);     
 		final MapView mv = (MapView)findViewById(R.id.mapview);
-		
+		 
 		mv.setBuiltInZoomControls(true);
 		mv.getController().setCenter(point);
 		mv.getController().setZoom(13);
 		
-		List<Overlay> mapOverlays = mv.getOverlays();
-        Drawable drawable = null;
+		List<Overlay> mapOverlays = mv.getOverlays(); 
+		Drawable drawable = getResources().getDrawable(R.drawable.ic_menu_tags);
         MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false, false, true, paramid);
         OverlayItem overlayitem = new OverlayItem(point, "", "");
         itemizedoverlay.addOverlay(overlayitem);
         mapOverlays.add(itemizedoverlay);
-		
-        Button geocode = (Button) findViewById(R.id.geocode);        
+		 
+        Button geocode = (Button) findViewById(R.id.geocode);         
         geocode.setOnClickListener(new View.OnClickListener() {
 
-			@Override
+			@Override 
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				final double[] lat = new double[10];

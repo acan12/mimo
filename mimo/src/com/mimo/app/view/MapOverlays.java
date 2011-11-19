@@ -1,4 +1,4 @@
-package com.mimo.app;
+package com.mimo.app.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,12 @@ import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.ActivitiesListActivity;
+import com.mimo.app.InputDetailActivity;
+import com.mimo.app.interfaces.IApp;
 import com.mimo.app.interfaces.IConfiguration;
 
-public class MapOverlays extends ItemizedOverlay<OverlayItem> implements IConfiguration{
+public class MapOverlays extends ItemizedOverlay<OverlayItem> implements IConfiguration, IApp{
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 	private Context mContext ;
@@ -97,7 +100,7 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem> implements IConfig
 	        	   p.println("----from mapoverlay lat:"+gp.getLatitudeE6()/1E6);
 	        	   p.println("----from mapoverlay lon:"+gp.getLongitudeE6()/1E6);
 	        	   
-	        	   i.putExtra("paramid", idActivity);
+	        	   i.putExtra(PARAMS_KEY, idActivity);
 	        	   i.putExtra("paramlat", gp.getLatitudeE6() / 1E6);
 	        	   i.putExtra("paramlng", gp.getLongitudeE6() / 1E6);
 	   			   mContext.startActivity(i);

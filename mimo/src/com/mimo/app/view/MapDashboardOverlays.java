@@ -1,4 +1,4 @@
-package com.mimo.app;
+package com.mimo.app.view;
 
 import java.util.ArrayList;
 
@@ -12,9 +12,11 @@ import android.view.ViewGroup.MarginLayoutParams;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.DetailActivity;
+import com.mimo.app.interfaces.IApp;
 import com.mimo.app.interfaces.IConfiguration;
 
-public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> implements IConfiguration{
+public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> implements IConfiguration, IApp{
 
 		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 		private Context mContext ;
@@ -66,7 +68,7 @@ public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> im
 				OverlayItem itemClicked = mOverlays.get(index);
 				
 				Intent i = new Intent(mContext, DetailActivity.class);
-				i.putExtra("paramid", Integer.parseInt(itemClicked.getTitle().split("#")[1]));
+				i.putExtra(PARAMS_KEY, Integer.parseInt(itemClicked.getTitle().split("#")[1]));
 				mContext.startActivity(i);
 			} else {
 				Log.e("MapOverlays", "mContext is null");

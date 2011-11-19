@@ -9,6 +9,7 @@ import java.util.List;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+import com.mimo.app.interfaces.IApp;
 import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
@@ -48,14 +49,14 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class DetailActivity extends DetailView implements IConfiguration {
+public class DetailActivity extends DetailView implements IConfiguration, IApp {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState); 
 		
 		Bundle bundle = getIntent().getExtras();
-		int paramid = bundle.getInt("paramid");
+		int paramid = bundle.getInt(PARAMS_KEY);
 		initialize(R.layout.layout_detail);
 		showDetail(paramid);
 	}
@@ -71,7 +72,7 @@ public class DetailActivity extends DetailView implements IConfiguration {
 			
 			Intent i = new Intent(this, InputDetailActivity.class);
 			i.putExtra("paramaction", ACTION_UPDATE);
-			i.putExtra("paramid", Integer.parseInt(tv.getText().toString()));
+			i.putExtra(PARAMS_KEY, Integer.parseInt(tv.getText().toString()));
 			startActivity(i);
 			break;
 		case R.id.btn_back:

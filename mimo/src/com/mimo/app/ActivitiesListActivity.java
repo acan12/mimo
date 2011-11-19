@@ -3,17 +3,6 @@ package com.mimo.app;
 
 import java.util.ArrayList;
 
-import com.google.android.maps.GeoPoint;
-import com.google.android.maps.MapActivity;
-import com.google.android.maps.MapView;
-import com.google.android.maps.Overlay;
-import com.google.android.maps.OverlayItem;
-import com.mimo.app.model.adapter.DBAdapter;
-import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
-
-import android.*;
-import android.app.Activity;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -22,47 +11,46 @@ import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
 
-public class ActivitiesListActivity extends ListActivity {
+import com.mimo.app.interfaces.IApp;
+import com.mimo.app.model.adapter.DBAdapter;
+import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Items;
+ 
+public class ActivitiesListActivity extends ListActivity implements IApp{
 	 
 
-	private ProgressDialog m_ProgressDialog = null;
-    private ArrayList<Order> m_orders = null;
-    private OrderAdapter m_adapter;
-    private Runnable viewOrders;
+	private ProgressDialog progressDialog = null;
+    private ArrayList<Items> items = null;
+    private OrderAdapter adapter;
+    private Runnable viewItems;
    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_activities);
         
-        m_orders = new ArrayList<Order>();
-        this.m_adapter = new OrderAdapter(this, R.layout.row, m_orders);
-        this.setListAdapter(this.m_adapter);
+        items = new ArrayList<Items>();
+        this.adapter = new OrderAdapter(this, R.layout.row, items);
+        this.setListAdapter(this.adapter);
        
-        viewOrders = new Runnable(){
+        viewItems = new Runnable(){
             @Override
             public void run() {
-                getOrders();
+                getItems();
             }
         };
-        Thread thread =  new Thread(null, viewOrders, "RuntoBackground");
+        Thread thread =  new Thread(null, viewItems, "RuntoBackground");
         thread.start();
-        m_ProgressDialog = ProgressDialog.show(ActivitiesListActivity.this,    
+        progressDialog = ProgressDialog.show(ActivitiesListActivity.this,    
               "Please wait...", "Retrieving data ...", true);
         
         
@@ -70,9 +58,9 @@ public class ActivitiesListActivity extends ListActivity {
     
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-    	Order o = (Order)l.getItemAtPosition(position);
+    	Items o = (Items)l.getItemAtPosition(position);
     	Intent i = new Intent(this, DetailActivity.class);
-    	i.putExtra("paramid", Integer.parseInt(o.getOrderId()));
+    	i.putExtra(PARAMS_KEY, Integer.parseInt(o.getItemId()));
 		startActivity(i); 
     }
     
@@ -80,21 +68,21 @@ public class ActivitiesListActivity extends ListActivity {
 
 	    @Override
 	    public void run() {
-	        if(m_orders != null && m_orders.size() > 0){
-	            m_adapter.notifyDataSetChanged();
-	            for(int i=0;i<m_orders.size();i++)
-	            m_adapter.add(m_orders.get(i));
+	        if(items != null && items.size() > 0){
+	            adapter.notifyDataSetChanged();
+	            for(int i=0;i<items.size();i++)
+	            adapter.add(items.get(i));
 	        }
-	        m_ProgressDialog.dismiss();
-	        m_adapter.notifyDataSetChanged();
+	        progressDialog.dismiss();
+	        adapter.notifyDataSetChanged();
 	    }
     };
     
-    private void getOrders(){
+    private void getItems(){
 	    try{
-	        m_orders = new ArrayList<Order>();
+	        items = new ArrayList<Items>();
 	        
-	        Order o;
+	        Items o;
 	        ActivityEvent ae;
 	        DBAdapter db = new DBAdapter(this);
 			Cursor c = db.getAllRecord(); //retrieve all records
@@ -104,7 +92,7 @@ public class ActivitiesListActivity extends ListActivity {
 				
 				ae = new ActivityEvent();
 				ae.setName(c.getString(c.getColumnIndex("name")));
-				ae.setIcon(c.getString(c.getColumnIndex("icon")));
+				ae.setIcon(c.getString(c.getColumnIndex("icon"))); 
 				ae.setDescription(c.getString(c.getColumnIndex("description")));
 				ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
 				ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
@@ -113,17 +101,17 @@ public class ActivitiesListActivity extends ListActivity {
 				ae.setLat(c.getDouble(c.getColumnIndex("lat")));
 				ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 				
-				o= new Order();
-				o.setOrderId(c.getString(c.getColumnIndex("id")));
-				o.setOrderName(ae.getIcon());
-				o.setOrderStatus(ae.getName()+", "+ae.getDescription()+" \n At "+ae.getStart_date()+" "+ae.getStart_time()+" - "+ae.getEnd_date()+" "+ae.getEnd_time());
+				o= new Items();
+				o.setItemId(c.getString(c.getColumnIndex("id")));
+				o.setItemName(ae.getIcon());
+				o.setItemStatus(ae.getName()+", "+ae.getDescription()+" \n At "+ae.getStart_date()+" "+ae.getStart_time()+" - "+ae.getEnd_date()+" "+ae.getEnd_time());
 				o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
 				
-				m_orders.add(o);
+				items.add(o);
 	    	}	
 			
 	        Thread.sleep(5000);
-	        Log.i("ARRAY", ""+ m_orders.size());
+	        Log.i("ARRAY", ""+ items.size());
 	      } catch (Exception e) {
 	        Log.e("BACKGROUND_PROC", e.getMessage());
 	      }
@@ -131,11 +119,11 @@ public class ActivitiesListActivity extends ListActivity {
 	}
     
     
-    class OrderAdapter extends ArrayAdapter<Order> {
+    class OrderAdapter extends ArrayAdapter<Items> {
 
-        private ArrayList<Order> items;
+        private ArrayList<Items> items;
 
-        public OrderAdapter(Context context, int textViewResourceId, ArrayList<Order> items) {
+        public OrderAdapter(Context context, int textViewResourceId, ArrayList<Items> items) {
 	        super(context, textViewResourceId, items);
 	        this.items = items;
         }
@@ -145,7 +133,7 @@ public class ActivitiesListActivity extends ListActivity {
 	        View v = convertView;
 	        LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	        v = vi.inflate(R.layout.row, null);
-	        Order o = items.get(position);
+	        Items o = items.get(position);
 	        if (o != null) {
 	    		if(o.getDrawableImage() != 0){
 	        		ImageView img =(ImageView) v.findViewById(R.id.icon);
@@ -156,9 +144,9 @@ public class ActivitiesListActivity extends ListActivity {
 	            TextView bt = (TextView) v.findViewById(R.id.bottomtext);
 	            
 	            if (tt != null) {
-	                  tt.setText(o.getOrderName());                        }
+	                  tt.setText(o.getItemName());                        }
 	            if(bt != null){
-	                  bt.setText(o.getOrderStatus());
+	                  bt.setText(o.getItemStatus());
 	            }
 	        }
 	        return v;
