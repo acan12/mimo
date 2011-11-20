@@ -73,11 +73,11 @@
               android:src="@drawable/separator">
           </ImageView>
           
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/AddButton"></ImageButton>
+          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/ViewPagerButton"></ImageButton>
           <TextView 
               android:layout_weight="1"
               android:gravity="left|center_vertical" 
-              android:text="Deals"
+              android:text="Calendar"
               android:textStyle="bold" 
               android:layout_width="45dip"
               android:layout_height="fill_parent">

@@ -17,6 +17,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,7 +68,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		if(iconLabel.length >0){
 			showButtonImage(iconLabel);
 		}else{
-			LinearLayout ll = (LinearLayout) findViewById(R.id.right_linearLayout);
+			LinearLayout ll = (LinearLayout) findViewById(R.id.event_layout);
 			ll.setVisibility(LinearLayout.GONE);
 		}
 	}
@@ -310,6 +311,11 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	} 
 	
 	private void showButtonImage(String[] iconLabel){
+		Display display = getWindowManager().getDefaultDisplay();
+		int widthDisplay = display.getWidth();
+		int heightDisplay = display.getHeight();
+		boolean isPortrait = (widthDisplay < heightDisplay);
+		
 		LinearLayout ll = (LinearLayout) findViewById(R.id.container_button_linearLayout);
 		
 		LayoutInflater inflater = LayoutInflater.from(this);
@@ -322,8 +328,14 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			imb.setImageResource(icons.getIconFromLabel(iconLabel[i]));
 			imb.setBackgroundColor(Color.TRANSPARENT);
 			
-			sep.setImageResource(R.drawable.separator);
-			sep.setPadding(5, 0, 0, 0);
+			
+			if(isPortrait){
+				sep.setImageResource(R.drawable.separator);
+			}else{
+				sep.setImageResource(R.drawable.separator_horizontal);
+				sep.setPadding(0, 0, 20, 0);
+			}
+			
 			t.setText(iconLabel[i]);
 			t.setGravity(Gravity.CENTER);
 			t.setTextSize(13f);

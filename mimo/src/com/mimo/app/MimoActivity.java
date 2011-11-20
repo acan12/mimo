@@ -9,7 +9,7 @@ import android.widget.ImageButton;
 
 
 public class MimoActivity extends Activity implements OnClickListener{
-	ImageButton mapButton, detailButton, addButton, bizButton;
+	ImageButton mapButton, detailButton, addButton, viewPagerButton, bizButton;
 	Intent intent;
 
     @Override
@@ -26,6 +26,9 @@ public class MimoActivity extends Activity implements OnClickListener{
         
         addButton = (ImageButton) findViewById(R.id.AddButton);
         addButton.setOnClickListener(this);
+        
+        viewPagerButton = (ImageButton) findViewById(R.id.ViewPagerButton);
+        viewPagerButton.setOnClickListener(this);
         
         bizButton = (ImageButton) findViewById(R.id.BizButton);
         bizButton.setOnClickListener(this);
@@ -45,6 +48,10 @@ public class MimoActivity extends Activity implements OnClickListener{
 			case R.id.AddButton:
 				intent = new Intent(this, InputDetailActivity.class);
 				intent.putExtra("paramaction", 1);
+				startActivity(intent);
+				break;
+			case R.id.ViewPagerButton:
+				intent = new Intent(this, ViewPagerActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.BizButton:

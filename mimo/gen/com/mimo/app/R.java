@@ -15,6 +15,228 @@ public final class R {
         public static final int view_transition_out_right=0x7f040003;
     }
     public static final class attr {
+        /**  Whether or not the indicators should be centered. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int centered=0x7f010002;
+        /**  Style of the circle indicator. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int circlePageIndicatorStyle=0x7f010000;
+        /**  Screen edge padding. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int clipPadding=0x7f010009;
+        /**  Color of the filled circle that represents the current page. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fillColor=0x7f010003;
+        /**  Color of the footer line and indicator. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerColor=0x7f01000a;
+        /**  Height of the indicator above the footer line. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerIndicatorHeight=0x7f01000d;
+        /**  Style of the indicator. Default is triangle. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>triangle</code></td><td>1</td><td></td></tr>
+<tr><td><code>underline</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int footerIndicatorStyle=0x7f01000c;
+        /**  Left and right padding of the underline indicator. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerIndicatorUnderlinePadding=0x7f01000e;
+        /**  Height of the footer line. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerLineHeight=0x7f01000b;
+        /**  Padding between the bottom of the title and the footer. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerPadding=0x7f01000f;
+        /**  Orientation of the indicator. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int orientation=0x7f010004;
+        /**  Radius of the circles. This is also the spacing between circles. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int radius=0x7f010005;
+        /**  Whether or not the selected item is displayed as bold. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectedBold=0x7f010011;
+        /**  Color of the selected title. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectedColor=0x7f010010;
+        /**  Whether or not the selected indicator snaps to the circles. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int snap=0x7f010006;
+        /**  Color of the open circles. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int strokeColor=0x7f010007;
+        /**  Width of the stroke used to draw the circles. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int strokeWidth=0x7f010008;
+        /**  Color of regular titles. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColor=0x7f010012;
+        /**  Size of title text. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textSize=0x7f010013;
+        /**  Padding between titles when bumping into each other. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int titlePadding=0x7f010014;
+        /**  Style of the title indicator. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int titlePageIndicatorStyle=0x7f010001;
+        /**  Padding between titles and the top of the View. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int topPadding=0x7f010015;
     }
     public static final class drawable {
         public static final int acupuncture=0x7f020000;
@@ -73,105 +295,113 @@ public final class R {
         public static final int search_pressed=0x7f020035;
         public static final int search_selected=0x7f020036;
         public static final int separator=0x7f020037;
-        public static final int seven_eleven=0x7f020038;
-        public static final int shopping=0x7f020039;
-        public static final int sidebar=0x7f02003a;
-        public static final int snorkeling=0x7f02003b;
-        public static final int spa=0x7f02003c;
-        public static final int surfing=0x7f02003d;
-        public static final int swimming=0x7f02003e;
-        public static final int tags=0x7f02003f;
-        public static final int taxi=0x7f020040;
-        public static final int terrace=0x7f020041;
-        public static final int therapy=0x7f020042;
-        public static final int title_home_default=0x7f020043;
-        public static final int title_map=0x7f020044;
-        public static final int topbar_wide=0x7f020045;
-        public static final int tunnel=0x7f020046;
-        public static final int watercraft=0x7f020047;
-        public static final int waterskiing=0x7f020048;
-        public static final int windsurfing=0x7f020049;
-        public static final int yoga=0x7f02004a;
+        public static final int separator_horizontal=0x7f020038;
+        public static final int seven_eleven=0x7f020039;
+        public static final int shopping=0x7f02003a;
+        public static final int sidebar=0x7f02003b;
+        public static final int snorkeling=0x7f02003c;
+        public static final int spa=0x7f02003d;
+        public static final int surfing=0x7f02003e;
+        public static final int swimming=0x7f02003f;
+        public static final int tags=0x7f020040;
+        public static final int taxi=0x7f020041;
+        public static final int terrace=0x7f020042;
+        public static final int therapy=0x7f020043;
+        public static final int title_home_default=0x7f020044;
+        public static final int title_map=0x7f020045;
+        public static final int topbar_wide=0x7f020046;
+        public static final int tunnel=0x7f020047;
+        public static final int watercraft=0x7f020048;
+        public static final int waterskiing=0x7f020049;
+        public static final int windsurfing=0x7f02004a;
+        public static final int yoga=0x7f02004b;
     }
     public static final class id {
-        public static final int AddButton=0x7f09000c;
-        public static final int BizButton=0x7f09000e;
-        public static final int Button02=0x7f090034;
-        public static final int DetailButton=0x7f09000d;
-        public static final int EditText01=0x7f090030;
-        public static final int EditText02=0x7f090033;
-        public static final int LinearLayout01=0x7f09002f;
-        public static final int LinearLayout02=0x7f09002d;
-        public static final int LinearLayout03=0x7f090032;
-        public static final int MapButton=0x7f09000b;
-        public static final int TextView02=0x7f09002a;
-        public static final int TextView03=0x7f09002e;
-        public static final int bEndDatePicker=0x7f090025;
-        public static final int bEndTimePicker=0x7f090027;
-        public static final int bMapPicker=0x7f09001b;
-        public static final int bStartDatePicker=0x7f090021;
-        public static final int bStartTimePicker=0x7f090023;
-        public static final int balloon_inner_layout=0x7f090001;
-        public static final int balloon_item_snippet=0x7f090003;
-        public static final int balloon_item_title=0x7f090002;
-        public static final int balloon_main_layout=0x7f090000;
-        public static final int bottomtext=0x7f09004c;
-        public static final int btn_back=0x7f090019;
-        public static final int btn_cancel=0x7f090029;
-        public static final int btn_delete=0x7f09001a;
-        public static final int btn_edit=0x7f090018;
-        public static final int btn_submit=0x7f090028;
-        public static final int close_img_button=0x7f090004;
-        public static final int container_button_linearLayout=0x7f09003c;
-        public static final int definition=0x7f090049;
-        public static final int edit_description=0x7f09001f;
-        public static final int edit_lat=0x7f09001c;
-        public static final int edit_lng=0x7f09001d;
-        public static final int edit_name=0x7f09001e;
-        public static final int geocode=0x7f090037;
-        public static final int hidden_value=0x7f090010;
-        public static final int hidden_value_iconlabel=0x7f090044;
-        public static final int hidden_value_id=0x7f090042;
-        public static final int hidden_value_loc=0x7f090043;
-        public static final int home_button=0x7f090005;
-        public static final int home_buttonx=0x7f090008;
-        public static final int icon=0x7f09004a;
-        public static final int icon_activity=0x7f090011;
-        public static final int icon_dialog=0x7f090040;
-        public static final int icon_label=0x7f090012;
-        public static final int imageButton1=0x7f090009;
-        public static final int imageView1=0x7f090045;
-        public static final int image_separator=0x7f090006;
-        public static final int imgbutton_linearLayout=0x7f09003d;
-        public static final int labelDescription=0x7f090014;
-        public static final int labelEnd=0x7f090016;
-        public static final int labelLocation=0x7f090017;
-        public static final int labelName=0x7f090013;
-        public static final int labelStart=0x7f090015;
-        public static final int label_title=0x7f090007;
-        public static final int layout_form=0x7f09000f;
-        public static final int linearLayout1=0x7f09002c;
-        public static final int linearLayout2=0x7f090046;
-        public static final int linearLayout3=0x7f090047;
-        public static final int list=0x7f09003f;
-        public static final int mapview=0x7f090039;
-        public static final int next_map=0x7f090038;
-        public static final int placename=0x7f090036;
-        public static final int right_linearLayout=0x7f09003a;
-        public static final int scroll=0x7f09003b;
-        public static final int scrollView1=0x7f09000a;
-        public static final int search=0x7f09004d;
-        public static final int tEndDate=0x7f090024;
-        public static final int tEndTime=0x7f090026;
-        public static final int tStarDate=0x7f090020;
-        public static final int tStartTime=0x7f090022;
-        public static final int text=0x7f09003e;
-        public static final int textView1=0x7f09002b;
-        public static final int textView2=0x7f090035;
-        public static final int textView3=0x7f090031;
-        public static final int title=0x7f090041;
-        public static final int toptext=0x7f09004b;
-        public static final int word=0x7f090048;
+        public static final int AddButton=0x7f060011;
+        public static final int BizButton=0x7f060014;
+        public static final int Button02=0x7f06003a;
+        public static final int DetailButton=0x7f060012;
+        public static final int EditText01=0x7f060036;
+        public static final int EditText02=0x7f060039;
+        public static final int LinearLayout01=0x7f060035;
+        public static final int LinearLayout02=0x7f060033;
+        public static final int LinearLayout03=0x7f060038;
+        public static final int MapButton=0x7f060010;
+        public static final int TextView02=0x7f060030;
+        public static final int TextView03=0x7f060034;
+        public static final int ViewPagerButton=0x7f060013;
+        public static final int bEndDatePicker=0x7f06002b;
+        public static final int bEndTimePicker=0x7f06002d;
+        public static final int bMapPicker=0x7f060021;
+        public static final int bStartDatePicker=0x7f060027;
+        public static final int bStartTimePicker=0x7f060029;
+        public static final int balloon_inner_layout=0x7f060006;
+        public static final int balloon_item_snippet=0x7f060008;
+        public static final int balloon_item_title=0x7f060007;
+        public static final int balloon_main_layout=0x7f060005;
+        public static final int bottomtext=0x7f060053;
+        public static final int btn_back=0x7f06001f;
+        public static final int btn_cancel=0x7f06002f;
+        public static final int btn_delete=0x7f060020;
+        public static final int btn_edit=0x7f06001e;
+        public static final int btn_submit=0x7f06002e;
+        public static final int close_img_button=0x7f060009;
+        public static final int container_button_linearLayout=0x7f060042;
+        public static final int definition=0x7f060050;
+        public static final int edit_description=0x7f060025;
+        public static final int edit_lat=0x7f060022;
+        public static final int edit_lng=0x7f060023;
+        public static final int edit_name=0x7f060024;
+        public static final int event_layout=0x7f060040;
+        public static final int geocode=0x7f06003d;
+        public static final int hidden_value=0x7f060016;
+        public static final int hidden_value_iconlabel=0x7f06004b;
+        public static final int hidden_value_id=0x7f060049;
+        public static final int hidden_value_loc=0x7f06004a;
+        public static final int home_button=0x7f06000a;
+        public static final int home_buttonx=0x7f06000d;
+        public static final int horizontal=0x7f060000;
+        public static final int icon=0x7f060051;
+        public static final int icon_activity=0x7f060017;
+        public static final int icon_dialog=0x7f060047;
+        public static final int icon_label=0x7f060018;
+        public static final int imageButton1=0x7f06000e;
+        public static final int imageView1=0x7f06004c;
+        public static final int image_separator=0x7f06000b;
+        public static final int labelDescription=0x7f06001a;
+        public static final int labelEnd=0x7f06001c;
+        public static final int labelLocation=0x7f06001d;
+        public static final int labelName=0x7f060019;
+        public static final int labelStart=0x7f06001b;
+        public static final int label_title=0x7f06000c;
+        public static final int layout_form=0x7f060015;
+        public static final int linearLayout1=0x7f060032;
+        public static final int linearLayout2=0x7f06004d;
+        public static final int linearLayout3=0x7f06004e;
+        public static final int list=0x7f060044;
+        public static final int mapview=0x7f06003f;
+        public static final int next_map=0x7f06003e;
+        public static final int none=0x7f060002;
+        public static final int placename=0x7f06003c;
+        public static final int scroll=0x7f060041;
+        public static final int scrollView1=0x7f06000f;
+        public static final int search=0x7f060054;
+        public static final int tEndDate=0x7f06002a;
+        public static final int tEndTime=0x7f06002c;
+        public static final int tStarDate=0x7f060026;
+        public static final int tStartTime=0x7f060028;
+        public static final int text=0x7f060043;
+        public static final int textView1=0x7f060031;
+        public static final int textView2=0x7f06003b;
+        public static final int textView3=0x7f060037;
+        public static final int textViewHeader=0x7f060045;
+        public static final int title=0x7f060048;
+        public static final int toptext=0x7f060052;
+        public static final int triangle=0x7f060003;
+        public static final int underline=0x7f060004;
+        public static final int vertical=0x7f060001;
+        public static final int viewPager=0x7f060046;
+        public static final int word=0x7f06004f;
     }
     public static final class layout {
         public static final int balloon_overlay=0x7f030000;
@@ -186,78 +416,538 @@ public final class R {
         public static final int layout_mapview=0x7f030009;
         public static final int layout_schedule_fragment=0x7f03000a;
         public static final int layout_search=0x7f03000b;
-        public static final int list_button=0x7f03000c;
-        public static final int list_row_dialog=0x7f03000d;
-        public static final int main=0x7f03000e;
-        public static final int result=0x7f03000f;
-        public static final int row=0x7f030010;
-        public static final int word=0x7f030011;
+        public static final int layout_viewpager=0x7f03000c;
+        public static final int list_button=0x7f03000d;
+        public static final int list_row_dialog=0x7f03000e;
+        public static final int main=0x7f03000f;
+        public static final int result=0x7f030010;
+        public static final int row=0x7f030011;
+        public static final int word=0x7f030012;
     }
     public static final class menu {
-        public static final int options_menu=0x7f080000;
+        public static final int options_menu=0x7f090000;
     }
     public static final class plurals {
         /**  Shown above search results when we receive a search request. 
          */
-        public static final int search_results=0x7f070000;
+        public static final int search_results=0x7f080000;
     }
     public static final class string {
-        public static final int app_name=0x7f060000;
-        public static final int button_back=0x7f06001b;
-        public static final int button_cancel=0x7f06001e;
-        public static final int button_delete=0x7f06001f;
+        public static final int app_name=0x7f070000;
+        public static final int button_back=0x7f07001b;
+        public static final int button_cancel=0x7f07001e;
+        public static final int button_delete=0x7f07001f;
         /**  button 
          */
-        public static final int button_edit=0x7f06001a;
-        public static final int button_save=0x7f06001d;
-        public static final int button_submit=0x7f06001c;
-        public static final int hello=0x7f060001;
-        public static final int hint_field_activity_name=0x7f06000c;
-        public static final int hint_field_description=0x7f06000e;
-        public static final int hint_field_enddate=0x7f060014;
-        public static final int hint_field_endtime=0x7f060016;
-        public static final int hint_field_lat=0x7f060017;
-        public static final int hint_field_lng=0x7f060018;
-        public static final int hint_field_startdate=0x7f060010;
-        public static final int hint_field_starttime=0x7f060012;
-        public static final int icon_name=0x7f060004;
+        public static final int button_edit=0x7f07001a;
+        public static final int button_save=0x7f07001d;
+        public static final int button_submit=0x7f07001c;
+        public static final int hello=0x7f070001;
+        public static final int hint_field_activity_name=0x7f07000c;
+        public static final int hint_field_description=0x7f07000e;
+        public static final int hint_field_enddate=0x7f070014;
+        public static final int hint_field_endtime=0x7f070016;
+        public static final int hint_field_lat=0x7f070017;
+        public static final int hint_field_lng=0x7f070018;
+        public static final int hint_field_startdate=0x7f070010;
+        public static final int hint_field_starttime=0x7f070012;
+        public static final int icon_name=0x7f070004;
         /**  form setting in layout detail 
          */
-        public static final int label_field_activity_name=0x7f06000b;
-        public static final int label_field_description=0x7f06000d;
-        public static final int label_field_enddate=0x7f060013;
-        public static final int label_field_endtime=0x7f060015;
-        public static final int label_field_startdate=0x7f06000f;
-        public static final int label_field_starttime=0x7f060011;
-        public static final int label_title_add=0x7f060008;
-        public static final int label_title_biz_list=0x7f06000a;
-        public static final int label_title_dashboard=0x7f060005;
-        public static final int label_title_detail=0x7f060007;
-        public static final int label_title_edit=0x7f060009;
-        public static final int label_title_list=0x7f060006;
-        public static final int location=0x7f060019;
-        public static final int main_no_items=0x7f060002;
+        public static final int label_field_activity_name=0x7f07000b;
+        public static final int label_field_description=0x7f07000d;
+        public static final int label_field_enddate=0x7f070013;
+        public static final int label_field_endtime=0x7f070015;
+        public static final int label_field_startdate=0x7f07000f;
+        public static final int label_field_starttime=0x7f070011;
+        public static final int label_title_add=0x7f070008;
+        public static final int label_title_biz_list=0x7f07000a;
+        public static final int label_title_dashboard=0x7f070005;
+        public static final int label_title_detail=0x7f070007;
+        public static final int label_title_edit=0x7f070009;
+        public static final int label_title_list=0x7f070006;
+        public static final int location=0x7f070019;
+        public static final int main_no_items=0x7f070002;
         /**  The menu entry that invokes search. 
          */
-        public static final int menu_search=0x7f060022;
+        public static final int menu_search=0x7f070022;
         /**  Search failure message. 
          */
-        public static final int no_results=0x7f060025;
+        public static final int no_results=0x7f070025;
         /**  The hint text that appears in the search box. 
          */
-        public static final int search_hint=0x7f060021;
+        public static final int search_hint=0x7f070021;
         /**  General instructions in the main activity. 
          */
-        public static final int search_instructions=0x7f060024;
+        public static final int search_instructions=0x7f070024;
         /**  search functionality 
          */
-        public static final int search_label=0x7f060020;
+        public static final int search_label=0x7f070020;
         /**  The description that will show up in the search settings for this source.  
          */
-        public static final int settings_description=0x7f060023;
-        public static final int title_create=0x7f060003;
+        public static final int settings_description=0x7f070023;
+        public static final int title_create=0x7f070003;
     }
     public static final class xml {
         public static final int searchable=0x7f050000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a CirclePageIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CirclePageIndicator_centered com.mimo.app:centered}</code></td><td> Whether or not the indicators should be centered.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_fillColor com.mimo.app:fillColor}</code></td><td> Color of the filled circle that represents the current page.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_orientation com.mimo.app:orientation}</code></td><td> Orientation of the indicator.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_radius com.mimo.app:radius}</code></td><td> Radius of the circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_snap com.mimo.app:snap}</code></td><td> Whether or not the selected indicator snaps to the circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeColor com.mimo.app:strokeColor}</code></td><td> Color of the open circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeWidth com.mimo.app:strokeWidth}</code></td><td> Width of the stroke used to draw the circles.</td></tr>
+           </table>
+           @see #CirclePageIndicator_centered
+           @see #CirclePageIndicator_fillColor
+           @see #CirclePageIndicator_orientation
+           @see #CirclePageIndicator_radius
+           @see #CirclePageIndicator_snap
+           @see #CirclePageIndicator_strokeColor
+           @see #CirclePageIndicator_strokeWidth
+         */
+        public static final int[] CirclePageIndicator = {
+            0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
+            0x7f010006, 0x7f010007, 0x7f010008
+        };
+        /**
+          <p>
+          @attr description
+           Whether or not the indicators should be centered. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:centered
+        */
+        public static final int CirclePageIndicator_centered = 0;
+        /**
+          <p>
+          @attr description
+           Color of the filled circle that represents the current page. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:fillColor
+        */
+        public static final int CirclePageIndicator_fillColor = 1;
+        /**
+          <p>
+          @attr description
+           Orientation of the indicator. 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:orientation
+        */
+        public static final int CirclePageIndicator_orientation = 2;
+        /**
+          <p>
+          @attr description
+           Radius of the circles. This is also the spacing between circles. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:radius
+        */
+        public static final int CirclePageIndicator_radius = 3;
+        /**
+          <p>
+          @attr description
+           Whether or not the selected indicator snaps to the circles. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:snap
+        */
+        public static final int CirclePageIndicator_snap = 4;
+        /**
+          <p>
+          @attr description
+           Color of the open circles. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:strokeColor
+        */
+        public static final int CirclePageIndicator_strokeColor = 5;
+        /**
+          <p>
+          @attr description
+           Width of the stroke used to draw the circles. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:strokeWidth
+        */
+        public static final int CirclePageIndicator_strokeWidth = 6;
+        /** Attributes that can be used with a TitlePageIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #TitlePageIndicator_clipPadding com.mimo.app:clipPadding}</code></td><td> Screen edge padding.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerColor com.mimo.app:footerColor}</code></td><td> Color of the footer line and indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorHeight com.mimo.app:footerIndicatorHeight}</code></td><td> Height of the indicator above the footer line.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorStyle com.mimo.app:footerIndicatorStyle}</code></td><td> Style of the indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorUnderlinePadding com.mimo.app:footerIndicatorUnderlinePadding}</code></td><td> Left and right padding of the underline indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerLineHeight com.mimo.app:footerLineHeight}</code></td><td> Height of the footer line.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerPadding com.mimo.app:footerPadding}</code></td><td> Padding between the bottom of the title and the footer.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_selectedBold com.mimo.app:selectedBold}</code></td><td> Whether or not the selected item is displayed as bold.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_selectedColor com.mimo.app:selectedColor}</code></td><td> Color of the selected title.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_textColor com.mimo.app:textColor}</code></td><td> Color of regular titles.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_textSize com.mimo.app:textSize}</code></td><td> Size of title text.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_titlePadding com.mimo.app:titlePadding}</code></td><td> Padding between titles when bumping into each other.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_topPadding com.mimo.app:topPadding}</code></td><td> Padding between titles and the top of the View.</td></tr>
+           </table>
+           @see #TitlePageIndicator_clipPadding
+           @see #TitlePageIndicator_footerColor
+           @see #TitlePageIndicator_footerIndicatorHeight
+           @see #TitlePageIndicator_footerIndicatorStyle
+           @see #TitlePageIndicator_footerIndicatorUnderlinePadding
+           @see #TitlePageIndicator_footerLineHeight
+           @see #TitlePageIndicator_footerPadding
+           @see #TitlePageIndicator_selectedBold
+           @see #TitlePageIndicator_selectedColor
+           @see #TitlePageIndicator_textColor
+           @see #TitlePageIndicator_textSize
+           @see #TitlePageIndicator_titlePadding
+           @see #TitlePageIndicator_topPadding
+         */
+        public static final int[] TitlePageIndicator = {
+            0x7f010009, 0x7f01000a, 0x7f01000b, 0x7f01000c,
+            0x7f01000d, 0x7f01000e, 0x7f01000f, 0x7f010010,
+            0x7f010011, 0x7f010012, 0x7f010013, 0x7f010014,
+            0x7f010015
+        };
+        /**
+          <p>
+          @attr description
+           Screen edge padding. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:clipPadding
+        */
+        public static final int TitlePageIndicator_clipPadding = 0;
+        /**
+          <p>
+          @attr description
+           Color of the footer line and indicator. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerColor
+        */
+        public static final int TitlePageIndicator_footerColor = 1;
+        /**
+          <p>
+          @attr description
+           Height of the indicator above the footer line. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorHeight
+        */
+        public static final int TitlePageIndicator_footerIndicatorHeight = 4;
+        /**
+          <p>
+          @attr description
+           Style of the indicator. Default is triangle. 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>triangle</code></td><td>1</td><td></td></tr>
+<tr><td><code>underline</code></td><td>2</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorStyle
+        */
+        public static final int TitlePageIndicator_footerIndicatorStyle = 3;
+        /**
+          <p>
+          @attr description
+           Left and right padding of the underline indicator. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorUnderlinePadding
+        */
+        public static final int TitlePageIndicator_footerIndicatorUnderlinePadding = 5;
+        /**
+          <p>
+          @attr description
+           Height of the footer line. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerLineHeight
+        */
+        public static final int TitlePageIndicator_footerLineHeight = 2;
+        /**
+          <p>
+          @attr description
+           Padding between the bottom of the title and the footer. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerPadding
+        */
+        public static final int TitlePageIndicator_footerPadding = 6;
+        /**
+          <p>
+          @attr description
+           Whether or not the selected item is displayed as bold. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:selectedBold
+        */
+        public static final int TitlePageIndicator_selectedBold = 8;
+        /**
+          <p>
+          @attr description
+           Color of the selected title. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:selectedColor
+        */
+        public static final int TitlePageIndicator_selectedColor = 7;
+        /**
+          <p>
+          @attr description
+           Color of regular titles. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColor
+        */
+        public static final int TitlePageIndicator_textColor = 9;
+        /**
+          <p>
+          @attr description
+           Size of title text. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textSize
+        */
+        public static final int TitlePageIndicator_textSize = 10;
+        /**
+          <p>
+          @attr description
+           Padding between titles when bumping into each other. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:titlePadding
+        */
+        public static final int TitlePageIndicator_titlePadding = 11;
+        /**
+          <p>
+          @attr description
+           Padding between titles and the top of the View. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:topPadding
+        */
+        public static final int TitlePageIndicator_topPadding = 12;
+        /** Attributes that can be used with a ViewPagerIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_circlePageIndicatorStyle com.mimo.app:circlePageIndicatorStyle}</code></td><td> Style of the circle indicator.</td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_titlePageIndicatorStyle com.mimo.app:titlePageIndicatorStyle}</code></td><td> Style of the title indicator.</td></tr>
+           </table>
+           @see #ViewPagerIndicator_circlePageIndicatorStyle
+           @see #ViewPagerIndicator_titlePageIndicatorStyle
+         */
+        public static final int[] ViewPagerIndicator = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>
+          @attr description
+           Style of the circle indicator. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:circlePageIndicatorStyle
+        */
+        public static final int ViewPagerIndicator_circlePageIndicatorStyle = 0;
+        /**
+          <p>
+          @attr description
+           Style of the title indicator. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:titlePageIndicatorStyle
+        */
+        public static final int ViewPagerIndicator_titlePageIndicatorStyle = 1;
+    };
 }
