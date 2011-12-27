@@ -345,6 +345,9 @@ containing a value of this type.
         public static final int btn_delete=0x7f060020;
         public static final int btn_edit=0x7f06001e;
         public static final int btn_submit=0x7f06002e;
+        public static final int business=0x7f060055;
+        public static final int business1=0x7f060058;
+        public static final int business2=0x7f06005a;
         public static final int close_img_button=0x7f060009;
         public static final int container_button_linearLayout=0x7f060042;
         public static final int definition=0x7f060050;
@@ -353,6 +356,7 @@ containing a value of this type.
         public static final int edit_lng=0x7f060023;
         public static final int edit_name=0x7f060024;
         public static final int event_layout=0x7f060040;
+        public static final int exit=0x7f060056;
         public static final int geocode=0x7f06003d;
         public static final int hidden_value=0x7f060016;
         public static final int hidden_value_iconlabel=0x7f06004b;
@@ -385,11 +389,13 @@ containing a value of this type.
         public static final int placename=0x7f06003c;
         public static final int scroll=0x7f060041;
         public static final int scrollView1=0x7f06000f;
-        public static final int search=0x7f060054;
         public static final int tEndDate=0x7f06002a;
         public static final int tEndTime=0x7f06002c;
         public static final int tStarDate=0x7f060026;
         public static final int tStartTime=0x7f060028;
+        public static final int tags=0x7f060054;
+        public static final int tags1=0x7f060057;
+        public static final int tags2=0x7f060059;
         public static final int text=0x7f060043;
         public static final int textView1=0x7f060031;
         public static final int textView2=0x7f06003b;

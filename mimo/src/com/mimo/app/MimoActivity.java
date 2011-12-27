@@ -1,14 +1,19 @@
 package com.mimo.app;
 
+import com.mimo.app.interfaces.IMenuInstance;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-
-
-public class MimoActivity extends Activity implements OnClickListener{
+ 
+ 
+public class MimoActivity extends MenuActivityInstance implements IMenuInstance, OnClickListener{
 	ImageButton mapButton, detailButton, addButton, viewPagerButton, bizButton;
 	Intent intent;
 
@@ -62,4 +67,5 @@ public class MimoActivity extends Activity implements OnClickListener{
 		}
 		
     } 
+    
 }
