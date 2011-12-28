@@ -13,6 +13,9 @@ import com.mimo.app.model.pojo.Business;
 public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	private static BusinessWorker businessWorker;
 	private IApi api;
+	private static boolean newInstance ;
+
+	
 
 	protected BusinessWorker() {
 		this.api = new Api();
@@ -20,7 +23,7 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	}
 
 	public static BusinessWorker getInstance() {
-		if (businessWorker == null) {
+		if (businessWorker == null || isNewInstance()) {
 			businessWorker = new BusinessWorker();
 		}
 		return businessWorker;
@@ -31,13 +34,9 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 		while (this.isAlive()) {
 
 		}
-		try {
-			this.join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		stop();
+		
+		stopWorker();
+		setNewInstance(false);
 		return getResultWorker();
 	}
 
@@ -67,4 +66,20 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 		this.resultWorker = dataBusiness;
 	}
 
+	/**
+	 * @return the newInstance
+	 */
+	public static boolean isNewInstance() {
+		return newInstance;
+	}
+
+	/**
+	 * @param newInstance the newInstance to set
+	 */
+	public static void setNewInstance(boolean newInstance) {
+		BusinessWorker.newInstance = newInstance;
+	}
+	
+	
+	
 }

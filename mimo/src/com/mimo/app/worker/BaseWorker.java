@@ -1,6 +1,5 @@
 package com.mimo.app.worker;
 
-import android.util.Log;
 
 /**
  * @description parent worker class for call api thread
@@ -34,7 +33,6 @@ public class BaseWorker extends Thread {
 	 * the object to set
 	 */
 	public void setResultWorker(Object[] data) {
-		Log.d("debug: done call api", "process done.----------------");
 		this.resultWorker = data;
 	}
 }

@@ -5,26 +5,31 @@ import java.util.ArrayList;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.database.Cursor;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mimo.app.model.adapter.DBAdapter;
-import com.mimo.app.model.pojo.ActivityEvent;
+import com.mimo.app.interfaces.IMenuInstance;
 import com.mimo.app.model.pojo.Business;
 import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.model.pojo.Items;
 import com.mimo.app.worker.BusinessWorker;
 import com.mimo.app.worker.IBusinessWorker;
 
-public class BusinessLIstActivity extends ListActivity {
+public class BusinessLIstActivity extends ListActivity implements
+		IMenuInstance, OnClickListener {
 	private ProgressDialog progressDialog = null;
 	private ArrayList<Items> items = null;
 	private OrderAdapter adapter;
@@ -32,18 +37,17 @@ public class BusinessLIstActivity extends ListActivity {
 
 	private Business[] dataBusiness;
 	private IBusinessWorker businessWorker;
+	private Intent intent;
+	private ImageButton homeButton;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_biz);
 
-		// Business[] biz = readApiData();
-		// Log.d("test call api", "... tester.");
-		// Log.d("------- data biz from API :", ""+biz.length);
-		//
-		// Log.d("debug Object last=", ""+biz.length);
-		// Log.d("debug Object last=", ""+biz[0].getBizname());
+		// initialize component ui
+		homeButton = (ImageButton) findViewById(R.id.home_button);
+		homeButton.setOnClickListener(this);
 
 		items = new ArrayList<Items>();
 		this.adapter = new OrderAdapter(this, R.layout.row, items);
@@ -63,19 +67,36 @@ public class BusinessLIstActivity extends ListActivity {
 
 	}
 
-	// @Override
-	// protected void onListItemClick(ListView l, View v, int position, long id)
-	// {
-	// Order o = (Order)l.getItemAtPosition(position);
-	// Intent i = new Intent(this, DetailActivity.class);
-	// i.putExtra("paramid", Integer.parseInt(o.getOrderId()));
-	// startActivity(i);
-	// }
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.home_button:
+			intent = new Intent(this, MimoActivity.class);
+			startActivity(intent);
+			break;
+		}
+	}
+
+	// handle menu ui
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.biz_options_menu, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.reload:
+			BusinessWorker.setNewInstance(true);
+			startActivity(getIntent());
+
+			break;
+		}
+		return true;
+	}
 
 	private Business[] readApiData() {
 		businessWorker = BusinessWorker.getInstance();
 		dataBusiness = businessWorker.createApiCall();
-		Log.d("-----> get data ", "=> " + dataBusiness.length);
 		return dataBusiness;
 	}
 
@@ -95,16 +116,13 @@ public class BusinessLIstActivity extends ListActivity {
 
 	private void getOrders() {
 		readApiData();
-		Log.d("debug get orders", "-------" + dataBusiness.length);
 
 		Items o;
 		try {
 			items = new ArrayList<Items>();
-			
+
 			for (int j = 0; j < dataBusiness.length; j++) {
 				Business biz = dataBusiness[j];
-				Log.d("debug test data value => ", "|" + biz.getBizname() + "|");
-				Log.d("debug test data value => ", "" + biz.getIcon());
 				o = new Items();
 				o.setItemId("" + j);
 				o.setItemName(biz.getBizname());
@@ -113,51 +131,7 @@ public class BusinessLIstActivity extends ListActivity {
 						biz.getBizname()));
 				items.add(o);
 			}
-			
-			Log.i("ARRAY", "" + items.size());
-			Log.d("dodol", "end loop");
-		} catch (Exception e) {
-			Log.e("BACKGROUND_PROC", e.getMessage());
-		}
-		runOnUiThread(returnRes);
-	}
 
-	private void getOrdersx() {
-		try {
-			items = new ArrayList<Items>();
-
-			Items o;
-			ActivityEvent ae;
-			DBAdapter db = new DBAdapter(this);
-			Cursor c = db.getAllRecord(); // retrieve all records
-
-			Icons icons = new Icons();
-			while (c.moveToNext()) {
-
-				ae = new ActivityEvent();
-				ae.setName(c.getString(c.getColumnIndex("name")));
-				ae.setIcon(c.getString(c.getColumnIndex("icon")));
-				ae.setDescription(c.getString(c.getColumnIndex("description")));
-				ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-				ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-				ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-				ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
-				ae.setLat(c.getDouble(c.getColumnIndex("lat")));
-				ae.setLng(c.getDouble(c.getColumnIndex("lng")));
-
-				o = new Items();
-				o.setItemId(c.getString(c.getColumnIndex("id")));
-				o.setItemName(ae.getIcon());
-				o.setItemStatus(ae.getName() + ", " + ae.getDescription()
-						+ " \n At " + ae.getStart_date() + " "
-						+ ae.getStart_time() + " - " + ae.getEnd_date() + " "
-						+ ae.getEnd_time());
-				o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
-
-				items.add(o);
-			}
-
-			Thread.sleep(5000);
 			Log.i("ARRAY", "" + items.size());
 		} catch (Exception e) {
 			Log.e("BACKGROUND_PROC", e.getMessage());

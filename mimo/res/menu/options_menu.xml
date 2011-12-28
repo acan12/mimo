@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:id="@+id/tags"
+          android:title="Tags"
+          android:icon="@drawable/ic_menu_tags"/>
+    <item android:id="@+id/business"
+          android:title="Business"
+          android:icon="@drawable/arrow_direction"/>
+         
+    <item android:id="@+id/exit"
+          android:title="Quit"
+          android:icon="@drawable/ic_menu_search"/>
+          
+    <item android:id="@+id/tags1"
+          android:title="Tags"
+          android:icon="@drawable/ic_menu_tags"/>
+    <item android:id="@+id/business1"
+          android:title="Business"
+          android:icon="@drawable/arrow_direction"/>
+    <item android:id="@+id/tags2"
+          android:title="Tags"
+          android:icon="@drawable/ic_menu_tags"/>
+    <item android:id="@+id/business2"
+          android:title="Business"
+          android:icon="@drawable/arrow_direction"/>
+   
+</menu>
