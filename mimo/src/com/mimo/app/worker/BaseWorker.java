@@ -1,26 +1,27 @@
 package com.mimo.app.worker;
 
-import com.mimo.app.model.pojo.Business;
-
 import android.util.Log;
 
-public class BaseWorker extends Thread{
-	private Object[] resultWorker = null;
-	
-	protected void stopWorker(){
+/**
+ * @description parent worker class for call api thread
+ * @author arys
+ *
+ */
+public class BaseWorker extends Thread {
+	protected Object[] resultWorker = null;
+
+	protected void stopWorker() {
 		this.stop();
 	}
-	
-	public void run(){
+
+	public void run() {
 		this.setResultWorker(runWorker());
 	}
-	
-	protected Object[] runWorker(){
+
+	protected Object[] runWorker() {
 		return null;
 	}
-	 
-	
-	
+
 	/**
 	 * @return the object
 	 */
@@ -29,12 +30,11 @@ public class BaseWorker extends Thread{
 	}
 
 	/**
-	 * @param object the object to set
+	 * @param object
+	 * the object to set
 	 */
 	public void setResultWorker(Object[] data) {
-		Business[] result = (Business[])data;
-		Log.d("debug Object=", ""+result.length);
-		Log.d("debug Object=", ""+result[0].getBizname());
+		Log.d("debug: done call api", "process done.----------------");
 		this.resultWorker = data;
 	}
 }

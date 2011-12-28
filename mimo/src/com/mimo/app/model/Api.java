@@ -31,12 +31,10 @@ public class Api extends BaseModel implements IApi {
 		
 		Log.d("debug: ", "------ run worker api call");
 		
-		httpUtil = new HttpUtil(apiUrl+BIZ_API, Method.GET);
+		httpUtil = new HttpUtil(apiUrl+BIZ_API, null, Method.GET);
 		String responses = httpUtil.sendRequest();
 		
 		Business[] data = gson.fromJson(responses, Business[].class);
-		Log.d("debug data=", ""+data.length);
-		Log.d("debug data=", ""+data[0].getBizname());
 		return data;
 	}
 

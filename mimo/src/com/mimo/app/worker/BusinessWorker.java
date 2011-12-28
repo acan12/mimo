@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 
-import android.app.ProgressDialog;
 import android.util.Log;
 
 import com.mimo.app.model.Api;
@@ -14,24 +13,31 @@ import com.mimo.app.model.pojo.Business;
 public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	private static BusinessWorker businessWorker;
 	private IApi api;
-	private Object[] resultWorker;
 
-	public BusinessWorker() {
+	protected BusinessWorker() {
 		this.api = new Api();
+		this.start();
 	}
 
-	public BusinessWorker getInstance() {
+	public static BusinessWorker getInstance() {
 		if (businessWorker == null) {
 			businessWorker = new BusinessWorker();
 		}
 		return businessWorker;
-	}
+	} 
 
-	public Object[] createApiCall() {
-		this.start();
+	public synchronized Business[] createApiCall() {
+		Log.d("debug: call api thread is alive=>", ""+this.isAlive());
 		while (this.isAlive()) {
 
 		}
+		try {
+			this.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		stop();
 		return getResultWorker();
 	}
 
@@ -51,15 +57,14 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 
 	@Override
 	protected Business[] getResultWorker() {
-		Business[] result = (Business[]) this.resultWorker;
+		Business[] dataBusiness = (Business[]) this.resultWorker;
 
-		return result;
+		return dataBusiness;
 	}
 
-	@Override
-	public void setResultWorker(Object[] data) {
-		Business[] result = (Business[]) data;
-		this.resultWorker = data;
+	public void setResultWorker(Business[] dataBusiness) {
+		Log.d("debug: done call api", "process done.----------------");
+		this.resultWorker = dataBusiness;
 	}
 
 }

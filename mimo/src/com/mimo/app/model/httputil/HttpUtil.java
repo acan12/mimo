@@ -22,8 +22,6 @@ import org.apache.http.protocol.HTTP;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 public class HttpUtil {
 
 	private HttpResponse httpResponse = null;
@@ -37,26 +35,19 @@ public class HttpUtil {
 		GET, POST
 	}
 
-	public HttpUtil(String url, Method requestMethod) {
+	public HttpUtil(String url, Map<String, String> params, Method requestMethod) {
 		Log.d("debug: ", "------ run worker api constructor");
 		this.url = url;
-//		this.params = params;
+		 this.params = params;
 		this.requestMethod = requestMethod;
 	}
 
-	public String sendRequest() throws ClientProtocolException,
-			IOException {
+	public String sendRequest() throws ClientProtocolException, IOException {
 
-		Log.d("debug request", "#1");
-		
 		HttpEntity httpEntity = null;
-		
 		HttpClient httpClient = new DefaultHttpClient();
-		Log.d("debug request", "#2");
-//		HttpGet request = new HttpGet(
-//		"http://mimocore.heroku.com/api/v1/biz.json");
-		Log.d("debug request", "#3");
-		switch(requestMethod){
+
+		switch (requestMethod) {
 		case GET:
 			requestBase = new HttpGet(url);
 			break;
@@ -67,14 +58,10 @@ public class HttpUtil {
 			break;
 		}
 
-		Log.d("debug request", " mau masuk call api");
 		HttpResponse response = httpClient.execute(requestBase);
-		Log.d("debug request", "#4");
 		httpEntity = response.getEntity();
 
 		String responses = getApiResponseBody(httpEntity);
-
-		Log.d("debug x->", responses);
 
 		return responses;
 
@@ -170,18 +157,4 @@ public class HttpUtil {
 		return charset;
 	}
 
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * @param url
-	 *            the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
 }

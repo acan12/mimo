@@ -231,7 +231,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		mapOverlays = mv.getOverlays();
 
 		// Biz profile Carrefour
-		Drawable drawable = this.getResources().getDrawable(R.drawable.carefour);
+		int carefourIcon = Icons.getInstances().getIconFromBizLabel("carefour");
+		Drawable drawable = this.getResources().getDrawable(carefourIcon);
         itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
         for(int i=0; i< biz[CARREFOUR].length; i++){
         	GeoPoint point = getPoint(biz[CARREFOUR][i][0], biz[CARREFOUR][i][1]);
@@ -244,7 +245,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
         
         
         // Biz location 7-11
-        drawable = this.getResources().getDrawable(R.drawable.seven_eleven);
+        int sevenIcon = Icons.getInstances().getIconFromBizLabel("7eleven");
+        drawable = this.getResources().getDrawable(sevenIcon);
         itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
         for(int i=0; i< biz[SEVEN_ELEVEN].length; i++){
         	GeoPoint point = getPoint(biz[SEVEN_ELEVEN][i][0], biz[SEVEN_ELEVEN][i][1]);
