@@ -52,7 +52,8 @@ public class BusinessLIstActivity extends ListActivity implements
 		items = new ArrayList<Items>();
 		this.adapter = new OrderAdapter(this, R.layout.row, items);
 		this.setListAdapter(this.adapter);
-		//
+
+		
 		viewItems = new Runnable() {
 			@Override
 			public void run() {
@@ -86,7 +87,7 @@ public class BusinessLIstActivity extends ListActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.reload:
-			BusinessWorker.setNewInstance(true);
+			BusinessWorker.setBusinessWorker(null);
 			startActivity(getIntent());
 
 			break;
