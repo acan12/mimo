@@ -84,16 +84,16 @@ public class BusinessLIstActivity extends ListActivity implements
 		return true;
 	}
 
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.reload:
-			BusinessWorker.setBusinessWorker(null);
-			startActivity(getIntent());
-
-			break;
-		}
-		return true;
-	}
+//	public boolean onOptionsItemSelected(MenuItem item) {
+//		switch (item.getItemId()) {
+//		case R.id.reload:
+//			BusinessWorker.setBusinessWorker(null);
+//			startActivity(getIntent());
+//
+//			break;
+//		}
+//		return true;
+//	}
 
 	private Business[] readApiData() {
 		businessWorker = BusinessWorker.getInstance();

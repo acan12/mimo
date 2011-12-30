@@ -22,7 +22,7 @@
         <activity android:name=".InputDetailActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".MapLocationActivity"></activity>
-        <activity android:name=".BusinessLIstActivity"></activity>
+        <activity android:name=".BusinessLIstActivity" android:configChanges="keyboardHidden|orientation" ></activity>
         <activity android:name=".ViewPagerActivity"></activity>
         
         <!-- <activity android:name=".SearchableActivity" >

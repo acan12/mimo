@@ -1,52 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- main container -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:orientation="vertical"
-   android:layout_width="fill_parent"
-   android:layout_height="fill_parent">
-    <LinearLayout android:layout_width="fill_parent" 
-       android:background="@drawable/nav" 
-       android:layout_height="wrap_content" 
-       android:orientation="horizontal">
-       <ImageButton android:layout_width="wrap_content" 
-          android:layout_height="wrap_content" 
-          android:src="@drawable/title_home_default" 
-          android:background="@null"
-          android:id="@+id/home_button">
-      </ImageButton>
-      <ImageView android:id="@+id/image_separator" 
-          android:layout_width="wrap_content" 
-          android:layout_height="wrap_content" 
-          android:src="@drawable/separator">
-      </ImageView>
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:orientation="vertical">
+	
+	<!-- content UI header page -->
+	<LinearLayout android:layout_width="fill_parent"
+		android:background="@drawable/nav" android:layout_height="wrap_content"
+		android:orientation="horizontal">
+		<!-- content UI Home Button  -->
+		<ImageButton android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/title_home_default"
+			android:background="@null" android:id="@+id/home_button">
+		</ImageButton>
+		<!-- content UI separator line -->
+		<ImageView android:id="@+id/image_separator"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/separator">
+		</ImageView>
+    <!-- content UI blank space center  -->
+    <ImageView 
+        android:layout_weight="1" 
+        android:layout_width="wrap_content" 
+        android:layout_height="fill_parent" 
+        android:padding="10dp" 
+        android:id="@+id/header">
+    </ImageView>
+		<!-- content UI separator line -->
+		<ImageView android:id="@+id/image_separator"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:src="@drawable/separator">
+		</ImageView>
+		<!-- content UI Search Button  -->
+		<ImageButton android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:src="@drawable/search_default"
+			android:background="@null" android:id="@+id/home_button">
+		</ImageButton>
+	</LinearLayout>
+	<!-- / content UI header page -->
+	
+	<!-- content UI sidebar page -->
+	<LinearLayout android:layout_width="fill_parent" 
+      android:background="@drawable/sidebar" 
+      android:layout_height="wrap_content" 
+      android:orientation="horizontal">
       
-      <TextView android:id="@+id/label_title" 
+      <ImageButton android:background="@null" 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:src="@drawable/shopping" android:padding="10dp" android:id="@+id/bizHeader"></ImageButton>
+      <TextView 
           android:layout_weight="1"
-          android:gravity="center|center_vertical" 
-          android:text="@string/label_title_biz_list"
+          android:gravity="left|center_vertical" 
+          android:text="Businesses Event"
+          android:textColor="#ffffff"
           android:textStyle="bold" 
-          android:layout_width="wrap_content" 
+          android:layout_width="45dip" 
           android:layout_height="fill_parent">
       </TextView>
-      <ImageView android:id="@+id/image_separator" 
-          android:layout_width="wrap_content" 
-          android:layout_height="wrap_content" 
-          android:src="@drawable/separator">
-      </ImageView>
-      <ImageButton 
-          android:layout_width="wrap_content" 
-          android:layout_height="wrap_content" 
-          android:src="@drawable/search_default" 
-          android:background="@null"
-          android:id="@+id/home_button">
-      </ImageButton>
-    </LinearLayout>
-    <ImageButton android:background="@drawable/sidebar" 
-      android:layout_height="wrap_content" 
-      android:layout_width="fill_parent">
-    </ImageButton>
-    
-   <ListView
-      android:id="@+id/android:list"
-      android:layout_width="fill_parent"
-      android:layout_height="fill_parent"/>
+  </LinearLayout>
+  <!-- / content UI sidebar page -->
+  
+  <!-- content UI list of items -->
+	<ListView android:id="@+id/android:list" android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
 </LinearLayout>
+<!-- / main container -->

@@ -231,7 +231,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		mapOverlays = mv.getOverlays();
 
 		// Biz profile Carrefour
-		int carefourIcon = Icons.getInstances().getIconFromBizLabel("carefour");
+		int carefourIcon = Icons.getInstances().getIconFromBizLabel("Carefour");
 		Drawable drawable = this.getResources().getDrawable(carefourIcon);
         itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
         for(int i=0; i< biz[CARREFOUR].length; i++){

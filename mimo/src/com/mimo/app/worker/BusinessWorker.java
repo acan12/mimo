@@ -22,6 +22,7 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	}
 
 	public static BusinessWorker getInstance() {
+		businessWorker = null;
 		if (businessWorker == null ) {
 			businessWorker = new BusinessWorker();
 		}
