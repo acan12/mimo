@@ -116,6 +116,7 @@ public class BusinessLIstActivity extends ListActivity implements
 	};
 
 	private void getOrders() {
+		StringBuffer sb = null;
 		readApiData();
 
 		Items o;
@@ -124,10 +125,15 @@ public class BusinessLIstActivity extends ListActivity implements
 
 			for (int j = 0; j < dataBusiness.length; j++) {
 				Business biz = dataBusiness[j];
+				
+				sb = new StringBuffer();
 				o = new Items();
 				o.setItemId("" + j);
 				o.setItemName(biz.getBizname());
-				o.setItemStatus(biz.getDescription());
+				
+				sb.append(biz.getDescription());
+				sb.append("\n"+biz.getEvent());
+				o.setItemStatus(sb.toString());
 				o.setDrawableImage(Icons.getInstances().getIconFromBizLabel(
 						biz.getBizname()));
 				items.add(o);

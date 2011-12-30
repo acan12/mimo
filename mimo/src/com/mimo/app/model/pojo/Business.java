@@ -6,10 +6,17 @@ import com.mimo.app.model.BaseModel;
 public class Business extends BaseModel implements IBusiness {
 
 	private String bizname;
-	private int count;
+	private String category;
+	private String created;
 	private String description;
-	private String created_at;
-	private String icon;
+	private String event;
+	private String expire;
+	private int follower;
+	private double lat;
+	private double lng;
+	
+	
+	
 	
 	
 	/**
@@ -25,16 +32,28 @@ public class Business extends BaseModel implements IBusiness {
 		this.bizname = bizname;
 	}
 	/**
-	 * @return the count
+	 * @return the category
 	 */
-	public int getCount() {
-		return count;
+	public String getCategory() {
+		return category;
 	}
 	/**
-	 * @param count the count to set
+	 * @param category the category to set
 	 */
-	public void setCount(int count) {
-		this.count = count;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	/**
+	 * @return the created
+	 */
+	public String getCreated() {
+		return created;
+	}
+	/**
+	 * @param created the created to set
+	 */
+	public void setCreated(String created) {
+		this.created = created;
 	}
 	/**
 	 * @return the description
@@ -49,29 +68,65 @@ public class Business extends BaseModel implements IBusiness {
 		this.description = description;
 	}
 	/**
-	 * @return the created_at
+	 * @return the event
 	 */
-	public String getCreated_at() {
-		return created_at;
+	public String getEvent() {
+		return event;
 	}
 	/**
-	 * @param created_at the created_at to set
+	 * @param event the event to set
 	 */
-	public void setCreated_at(String created_at) {
-		this.created_at = created_at;
+	public void setEvent(String event) {
+		this.event = event;
 	}
 	/**
-	 * @return the icon
+	 * @return the expire
 	 */
-	public String getIcon() {
-		return icon;
+	public String getExpire() {
+		return expire;
 	}
 	/**
-	 * @param icon the icon to set
+	 * @param expire the expire to set
 	 */
-	public void setIcon(String icon) {
-		this.icon = icon;
+	public void setExpire(String expire) {
+		this.expire = expire;
 	}
-	
-	
+	/**
+	 * @return the follower
+	 */
+	public int getFollower() {
+		return follower;
+	}
+	/**
+	 * @param follower the follower to set
+	 */
+	public void setFollower(int follower) {
+		this.follower = follower;
+	}
+	/**
+	 * @return the lat
+	 */
+	public double getLat() {
+		return lat;
+	}
+	/**
+	 * @param lat the lat to set
+	 */
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+	/**
+	 * @return the lng
+	 */
+	public double getLng() {
+		return lng;
+	}
+	/**
+	 * @param lng the lng to set
+	 */
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
+
 }
