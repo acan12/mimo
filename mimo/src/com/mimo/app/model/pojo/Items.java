@@ -7,7 +7,8 @@ public class Items {
 	private String itemId;
 	private String itemName;
     private String itemStatus;
-    private int drawableImage;
+    private String data;
+	private int drawableImage;
 	private ArrayList<Items> items = null;
    
     
@@ -35,4 +36,16 @@ public class Items {
     public void setItemStatus(String itemStatus) {
         this.itemStatus = itemStatus;
     }
+    /**
+	 * @return the data
+	 */
+	public String getData() {
+		return data;
+	}
+	/**
+	 * @param data the data to set
+	 */
+	public void setData(String data) {
+		this.data = data;
+	}
 }

@@ -84,16 +84,28 @@ public class BusinessLIstActivity extends ListActivity implements
 		return true;
 	}
 
-//	public boolean onOptionsItemSelected(MenuItem item) {
-//		switch (item.getItemId()) {
-//		case R.id.reload:
-//			BusinessWorker.setBusinessWorker(null);
-//			startActivity(getIntent());
-//
-//			break;
-//		}
-//		return true;
-//	}
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.reload:
+			BusinessWorker.setBusinessWorker(null);
+			
+			viewItems = new Runnable() {
+				@Override
+				public void run() {
+					getOrders();
+
+				}
+			};
+			Thread uiThread = new Thread(null, viewItems, "RuntoBackground");
+			uiThread.start();
+			progressDialog = ProgressDialog.show(BusinessLIstActivity.this,
+					"Please wait...", "Retrieving data ...", true);
+			adapter.clear();
+			break;
+			
+		}
+		return true;
+	}
 
 	private Business[] readApiData() {
 		businessWorker = BusinessWorker.getInstance();
@@ -117,6 +129,7 @@ public class BusinessLIstActivity extends ListActivity implements
 
 	private void getOrders() {
 		StringBuffer sb = null;
+		
 		readApiData();
 
 		Items o;
@@ -134,6 +147,7 @@ public class BusinessLIstActivity extends ListActivity implements
 				sb.append(biz.getDescription());
 				sb.append("\n"+biz.getEvent());
 				o.setItemStatus(sb.toString());
+				o.setData("lat:"+biz.getLat()+",lng:"+biz.getLng());
 				o.setDrawableImage(Icons.getInstances().getIconFromBizLabel(
 						biz.getBizname()));
 				items.add(o);
@@ -162,7 +176,7 @@ public class BusinessLIstActivity extends ListActivity implements
 			LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.row, null);
 			Items o = items.get(position);
-			if (o != null) {
+			if (o != null) { 
 				if (o.getDrawableImage() != 0) {
 					ImageView img = (ImageView) v.findViewById(R.id.icon);
 					Drawable drawable = v.getResources().getDrawable(
@@ -171,12 +185,16 @@ public class BusinessLIstActivity extends ListActivity implements
 				}
 				TextView tt = (TextView) v.findViewById(R.id.toptext);
 				TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+				TextView latlng = (TextView) v.findViewById(R.id.hiddentext);
 
 				if (tt != null) {
 					tt.setText(o.getItemName());
 				}
 				if (bt != null) {
 					bt.setText(o.getItemStatus());
+				}
+				if(latlng != null){
+					latlng.setText(o.getData());
 				}
 			}
 			return v;
