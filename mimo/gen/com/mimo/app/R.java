@@ -346,7 +346,7 @@ containing a value of this type.
         public static final int btn_delete=0x7f060022;
         public static final int btn_edit=0x7f060020;
         public static final int btn_submit=0x7f060030;
-        public static final int business=0x7f060058;
+        public static final int business=0x7f060059;
         public static final int business1=0x7f06005b;
         public static final int business2=0x7f06005d;
         public static final int close_img_button=0x7f060009;
@@ -357,13 +357,14 @@ containing a value of this type.
         public static final int edit_lng=0x7f060025;
         public static final int edit_name=0x7f060026;
         public static final int event_layout=0x7f060042;
-        public static final int exit=0x7f060059;
+        public static final int exit=0x7f06005a;
         public static final int geocode=0x7f06003f;
         public static final int header=0x7f06000f;
         public static final int hidden_value=0x7f060018;
         public static final int hidden_value_iconlabel=0x7f06004d;
         public static final int hidden_value_id=0x7f06004b;
         public static final int hidden_value_loc=0x7f06004c;
+        public static final int hiddentext=0x7f060056;
         public static final int home_button=0x7f06000a;
         public static final int home_buttonx=0x7f06000d;
         public static final int horizontal=0x7f060000;
@@ -389,15 +390,14 @@ containing a value of this type.
         public static final int next_map=0x7f060040;
         public static final int none=0x7f060002;
         public static final int placename=0x7f06003e;
-        public static final int reload=0x7f060056;
+        public static final int reload=0x7f060057;
         public static final int scroll=0x7f060043;
         public static final int scrollView1=0x7f060011;
+        public static final int setting=0x7f060058;
         public static final int tEndDate=0x7f06002c;
         public static final int tEndTime=0x7f06002e;
         public static final int tStarDate=0x7f060028;
         public static final int tStartTime=0x7f06002a;
-        public static final int tags=0x7f060057;
-        public static final int tags1=0x7f06005a;
         public static final int tags2=0x7f06005c;
         public static final int text=0x7f060045;
         public static final int textView1=0x7f060033;
@@ -431,7 +431,8 @@ containing a value of this type.
         public static final int main=0x7f03000f;
         public static final int result=0x7f030010;
         public static final int row=0x7f030011;
-        public static final int word=0x7f030012;
+        public static final int settings=0x7f030012;
+        public static final int word=0x7f030013;
     }
     public static final class menu {
         public static final int biz_options_menu=0x7f090000;

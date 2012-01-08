@@ -24,6 +24,7 @@
         <activity android:name=".MapLocationActivity"></activity>
         <activity android:name=".BusinessLIstActivity" android:configChanges="keyboardHidden|orientation" ></activity>
         <activity android:name=".ViewPagerActivity"></activity>
+        <activity android:name=".SettingPreferencesActivity"></activity>
         
         <!-- <activity android:name=".SearchableActivity" >
 	        <intent-filter>
