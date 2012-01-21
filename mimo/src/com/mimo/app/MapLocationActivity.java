@@ -41,7 +41,6 @@ import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.view.MapOverlays;
 
 public class MapLocationActivity extends MapActivity implements IApp{
-	PrintStream p = System.out;
 	double lat = -6.198254;
 	double lng = 106.841086;
 	
@@ -50,7 +49,6 @@ public class MapLocationActivity extends MapActivity implements IApp{
 		super.onCreate(savedInstanceState);
 		Bundle bundle = getIntent().getExtras();
 		int paramid = bundle.getInt(PARAMS_KEY);
-		p.println("in maplocation id:"+paramid);
 		setContentView(R.layout.layout_maplocation); 
 		GeoPoint point = getPoint(lat, lng);
 		
@@ -99,7 +97,6 @@ public class MapLocationActivity extends MapActivity implements IApp{
 						i++;
 					} 
 					
-					p.println("-----------result loc:"+locInfo);
 					GeoPoint newPoint = new GeoPoint((int)(lat[0]* 1E6), (int)(lon[0]*1E6));
 					mv.getController().animateTo(newPoint);
 					setMarkerOnMapLocation(mv, newPoint);

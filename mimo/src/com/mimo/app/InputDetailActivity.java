@@ -106,11 +106,11 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 		case R.id.btn_cancel:
 			switch(action){
 			case DB_CREATE:
-				Intent i = new Intent(this, MimoActivity.class);
+				Intent i = new Intent(this, HomeActivity.class);
 				this.startActivity(i);
 				break;
 			case DB_UPDATE:
-				Intent i2 = new Intent(this, MimoActivity.class);
+				Intent i2 = new Intent(this, HomeActivity.class);
 				this.startActivity(i2);
 				break;
 			}

@@ -71,7 +71,7 @@ public class BusinessLIstActivity extends ListActivity implements
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.home_button:
-			intent = new Intent(this, MimoActivity.class);
+			intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 			break;
 		}

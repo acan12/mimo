@@ -20,8 +20,6 @@ import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
 
-import android.util.Log;
-
 public class HttpUtil {
 
 	private HttpResponse httpResponse = null;
@@ -36,9 +34,8 @@ public class HttpUtil {
 	}
 
 	public HttpUtil(String url, Map<String, String> params, Method requestMethod) {
-		Log.d("debug: ", "------ run worker api constructor");
 		this.url = url;
-		 this.params = params;
+		this.params = params;
 		this.requestMethod = requestMethod;
 	}
 

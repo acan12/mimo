@@ -13,7 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
  
  
-public class MimoActivity extends MenuActivityInstance implements IMenuInstance, OnClickListener{
+public class HomeActivity extends MenuInstance implements IMenuInstance, OnClickListener{
 	ImageButton mapButton, detailButton, addButton, viewPagerButton, bizButton;
 	Intent intent;
 

@@ -29,10 +29,10 @@ public class ListDialogView extends BaseAdapter{
 	private int[] mIcons = new int[20];
 	private int mLayout;
 	
-	public ListDialogView(Context context, int[] icons, int layout ){
-		this.mContext = context;
-		this.mIcons = icons;
-		this.mLayout = layout;
+	public ListDialogView(Context mContext, int[] mIcons, int mLayout ){
+		this.mContext = mContext;
+		this.mIcons = mIcons;
+		this.mLayout = mLayout;
 	}
 	
 	public ListAdapter getDialogAdapter(ArrayList<ActivityEvent> eventItems) {
@@ -45,7 +45,6 @@ public class ListDialogView extends BaseAdapter{
 		Iterator<ActivityEvent> it= eventItems.iterator(); 
 		int i = 0;
 		
-		Log.d("---x-------------------debug: ", "eventItems="+eventItems.size()      );
 		
 		while(it.hasNext()){
 			ActivityEvent a = (ActivityEvent)it.next();
