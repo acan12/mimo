@@ -30,7 +30,6 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	} 
 
 	public synchronized Business[] createApiCall() {
-		Log.d("debug: call api thread is alive=>", ""+this.isAlive());
 		while (this.isAlive()) {
 
 		}
@@ -61,7 +60,6 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	}
 
 	public void setResultWorker(Business[] dataBusiness) {
-		Log.d("debug: done call api", "process done.----------------");
 		this.resultWorker = dataBusiness;
 	}
 

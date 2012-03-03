@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-public class MenuInstance extends Activity implements IMenuInstance{
+public class MenuInstance extends BaseActivity implements IMenuInstance{
 	public boolean onCreateOptionsMenu(Menu menu){
     	MenuInflater inflater = getMenuInflater();
     	inflater.inflate(R.menu.options_menu, menu);

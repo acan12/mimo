@@ -30,7 +30,7 @@ public class HttpUtil {
 	private HttpRequestBase requestBase = null;
 
 	public enum Method {
-		GET, POST
+		GET, POST, PUT, DELETE
 	}
 
 	public HttpUtil(String url, Map<String, String> params, Method requestMethod) {

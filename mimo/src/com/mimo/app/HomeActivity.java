@@ -1,66 +1,53 @@
 package com.mimo.app;
 
-import com.mimo.app.interfaces.IMenuInstance;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
+
+import com.mimo.app.component.ICButton;
+import com.mimo.app.interfaces.IMenuInstance;
  
  
 public class HomeActivity extends MenuInstance implements IMenuInstance, OnClickListener{
-	ImageButton mapButton, detailButton, addButton, viewPagerButton, bizButton;
+	
+	private ICButton mapButton, detailButton, addButton, viewPagerButton, bizButton;
 	Intent intent;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_dashboard);
-        
           
-        mapButton = (ImageButton) findViewById(R.id.MapButton);
-        mapButton.setOnClickListener(this);
-        
-        detailButton = (ImageButton) findViewById(R.id.DetailButton);
-        detailButton.setOnClickListener(this);
-        
-        addButton = (ImageButton) findViewById(R.id.AddButton);
-        addButton.setOnClickListener(this);
-        
-        viewPagerButton = (ImageButton) findViewById(R.id.ViewPagerButton);
-        viewPagerButton.setOnClickListener(this);
-        
-        bizButton = (ImageButton) findViewById(R.id.BizButton);
-        bizButton.setOnClickListener(this);
+        mapButton 		= getComponentFactory().createButtonField(this, R.id.MapButton);
+        detailButton 	= getComponentFactory().createButtonField(this, R.id.DetailButton);
+        addButton 		= getComponentFactory().createButtonField(this, R.id.AddButton);
+        viewPagerButton = getComponentFactory().createButtonField(this, R.id.ViewPagerButton);
+        bizButton 		= getComponentFactory().createButtonField(this, R.id.BizButton);
     } 
     
     @Override
     public void onClick(View v) {
 		switch(v.getId()){
 			case R.id.MapButton:
-				intent = new Intent(this, MapDashboardActivity.class);
+				intent = getIntent(this, MapDashboardActivity.class);
 				startActivity(intent); 
 				break;
 			case R.id.DetailButton:
-				intent = new Intent(this, ActivitiesListActivity.class);
+				intent = getIntent(this, ActivitiesListActivity.class);
 				startActivity(intent); 
 				break;
 			case R.id.AddButton:
-				intent = new Intent(this, InputDetailActivity.class);
+				intent = getIntent(this, InputDetailActivity.class);
 				intent.putExtra("paramaction", 1);
 				startActivity(intent);
 				break;
 			case R.id.ViewPagerButton:
-				intent = new Intent(this, ViewPagerActivity.class);
+				intent = getIntent(this, ViewPagerActivity.class);
 				startActivity(intent);
 				break;
 			case R.id.BizButton:
-				intent = new Intent(this, BusinessLIstActivity.class);
+				intent = getIntent(this, BusinessLIstActivity.class);
 				intent.putExtra("paramaction", 1);
 				startActivity(intent);
 				break;

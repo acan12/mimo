@@ -5,150 +5,422 @@
     
     <!-- top bar dashboard -->
     <LinearLayout android:layout_width="fill_parent" 
-       android:background="@drawable/nav" 
-       android:layout_height="wrap_content" 
-       android:orientation="horizontal">
+      android:background="@drawable/nav" 
+      android:layout_height="wrap_content" 
+      android:orientation="horizontal">
       <TextView android:id="@+id/label_title" 
-          android:layout_weight="1"
-          android:gravity="center|center_vertical" 
-          android:text="@string/label_title_dashboard"
-          android:textStyle="bold" 
-          android:layout_width="wrap_content" 
-          android:layout_height="fill_parent">
+        android:layout_weight="1"
+        android:gravity="center|center_vertical" 
+        android:text="@string/label_title_dashboard"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
       </TextView>
     </LinearLayout>
     
-    <!-- icon dashboard -->
-    <ScrollView android:layout_weight="1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/scrollView1">
+    <!-- all icon dashboard -->
+    <ScrollView android:layout_weight="1" 
+      android:layout_height="wrap_content" 
+      android:layout_width="wrap_content" 
+      android:id="@+id/scrollView1">
+      
       <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent" 
-            android:orientation="vertical" android:layout_height="wrap_content">
-        <LinearLayout android:layout_width="fill_parent" 
-           android:background="@drawable/topbar_wide" 
-           android:layout_height="wrap_content" 
-           android:orientation="horizontal">
-          
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/MapButton" android:src="@drawable/map" android:padding="10dp"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Map"
-              android:textStyle="bold" 
-              android:layout_width="45dip" 
-              android:layout_height="fill_parent">
-          </TextView>
-          <ImageView
-              android:layout_width="wrap_content" 
-              android:layout_height="wrap_content" 
-              android:src="@drawable/separator">
-          </ImageView>
-          
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/AddButton"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Tags"
-              android:textStyle="bold" 
-              android:layout_width="45dip"
-              android:layout_height="fill_parent">
-          </TextView>
-          
-        </LinearLayout>
-        <LinearLayout android:layout_width="fill_parent" 
-           android:background="@drawable/topbar_wide" 
-           android:layout_height="wrap_content" 
-           android:orientation="horizontal">
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/shopping" android:padding="10dp" android:id="@+id/DetailButton"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Activities"
-              android:textStyle="bold" 
-              android:layout_width="45dip"
-              android:layout_height="fill_parent">
-          </TextView>
-          <ImageView 
-              android:layout_width="wrap_content" 
-              android:layout_height="wrap_content" 
-              android:src="@drawable/separator">
-          </ImageView>
-          
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/ViewPagerButton"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Calendar"
-              android:textStyle="bold" 
-              android:layout_width="45dip"
-              android:layout_height="fill_parent">
-          </TextView>
-        </LinearLayout>
+        android:layout_width="fill_parent" 
+        android:orientation="vertical" 
+        android:layout_height="wrap_content">
         
-        <LinearLayout android:layout_width="fill_parent" 
-           android:background="@drawable/topbar_wide" 
-           android:layout_height="wrap_content" 
-           android:orientation="horizontal">
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/BizButton"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Biz Locations"
-              android:textStyle="bold" 
-              android:layout_width="45dip" 
-              android:layout_height="fill_parent">
-          </TextView>
-          <ImageView
-              android:layout_width="wrap_content" 
-              android:layout_height="wrap_content" 
-              android:src="@drawable/separator">
-          </ImageView>
-          
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/tags" android:padding="10dp" android:id="@+id/AddButton"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Tags"
-              android:textStyle="bold" 
-              android:layout_width="wrap_content" 
-              android:layout_height="fill_parent">
-          </TextView>
-        </LinearLayout>
+        <!-- table layout -->
+        <TableLayout android:id="@+id/tableLayout1"  
+			    android:layout_width="wrap_content"  
+			    android:layout_height="wrap_content"
+			    android:shrinkColumns="*"  
+          android:stretchColumns="*">
+            <TableRow  
+				        android:id="@+id/tableRow4"  
+				        android:layout_height="wrap_content"  
+				        android:layout_width="wrap_content"  
+				        android:background="@drawable/topbar_wide"
+				        android:gravity="center_horizontal"> 
+				        <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+					        <ImageButton android:background="@null" 
+			               android:layout_width="wrap_content" 
+			               android:layout_height="wrap_content" 
+			               android:id="@+id/MapButton" 
+			               android:src="@drawable/map" 
+			               android:layout_gravity="left"
+			               android:padding="10dp">
+			            </ImageButton>
+			            <TextView 
+			                android:layout_weight="1"
+			                android:gravity="center_vertical"
+			                android:text="biz location dsdsdsdsdsdsds"
+			                android:textStyle="bold" 
+			                android:layout_width="fill_parent"
+			                android:layout_height="fill_parent">
+			            </TextView>
+			          </LinearLayout>
+		            <LinearLayout android:layout_width="wrap_content"
+				          android:background="@drawable/topbar_wide"
+				          android:layout_height="wrap_content">
+					        <ImageView 
+				              android:layout_width="wrap_content" 
+				              android:layout_height="wrap_content"
+				              android:layout_gravity="center_horizontal" 
+				              android:src="@drawable/separator">
+				          </ImageView>
+				          <ImageButton android:background="@null" 
+			               android:layout_width="wrap_content" 
+			               android:layout_height="wrap_content" 
+			               android:id="@+id/AddButton" 
+			               android:src="@drawable/tags" 
+			               android:layout_gravity="left"
+			               android:padding="10dp">
+			            </ImageButton>
+			            <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+			          </LinearLayout>
+				    </TableRow>
+				    
+				    <!-- second row -->
+				    <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/DetailButton" 
+                     android:src="@drawable/shopping" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/ViewPagerButton" 
+                     android:src="@drawable/tags" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/BizButton" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/AddButton" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            <!-- third row -->
+            <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            <!-- four row -->
+            <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            <!-- five row -->
+            <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView android:gravity="center_vertical" android:textStyle="bold" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="biz location dsdsdsdsdsdsds"></TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            <!-- six row -->
+            <TableRow  
+                android:id="@+id/tableRow4"  
+                android:layout_height="wrap_content"  
+                android:layout_width="wrap_content"  
+                android:background="@drawable/topbar_wide"
+                android:gravity="center_horizontal"> 
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content"> 
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content"
+                  android:background="@drawable/topbar_wide"
+                  android:layout_height="wrap_content">
+                  <ImageView 
+                      android:layout_width="wrap_content" 
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center_horizontal" 
+                      android:src="@drawable/separator">
+                  </ImageView>
+                  <ImageButton android:background="@null" 
+                     android:layout_width="wrap_content" 
+                     android:layout_height="wrap_content" 
+                     android:id="@+id/MapButtonx" 
+                     android:src="@drawable/map" 
+                     android:layout_gravity="left"
+                     android:padding="10dp">
+                  </ImageButton>
+                  <TextView 
+                      android:layout_weight="1"
+                      android:gravity="center_vertical"
+                      android:text="biz location dsdsdsdsdsdsds"
+                      android:textStyle="bold" 
+                      android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+                  </TextView>
+                </LinearLayout>
+            </TableRow>
+            
+            
+        </TableLayout>
         
-        <LinearLayout android:layout_width="fill_parent" 
-           android:background="@drawable/topbar_wide" 
-           android:layout_height="wrap_content" 
-           android:orientation="horizontal">
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/arrow_direction" android:padding="10dp"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Direction"
-              android:textStyle="bold" 
-              android:layout_width="wrap_content" 
-              android:layout_height="fill_parent">
-          </TextView>
-        </LinearLayout>
-        
-        <LinearLayout android:layout_width="fill_parent" 
-           android:background="@drawable/topbar_wide" 
-           android:layout_height="wrap_content" 
-           android:orientation="horizontal">
-          <ImageButton android:background="@null" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/arrow_direction" android:padding="10dp"></ImageButton>
-          <TextView 
-              android:layout_weight="1"
-              android:gravity="left|center_vertical" 
-              android:text="Direction"
-              android:textStyle="bold" 
-              android:layout_width="wrap_content" 
-              android:layout_height="fill_parent">
-          </TextView>
-        </LinearLayout>
       </LinearLayout>
     </ScrollView> 
     
     <!-- bottom bar dasboard -->
     <LinearLayout android:layout_width="fill_parent" 
-       android:background="@drawable/nav" 
-       android:layout_height="wrap_content" 
-       android:orientation="horizontal" />
+      android:background="@drawable/nav" 
+      android:layout_height="wrap_content" 
+      android:orientation="horizontal">
+    </LinearLayout>
 </LinearLayout>

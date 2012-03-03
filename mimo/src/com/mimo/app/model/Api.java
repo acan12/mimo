@@ -1,7 +1,6 @@
 package com.mimo.app.model;
 
 import java.io.IOException;
-import java.util.Vector;
 
 import org.apache.http.client.ClientProtocolException;
 
@@ -14,7 +13,7 @@ import com.mimo.app.model.pojo.Business;
 
 public class Api extends BaseModel implements IApi {
 	private static final String PREFIX_URL = "http://mimocore.heroku.com/api/v1/";
-	private final String BIZ_API = "biz.json";
+	private final String BIZ_JSON = "biz.json";
 
 	private HttpUtil httpUtil;
 	private String apiUrl;
@@ -31,7 +30,7 @@ public class Api extends BaseModel implements IApi {
 		
 		Log.d("debug: ", "------ run worker api call");
 		
-		httpUtil = new HttpUtil(apiUrl+BIZ_API, null, Method.GET);
+		httpUtil = new HttpUtil(apiUrl+BIZ_JSON, null, Method.GET);
 		String responses = httpUtil.sendRequest();
 		
 		Business[] data = gson.fromJson(responses, Business[].class);
