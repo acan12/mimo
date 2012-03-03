@@ -42,26 +42,27 @@
 				        android:background="@drawable/topbar_wide"
 				        android:gravity="center_horizontal"> 
 				        <LinearLayout android:layout_width="wrap_content"
+				          android:id="@+id/map_layout" 
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-					        <ImageButton android:background="@null" 
+					        <ImageView android:background="@null" 
 			               android:layout_width="wrap_content" 
 			               android:layout_height="wrap_content" 
-			               android:id="@+id/MapButton" 
 			               android:src="@drawable/map" 
 			               android:layout_gravity="left"
 			               android:padding="10dp">
-			            </ImageButton>
+			            </ImageView>
 			            <TextView 
 			                android:layout_weight="1"
 			                android:gravity="center_vertical"
-			                android:text="biz location dsdsdsdsdsdsds"
+			                android:text="Map"
 			                android:textStyle="bold" 
 			                android:layout_width="fill_parent"
 			                android:layout_height="fill_parent">
 			            </TextView>
 			          </LinearLayout>
 		            <LinearLayout android:layout_width="wrap_content"
+		              android:id="@+id/new_layout" 
 				          android:background="@drawable/topbar_wide"
 				          android:layout_height="wrap_content">
 					        <ImageView 
@@ -70,18 +71,17 @@
 				              android:layout_gravity="center_horizontal" 
 				              android:src="@drawable/separator">
 				          </ImageView>
-				          <ImageButton android:background="@null" 
+				          <ImageView android:background="@null" 
 			               android:layout_width="wrap_content" 
 			               android:layout_height="wrap_content" 
-			               android:id="@+id/AddButton" 
 			               android:src="@drawable/tags" 
 			               android:layout_gravity="left"
 			               android:padding="10dp">
-			            </ImageButton>
+			            </ImageView>
 			            <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="biz location dsdsdsdsdsdsds"
+                      android:text="Input Event"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
@@ -97,27 +97,30 @@
                 android:background="@drawable/topbar_wide"
                 android:gravity="center_horizontal"> 
                 <LinearLayout android:layout_width="wrap_content"
+                  android:id="@+id/detail_layout" 
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-                  <ImageButton android:background="@null" 
+                  <ImageView android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
-                     android:id="@+id/DetailButton" 
                      android:src="@drawable/shopping" 
                      android:layout_gravity="left"
                      android:padding="10dp">
-                  </ImageButton>
+                  </ImageView>
                   <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="biz location dsdsdsdsdsdsds"
+                      android:text="Detail"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
                   </TextView>
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content"
+                  android:id="@+id/calendar_layout"
                   android:background="@drawable/topbar_wide"
+                  android:clickable="true"
+                  android:focusableInTouchMode="true"
                   android:layout_height="wrap_content">
                   <ImageView 
                       android:layout_width="wrap_content" 
@@ -125,18 +128,17 @@
                       android:layout_gravity="center_horizontal" 
                       android:src="@drawable/separator">
                   </ImageView>
-                  <ImageButton android:background="@null" 
+                  <ImageView android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
-                     android:id="@+id/ViewPagerButton" 
                      android:src="@drawable/tags" 
                      android:layout_gravity="left"
                      android:padding="10dp">
-                  </ImageButton>
+                  </ImageView>
                   <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="biz location dsdsdsdsdsdsds"
+                      android:text="Calendar"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
@@ -211,7 +213,6 @@
                   <ImageButton android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
-                     android:id="@+id/MapButtonx" 
                      android:src="@drawable/map" 
                      android:layout_gravity="left"
                      android:padding="10dp">
