@@ -49,6 +49,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+//Test
 public class DetailActivity extends DetailView implements IConfiguration, IApp {
 	
 	@Override

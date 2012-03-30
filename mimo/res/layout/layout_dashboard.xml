@@ -97,7 +97,6 @@
                 android:background="@drawable/topbar_wide"
                 android:gravity="center_horizontal"> 
                 <LinearLayout android:layout_width="wrap_content"
-                  android:id="@+id/detail_layout" 
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
                   <ImageView android:background="@null" 
@@ -153,6 +152,7 @@
                 android:background="@drawable/topbar_wide"
                 android:gravity="center_horizontal"> 
                 <LinearLayout android:layout_width="wrap_content"
+                  android:id="@+id/biz_layout"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
                   <ImageButton android:background="@null" 

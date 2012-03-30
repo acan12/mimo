@@ -40,6 +40,7 @@ import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.view.MapOverlays;
 
+//Test
 public class MapLocationActivity extends MapActivity implements IApp{
 	double lat = -6.198254;
 	double lng = 106.841086;

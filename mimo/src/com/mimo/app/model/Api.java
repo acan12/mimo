@@ -12,23 +12,20 @@ import com.mimo.app.model.httputil.HttpUtil.Method;
 import com.mimo.app.model.pojo.Business;
 
 public class Api extends BaseModel implements IApi {
-	private static final String PREFIX_URL = "http://mimocore.heroku.com/api/v1/";
+	private static final String PREFIX_API_V1_URL = "http://mimocore.heroku.com/api/v1/";
 	private final String BIZ_JSON = "biz.json";
 
 	private HttpUtil httpUtil;
 	private String apiUrl;
-
 	private Gson gson = null;
 
 	public Api() {
-		this.apiUrl = PREFIX_URL;
+		this.apiUrl = PREFIX_API_V1_URL;
 		this.gson = new Gson();
 	}
 
 	public Business[] getBusinessLocation() throws ClientProtocolException,
 			IOException {
-		
-		Log.d("debug: ", "------ run worker api call");
 		
 		httpUtil = new HttpUtil(apiUrl+BIZ_JSON, null, Method.GET);
 		String responses = httpUtil.sendRequest();

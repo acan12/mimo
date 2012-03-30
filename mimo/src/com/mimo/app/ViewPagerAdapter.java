@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 
+//Test
 public class ViewPagerAdapter extends PagerAdapter {
 
 	private ArrayList<LinearLayout> views;

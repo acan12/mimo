@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MapDashboardActivity"></activity>
-        <activity android:name=".ActivitiesListActivity" android:configChanges="keyboardHidden|orientation" ></activity>
+        <activity android:name=".ActionListActivity" android:configChanges="keyboardHidden|orientation" ></activity>
         <activity android:name=".InputDetailActivity"></activity>
         <activity android:name=".DetailActivity"></activity>
         <activity android:name=".MapLocationActivity"></activity>

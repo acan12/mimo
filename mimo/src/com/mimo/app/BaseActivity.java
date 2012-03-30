@@ -11,6 +11,10 @@ public class BaseActivity extends Activity {
 	protected IComponentFactory componentFactory;
 	protected Intent intent;
 
+	public BaseActivity(){
+		
+	}
+	
 	/**
 	 * @return the componentFactory
 	 */

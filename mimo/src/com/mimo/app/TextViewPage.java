@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+//Test
 public class TextViewPage extends LinearLayout {
 
 	public TextViewPage(Context context, AttributeSet attrs) {

@@ -73,6 +73,10 @@ public class BusinessWorker extends BaseWorker implements IBusinessWorker {
 	/**
 	 * @param businessWorker the businessWorker to set
 	 */
+	public static void setBusinessWorker() {
+		BusinessWorker.businessWorker = null;
+	}
+	
 	public static void setBusinessWorker(BusinessWorker businessWorker) {
 		BusinessWorker.businessWorker = businessWorker;
 	}

@@ -42,6 +42,7 @@ import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.view.MapDashboardOverlays;
 import com.mimo.app.view.list.ListDialogView;
 
+//Test
 public class MapDashboardActivity extends MapActivity implements OnClickListener, IConfiguration, IBizProfileData {
 	private Hashtable iconHash;
 	private ActivityEvent ae;
@@ -137,11 +138,11 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		Iterator it = list.iterator();
 		while (it.hasNext()) {
 			ActivityEvent ae = (ActivityEvent)it.next();
-			sendStatusNotification(ae);
+			pushEventNotification(ae);
 		}
 	}
 	
-	private void sendStatusNotification(ActivityEvent ae) throws Exception{
+	private void pushEventNotification(ActivityEvent ae) throws Exception{
 		Icons icons = new Icons();
 //		ae = (ActivityEvent) getEventToNotify();
 		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);

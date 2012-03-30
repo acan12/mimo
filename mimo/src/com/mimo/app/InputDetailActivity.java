@@ -15,6 +15,7 @@ import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.view.form.FormInputView;
 
+//Test
 public class InputDetailActivity extends FormInputView implements IConfiguration, IApp{
 	
 	private ActivityEvent a;

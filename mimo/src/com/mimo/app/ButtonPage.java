@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+//Test
 public class ButtonPage extends LinearLayout {
 
 	public ButtonPage(Context context, AttributeSet attrs) {

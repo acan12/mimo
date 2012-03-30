@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+//Test
 public class ListView1Page extends LinearLayout {
 
 	public ListView1Page(Context context, AttributeSet attrs) {
