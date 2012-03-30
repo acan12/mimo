@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import org.apache.http.client.ClientProtocolException;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.mimo.app.model.httputil.HttpUtil;
 import com.mimo.app.model.httputil.HttpUtil.Method;
@@ -26,10 +24,10 @@ public class Api extends BaseModel implements IApi {
 
 	public Business[] getBusinessLocation() throws ClientProtocolException,
 			IOException {
-		
-		httpUtil = new HttpUtil(apiUrl+BIZ_JSON, null, Method.GET);
+
+		httpUtil = new HttpUtil(apiUrl + BIZ_JSON, null, Method.GET);
 		String responses = httpUtil.sendRequest();
-		
+
 		Business[] data = gson.fromJson(responses, Business[].class);
 		return data;
 	}
