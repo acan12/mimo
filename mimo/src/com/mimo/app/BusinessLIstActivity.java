@@ -14,7 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 import com.mimo.app.component.COrderAdapter;
-import com.mimo.app.component.ComponentFactory;
+import com.mimo.app.component.IComponentFactory;
 import com.mimo.app.interfaces.IMenuInstance;
 import com.mimo.app.model.pojo.Business;
 import com.mimo.app.model.pojo.Icons;
@@ -24,7 +24,7 @@ import com.mimo.app.worker.IBusinessWorker;
 
 public class BusinessLIstActivity extends BaseListActivity implements
 		IMenuInstance, OnClickListener {
-	private ComponentFactory componentFactory;
+	private IComponentFactory componentFactory;
 	private ProgressDialog progressDialog = null;
 	private ArrayList<Items> items = null;
 	private COrderAdapter adapter;
@@ -40,9 +40,9 @@ public class BusinessLIstActivity extends BaseListActivity implements
 		// initialize component ui
 		homeButton = (ImageButton) findViewById(R.id.home_button);
 		homeButton.setOnClickListener(this);
-		items = new ArrayList<Items>();
 
-		this.componentFactory = new ComponentFactory();
+		items = new ArrayList<Items>();
+		this.componentFactory = getComponentFactory();
 		this.adapter = componentFactory.createOrderList(this, R.layout.row,
 				items);
 		this.setListAdapter(this.adapter);
@@ -86,7 +86,6 @@ public class BusinessLIstActivity extends BaseListActivity implements
 	@Override
 	protected void getData() {
 		// TODO Auto-generated method stub
-		
 
 		try {
 			items = new ArrayList<Items>();

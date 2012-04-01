@@ -97,6 +97,7 @@
                 android:background="@drawable/topbar_wide"
                 android:gravity="center_horizontal"> 
                 <LinearLayout android:layout_width="wrap_content"
+                  android:id="@+id/event_layout"  
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
                   <ImageView android:background="@null" 

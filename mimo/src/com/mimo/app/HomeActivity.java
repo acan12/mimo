@@ -12,6 +12,7 @@ public class HomeActivity extends Activity implements OnClickListener{
 	
 	private Intent intent;
 	private LinearLayout mapLayout, calendarLayout, bizLayout;
+	private LinearLayout eventLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,10 +20,12 @@ public class HomeActivity extends Activity implements OnClickListener{
         setContentView(R.layout.layout_dashboard);
           
         mapLayout = (LinearLayout) findViewById(R.id.map_layout);
+        eventLayout = (LinearLayout) findViewById(R.id.event_layout);
         calendarLayout = (LinearLayout) findViewById(R.id.calendar_layout);
         bizLayout = (LinearLayout) findViewById(R.id.biz_layout);
         
         mapLayout.setOnClickListener(this);
+        eventLayout.setOnClickListener(this);
         calendarLayout.setOnClickListener(this);
         bizLayout.setOnClickListener(this);
     } 
@@ -31,14 +34,14 @@ public class HomeActivity extends Activity implements OnClickListener{
     public void onClick(View v) {	
     	if(v == mapLayout){
     		intent = new Intent(this, MapDashboardActivity.class);
-			startActivity(intent); 
     	} else if(v == calendarLayout){
     		intent = new Intent(this, ViewPagerActivity.class);
-			startActivity(intent);
+    	} else if(v == eventLayout){
+    		intent = new Intent(this, EventListActivity.class);
     	} else if(v == bizLayout){
     		intent = new Intent(this, BusinessLIstActivity.class);
-			startActivity(intent);
     	}
     	
+    	startActivity(intent); 
     }
 }
