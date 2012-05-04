@@ -82,7 +82,7 @@ public class BusinessLIstActivity extends BaseListActivity implements
 		Business[] dataBusiness = businessWorker.createApiCall();
 		return dataBusiness;
 	}
-
+ 
 	@Override
 	protected void getData() {
 		// TODO Auto-generated method stub

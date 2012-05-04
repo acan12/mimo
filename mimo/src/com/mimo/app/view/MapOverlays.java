@@ -2,6 +2,7 @@ package com.mimo.app.view;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -107,7 +108,9 @@ public class MapOverlays extends ItemizedOverlay<OverlayItem> implements
 							i.putExtra(PARAMS_KEY, idActivity);
 							i.putExtra("paramlat", gp.getLatitudeE6() / 1E6);
 							i.putExtra("paramlng", gp.getLongitudeE6() / 1E6);
-							mContext.startActivity(i);
+							((Activity) mContext).setResult(Activity.RESULT_OK, i);
+							((Activity) mContext).finish();
+//							mContext.startActivity(i);
 						}
 					}).setNegativeButton("No",
 					new DialogInterface.OnClickListener() {

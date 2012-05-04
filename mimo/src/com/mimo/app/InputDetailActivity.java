@@ -1,11 +1,16 @@
 package com.mimo.app;
 
+import org.apache.commons.codec.binary.StringUtils;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,11 +25,21 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 	
 	private ActivityEvent a;
 	private int paramid;
+	private TextView tLat;
+	private TextView tLng;
 
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		
 		Bundle bundle = getIntent().getExtras();
+		
+		if(bundle == null){
+			initialize(R.layout.layout_form_new);
+			return;
+		} else {
+			initialize(R.layout.layout_form_detail);
+		}
+		
 		action = bundle.getInt("paramaction");
 		paramid = bundle.getInt(PARAMS_KEY);
 		
@@ -34,25 +49,31 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 		p.println("paramlng :  "+paramlng);
 		a = new ActivityEvent();
 		
-		switch(action){
-		case DB_CREATE: // create
-			initialize(R.layout.layout_form_new);
-			a.setId(0);
+//		initialize(R.layout.layout_form_detail);
+		showForm(paramid);  
 			
-			break;
-		case DB_UPDATE: // update
-			initialize(R.layout.layout_form_detail);
-			showForm(paramid);  
 			
-			break;
-		}
-		TextView tLat = (TextView)findViewById(R.id.edit_lat);
-		TextView tLng = (TextView)findViewById(R.id.edit_lng);
+		tLat = (TextView)findViewById(R.id.edit_lat);
+		tLng = (TextView)findViewById(R.id.edit_lng);
 		
 		if(paramlat!=0&&paramlng!=0){
 			tLat.setText(""+paramlat);
 			tLng.setText(""+paramlng);
 		}
+	}
+	
+	@Override 
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {   
+		Log.e("--------------- debug paramlat:xxxxx: ", "dodol");
+		Bundle bundle = data.getExtras();
+		
+		tLat = (TextView)findViewById(R.id.edit_lat);
+		tLng = (TextView)findViewById(R.id.edit_lng);
+		
+		tLat.setText(bundle.getDouble("paramlat")+"");
+		tLng.setText(bundle.getDouble("paramlng")+"");
+		
+		Log.e("--------------- debug paramlat:xxxxx", bundle.getDouble("paramlat")+"");
 	}
 	
 	
@@ -77,48 +98,34 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 			
 			break;
 		case R.id.bMapPicker:
-			Intent mapIntent = new Intent(this, MapLocationActivity.class);
-			p.println("......get id:"+paramid);
+			Intent mapIntent = new Intent(this, MapLocationActivity.class); 
 			mapIntent.putExtra(PARAMS_KEY, paramid);
-			this.startActivity(mapIntent);
-			 
+			startActivityForResult(mapIntent, paramid);
+
 			break; 
 		case R.id.btn_submit:
 			a =new ActivityEvent();
 			DBAdapter db = new DBAdapter(this);
-			switch(action){
-			case DB_CREATE: // create
-				setActivityValue(a);
-				db.insertRecord(a);
-				onCreateDialog(RESPONSE_OK);
-				
-				break;
-			case DB_UPDATE: // update
-				//set id activity event
+			
+			
+			if(action > 0){
 				TextView t = (TextView)findViewById(R.id.hidden_value);
 				a.setId(Integer.parseInt(t.getText().toString()));
 				setActivityValue(a);
 				db.updateRecord(a);
-				onCreateDialog(RESPONSE_OK);
 				
-				break;
-			}
-			break;
-		case R.id.btn_cancel:
-			switch(action){
-			case DB_CREATE:
-				Intent i = new Intent(this, HomeActivity.class);
-				this.startActivity(i);
-				break;
-			case DB_UPDATE:
-				Intent i2 = new Intent(this, HomeActivity.class);
-				this.startActivity(i2);
-				break;
+				Intent i = new Intent(this, DetailActivity.class);
+		    	i.putExtra(PARAMS_KEY, a.getId());
+				startActivity(i); 
+				
+			} else {
+				setActivityValue(a);
+				db.insertRecord(a);
+				finish();
 			}
 			
 			break;
 		case R.id.icon_activity:
-			
 			String[] labels = idIcon.getLabels();
 			final int[] icons = idIcon.getIcons();
 			AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -138,6 +145,11 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 					
 				}});
 			dialog.show();
+		}
+		
+		if (v == homeButton) {
+			Intent i = new Intent(this, HomeActivity.class);
+			startActivity(i);
 		}
 	}
 	

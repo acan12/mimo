@@ -43,15 +43,17 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 			mTimeDisplayEnd;
 	protected int action;
 	protected Icons idIcon;
+	protected ImageButton homeButton;
 	
 	protected void initialize(int layout){
 		setContentView(layout);
 		
 		idIcon = new Icons();
+		homeButton = (ImageButton) findViewById(R.id.home_button);
+		homeButton.setOnClickListener(this);
+		
 		Button btn = (Button)findViewById(R.id.btn_submit);
 		btn.setOnClickListener(this);
-		Button btncancel = (Button)findViewById(R.id.btn_cancel);
-		btncancel.setOnClickListener(this);
 		ImageButton iconActivity = (ImageButton)findViewById(R.id.icon_activity);
 		iconActivity.setOnClickListener(this);
 		Button mapPicker = (Button)findViewById(R.id.bMapPicker);

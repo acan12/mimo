@@ -81,7 +81,7 @@
 			            <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="Input Event"
+                      android:text="Add Event"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
@@ -167,7 +167,7 @@
                   <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="biz location dsdsdsdsdsdsds"
+                      android:text="business"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">

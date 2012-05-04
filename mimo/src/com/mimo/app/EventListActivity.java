@@ -55,47 +55,6 @@ public class EventListActivity extends BaseListActivity implements IApp, OnClick
     	i.putExtra(PARAMS_KEY, Integer.parseInt(o.getItemId()));
 		startActivity(i); 
     }
-    
-//    class OrderAdapter extends ArrayAdapter<Items> {
-//
-//        private ArrayList<Items> items;
-//
-//        public OrderAdapter(Context context, int textViewResourceId, ArrayList<Items> items) {
-//	        super(context, textViewResourceId, items);
-//	        this.items = items;
-//        }
-//        
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent) {
-//	        View v = convertView;
-//	        LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//	        v = vi.inflate(R.layout.row, null);
-//	        Items o = items.get(position);
-//	        if (o != null) {
-//	    		if(o.getDrawableImage() != 0){
-//	        		ImageView img =(ImageView) v.findViewById(R.id.icon);
-//	        		Drawable drawable = v.getResources().getDrawable(o.getDrawableImage());
-//	        		img.setImageDrawable(drawable);
-//	    		}
-//	            TextView tt = (TextView) v.findViewById(R.id.toptext);
-//	            TextView bt = (TextView) v.findViewById(R.id.bottomtext);
-//	            
-//	            if (tt != null) {
-//	                  tt.setText(o.getItemName());                        }
-//	            if(bt != null){
-//	                  bt.setText(o.getItemStatus());
-//	            }
-//	        }
-//	        return v;
-//        }
-//    }
-
-
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	protected void getData() {
@@ -146,5 +105,15 @@ public class EventListActivity extends BaseListActivity implements IApp, OnClick
 			
 			items.add(o);
     	}	
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if (v == homeButton) {
+			intent = new Intent(this, HomeActivity.class);
+			startActivity(intent);
+		}
+
 	}
 }
