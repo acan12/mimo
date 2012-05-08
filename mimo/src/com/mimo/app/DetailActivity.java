@@ -64,7 +64,9 @@ public class DetailActivity extends DetailView implements IConfiguration, IApp {
 		}
 		
 		if (v == homeButton) {
-			Intent i = new Intent(this, HomeActivity.class);
+			Intent i = new Intent();
+			i.setClass(this, HomeActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 		}
 		

@@ -49,9 +49,7 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 		p.println("paramlng :  "+paramlng);
 		a = new ActivityEvent();
 		
-//		initialize(R.layout.layout_form_detail);
 		showForm(paramid);  
-			
 			
 		tLat = (TextView)findViewById(R.id.edit_lat);
 		tLng = (TextView)findViewById(R.id.edit_lng);
@@ -148,7 +146,9 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 		}
 		
 		if (v == homeButton) {
-			Intent i = new Intent(this, HomeActivity.class);
+			Intent i = new Intent();
+			i.setClass(this, HomeActivity.class);
+			i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(i);
 		}
 	}

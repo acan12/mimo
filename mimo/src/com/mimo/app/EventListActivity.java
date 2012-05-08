@@ -111,7 +111,9 @@ public class EventListActivity extends BaseListActivity implements IApp, OnClick
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
 		if (v == homeButton) {
-			intent = new Intent(this, HomeActivity.class);
+			intent = new Intent();
+			intent.setClass(this, HomeActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 		}
 

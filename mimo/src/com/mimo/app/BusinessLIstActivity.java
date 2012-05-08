@@ -52,7 +52,9 @@ public class BusinessLIstActivity extends BaseListActivity implements
 
 	public void onClick(View v) {
 		if (v == homeButton) {
-			intent = new Intent(this, HomeActivity.class);
+			intent = new Intent();
+			intent.setClass(this, HomeActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(intent);
 		}
 
