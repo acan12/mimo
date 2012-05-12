@@ -247,9 +247,13 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 	    tDate.setText(
 	        new StringBuilder()
 	                // Month is 0 based so add 1
-	                .append(mDay).append("/")
-	                .append(mMonth + 1).append("/")
-	                .append(mYear).append(" "));
+//	                .append(mDay).append("/")
+//	                .append(mMonth + 1).append("/")
+//	                .append(mYear).append(" "));
+	        
+	        		.append(pad(mYear)).append("-")
+	        		.append(pad(mMonth + 1)).append("-")
+	        		.append(pad(mDay)).append(" "));
 
 	}
 

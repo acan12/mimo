@@ -3,8 +3,13 @@ package com.mimo.app.model.pojo;
 
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.mimo.app.util.TimeUnit;
+
+import android.util.Log;
 import android.widget.DatePicker;
 
 public class ActivityEvent {
@@ -20,6 +25,8 @@ public class ActivityEvent {
 	private double lng;
 	private int status;
 	private String vMessage;
+	private int diffDay;
+	private String descDiffDay;
 
 	public String getMessage() {
 		return (status == REMINDER_STATUS) ? EVENT_REMINDER_MESSAGE : EVENT_EXPIRED_MESSAGE;
@@ -109,6 +116,42 @@ public class ActivityEvent {
 		return status;
 	}
 	
+	public int getDiffDay(){
+		return diffDay;
+	}
 	
+	public void setDiffDay(int diffDay){
+		this.diffDay = diffDay;
+	}
 	
+	public String getElapsedTime(String date, String time){
+		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:m:s");
+		Date dt;
+		try {
+			dt = f.parse(date.concat(" "+time+":00"));
+		
+
+			long duration = System.currentTimeMillis() - dt.getTime();
+			long days = TimeUnit.MILLISECONDS.toDays(duration);
+			long hours = TimeUnit.MILLISECONDS.toHours(duration);
+			long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+			long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+			
+			if(days > 0){
+				return days + " days left";
+			} else if(hours > 0){
+				return hours + " hours left";
+			} else if(minutes > 0){
+				return minutes + " minutes left";
+			} else if(seconds > 0){
+				return seconds + " seconds left";
+			}
+			
+		
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+	}
 }
