@@ -1,8 +1,6 @@
 package com.mimo.app;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.List;
 
 import android.app.AlertDialog;
@@ -25,7 +23,6 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.google.android.maps.GeoPoint;
@@ -40,15 +37,15 @@ import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
 import com.mimo.app.model.pojo.Icons;
 import com.mimo.app.view.MapDashboardOverlays;
-import com.mimo.app.view.list.ListDialogView;
+import com.mimo.app.view.adapter.ListDialogAdapter;
 
 //Test
 public class MapDashboardActivity extends MapActivity implements OnClickListener, IConfiguration, IBizProfileData {
-	private Hashtable iconHash;
+	private int EVENT_NOTIFY_ID = 1;
+	
 	private ActivityEvent ae;
 	private GeoPoint point;
 	private MapDashboardOverlays itemizedOverlay;
-	private int EVENT_NOTIFY_ID = 1;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -57,17 +54,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		MapView mv = (MapView) findViewById(R.id.mapview);
 		initialize(mv);
 		
-        // counting dynamic button image
-		Hashtable h = getIconButton();
-		Iterator it = h.keySet().iterator();
-		String[] iconLabel = new String[h.keySet().size()];
-		int i=0;
-		while(it.hasNext()){
-			iconLabel[i++] = (String)it.next();
-		}
-        
-		if(iconLabel.length >0){
-			showButtonImage(iconLabel);
+		if(getIconButton().length >0){
+			showButtonImage(getIconButton());
 		}else{
 			LinearLayout ll = (LinearLayout) findViewById(R.id.event_layout);
 			ll.setVisibility(LinearLayout.GONE);
@@ -92,16 +80,22 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		Drawable drawable;
 		final Icons icons = new Icons() ;
 
-		String key = Icons.getLabels()[v.getId()];
-		int value = Integer.parseInt(""+iconHash.get(key));
+		String labelIcon = Icons.getLabels()[v.getId()];
+		int value = 0;
+		for(int i=0; i<getIconButton().length; i++){
+			if(labelIcon.equalsIgnoreCase(getIconButton()[i].split("@")[0])){
+				value = Integer.parseInt(getIconButton()[i].split("@")[1]);
+			}
+		}
+		
 		if(	value > 1 ){
-			showEventDialog(mv, key);
+			showEventDialog(mv, labelIcon);
 		}else{
 			ae = new ActivityEvent();
 			DBAdapter db = new DBAdapter(this);
-			Cursor c = db.getRecordByIcon(key);
+			Cursor c = db.getRecordByIcon(labelIcon);
 			while(c.moveToNext()){
-				ae.setIcon(key);
+				ae.setIcon(labelIcon);
 				ae.setId(c.getInt(c.getColumnIndex("id")));
 				ae.setName(c.getString(c.getColumnIndex("name")));
 				ae.setDescription(c.getString(c.getColumnIndex("description")));
@@ -115,8 +109,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	        
 	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
 	        OverlayItem overlayItem = new OverlayItem(point, 
-	        		ae.getIcon()+" #"+ae.getId(), "Title: \n"+ae.getName());
-	        
+	        		ae.getIcon(), "Title: \n"+ae.getName());
+	        itemizedOverlay.setMapId(ae.getId());
 	        itemizedOverlay.addOverlay(overlayItem);
 	        itemizedOverlay.onParentTap(0);
 			mapOverlays.add(itemizedOverlay);
@@ -126,54 +120,41 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		}
 	}
 	
-	
-/****************************************
- * Custom method : add by developer used
- ****************************************/
-	
 	private void getEventToNotify() throws Exception{
 		DBAdapter db = new DBAdapter(this);
-		Log.d("....................tesss masuk db most ", "masuk notify");
 		List<ActivityEvent> list = db.getMostCloselyEvent();
-		Iterator it = list.iterator();
-		while (it.hasNext()) {
-			ActivityEvent ae = (ActivityEvent)it.next();
-			pushEventNotification(ae);
-		}
+		ActivityEvent ae = (ActivityEvent) list.get(0);
+		pushEventNotification(ae);
 	}
 	
-	private void pushEventNotification(ActivityEvent ae) throws Exception{
+	private void pushEventNotification(ActivityEvent aex) throws Exception{
 		Icons icons = new Icons();
-//		ae = (ActivityEvent) getEventToNotify();
 		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		int drawabaleId = icons.getIconFromLabel(ae.getIcon());
+		int drawabaleId = icons.getIconFromLabel(aex.getIcon());
 		final Notification notification =
 			new Notification(drawabaleId, 
-					ae.getMessage(),
+					aex.getElapsedTime(aex.getStartDate(), aex.getStartTime()),
 					System.currentTimeMillis()+20);
 		
 		Context context = getApplicationContext();
-		CharSequence contentTitle = ae.getName();
-		CharSequence contentText = ae.getDescription();
+		CharSequence contentTitle = aex.getName()+" - "+aex.getElapsedTime(aex.getStartDate(), aex.getStartTime());
+		CharSequence contentText = aex.getDescription();
 		Intent notificationIntent = new Intent(this, MapDashboardActivity.class);
 		
-		double[] loc = {drawabaleId, ae.getLat(), ae.getLng()};
-		notificationIntent.putExtra("pLocation", loc);
+		double[] loc = {drawabaleId, aex.getLat(), aex.getLng()};
+		notificationIntent.putExtra(INTENT_ACTIVITY_OBJECT_KEY, aex);
 		
-		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-	
-		nm.notify(ae.getStatus(), notification);
+		nm.notify(aex.getStatus(), notification);
 		
 	}
 
 	private void showEventDialog(final MapView mv, final String key) {
 		
 		final Icons icons = new Icons();
-		final ListDialogView lDialog = new ListDialogView(this, null, R.layout.list_row_dialog);
+		final ListDialogAdapter adapter = new ListDialogAdapter(this, getListEvent(key) );
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-		final ListAdapter adapter = lDialog.getDialogAdapter(getListEvent(key));
 		   
 		dialog.setTitle("Event: ");
 		dialog.setAdapter(adapter, new DialogInterface.OnClickListener() {
@@ -181,6 +162,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				// TODO Auto-generated method stub
+				ActivityEvent aex = (ActivityEvent) adapter.getItemObject(which);
 				TextView title = (TextView)adapter.getView(which, null, null).findViewById(R.id.title);
 				TextView idevent = (TextView)adapter.getView(which, null, null).findViewById(R.id.hidden_value_id);
 				TextView loc = (TextView)adapter.getView(which, null, null).findViewById(R.id.hidden_value_loc);
@@ -197,11 +179,12 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				
 				List<Overlay> mapOverlays = mv.getOverlays();
 				Drawable drawable = getResources().getDrawable(icon);
-				MapDashboardOverlays itemizedoverlay = new MapDashboardOverlays(drawable, mv, true);
-		        OverlayItem overlayitem = new OverlayItem(point_link, "label: "+iconlabel.getText().toString()+" #"+idevent.getText(), "Title: \n"+title.getText().toString());
-		        itemizedoverlay.addOverlay(overlayitem);
-		        itemizedoverlay.onParentTap(0);
-		        mapOverlays.add(itemizedoverlay);
+				MapDashboardOverlays itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
+		        OverlayItem overlayitem = new OverlayItem(point_link, iconlabel.getText().toString(), "Title: \n"+title.getText().toString());
+		        itemizedOverlay.setMapId(aex.getId());
+		        itemizedOverlay.addOverlay(overlayitem);
+		        itemizedOverlay.onParentTap(0);
+		        mapOverlays.add(itemizedOverlay);
 			}
 		}); 
 		
@@ -265,27 +248,36 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	
 	private void initialize(MapView mv) {
 		Bundle b = getIntent().getExtras();
+		
 		if(b != null){
-			double[] loc = b.getDoubleArray("pLocation");
-			if(loc.length>0){
-				List<Overlay> mapOverlays;
-				Drawable drawable = this.getResources().getDrawable((int)loc[0]);
-		        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
-		        
-				point = getPoint(loc[1], loc[2]);
-				mapOverlays = mv.getOverlays();
-				OverlayItem overlayItem = new OverlayItem(point, null, null);		
-	            itemizedOverlay.addOverlay(overlayItem);
-	            itemizedOverlay.onParentTap(0);
-	            mapOverlays.add(itemizedOverlay);
-	            
-	            mv.setBuiltInZoomControls(true);
-	    		mv.getController().setCenter(point);
-	    		mv.getController().setZoom(13);
-	    		
-	    		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-	    		nm.cancel(1);
-			}
+			ActivityEvent aex = (ActivityEvent) getIntent().getSerializableExtra(INTENT_ACTIVITY_OBJECT_KEY);
+			Icons icons = new Icons();
+			List<Overlay> mapOverlays;
+			Drawable drawable = this.getResources().getDrawable(icons.getIconFromLabel(aex.getIcon()));
+	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
+	        
+	        point = getPoint(aex.getLat(), aex.getLng());
+	        
+	        mapOverlays = mv.getOverlays();
+
+	        drawable = this.getResources().getDrawable(new Icons().getIconFromLabel(aex.getIcon()));
+	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
+			
+	        
+			OverlayItem overlayItem = new OverlayItem(point, 
+	        		aex.getIcon(), "Title: \n"+aex.getName());
+			
+			itemizedOverlay.setMapId(aex.getId());
+            itemizedOverlay.addOverlay(overlayItem);
+            itemizedOverlay.onParentTap(0);
+            mapOverlays.add(itemizedOverlay);
+            
+            mv.setBuiltInZoomControls(true);
+    		mv.getController().setCenter(point);
+    		mv.getController().setZoom(16);
+    		
+    		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    		nm.cancel(1);
 		}else{
 			setBizProfileToMap();
 		}
@@ -299,18 +291,19 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	} 
 	
 
-	private Hashtable getIconButton(){
+	private String[] getIconButton(){
 		ae = new ActivityEvent();
 		DBAdapter db = new DBAdapter(this);
 		Cursor c = db.getIconsUniqRecord();    
-		iconHash = new Hashtable();
+		int i =0;
+		String[] activityIcon = new String[c.getCount()];
 		while(c.moveToNext()){
 			String key = c.getString(c.getColumnIndex("icon"));
 			String value = c.getString(c.getColumnIndex("count_record"));
-			iconHash.put(key, value);
+			activityIcon[i++] = key+"@"+value;
 		}
 		
-		return iconHash;
+		return activityIcon;
 	} 
 	
 	private void showButtonImage(String[] iconLabel){
@@ -327,8 +320,8 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			ImageButton imb = new ImageButton(this);
 			ImageView sep = new ImageView(this);
 			TextView t = new TextView(this);
-			imb.setId(icons.getIndexFromLabel(iconLabel[i]));
-			imb.setImageResource(icons.getIconFromLabel(iconLabel[i]));
+			imb.setId(icons.getIndexFromLabel(iconLabel[i].split("@")[0]));
+			imb.setImageResource(icons.getIconFromLabel(iconLabel[i].split("@")[0]));
 			imb.setBackgroundColor(Color.TRANSPARENT);
 			
 			
@@ -339,7 +332,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				sep.setPadding(0, 0, 20, 0);
 			}
 			
-			t.setText(iconLabel[i]);
+			t.setText(iconLabel[i].split("@")[0]);
 			t.setGravity(Gravity.CENTER);
 			t.setTextSize(13f);
 			ll.addView(imb);

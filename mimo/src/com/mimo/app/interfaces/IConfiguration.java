@@ -2,7 +2,7 @@ package com.mimo.app.interfaces;
 
 import java.io.PrintStream;
 
-public interface IConfiguration {
+public interface IConfiguration extends IApp{
 	static final int ACTION_ADD = 1;
 	static final int ACTION_UPDATE = 2;
 

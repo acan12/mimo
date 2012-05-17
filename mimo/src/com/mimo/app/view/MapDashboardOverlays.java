@@ -21,6 +21,7 @@ public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> im
 		private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 		private Context mContext ;
 		private boolean isTouched;
+		private int mapId;
 		
 		
 		public MapDashboardOverlays(Drawable defaultMarker) {
@@ -68,7 +69,9 @@ public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> im
 				OverlayItem itemClicked = mOverlays.get(index);
 				
 				Intent i = new Intent(mContext, DetailActivity.class);
-				i.putExtra(PARAMS_KEY, Integer.parseInt(itemClicked.getTitle().split("#")[1]));
+				//i.putExtra(PARAMS_KEY, Integer.parseInt(itemClicked.getTitle().split("#")[1]));
+				Log.d("---------- idIcon:",getMapId()+"");
+				i.putExtra(PARAMS_KEY, getMapId());
 				mContext.startActivity(i);
 			} else {
 				Log.e("MapOverlays", "mContext is null");
@@ -76,6 +79,14 @@ public class MapDashboardOverlays extends BalloonItemizedOverlay<OverlayItem> im
 			
 			
 			return true;
+		}
+
+		public int getMapId() {
+			return mapId;
+		}
+
+		public void setMapId(int mapId) {
+			this.mapId = mapId;
 		}
 		
 }

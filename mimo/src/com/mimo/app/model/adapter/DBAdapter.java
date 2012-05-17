@@ -29,7 +29,6 @@ public class DBAdapter extends BaseModel {
 	public static final String KEY_LAT = "lat";
 	public static final String KEY_LNG = "lng";
 	public static final String KEY_STATUS = "status";
-	public static final String KEY_DIFFDAY = "diffDay";
 	private static final String TAG = "DBAdapter";
 	private static final int OFFSET_DAY = 1;
 
@@ -96,10 +95,10 @@ public class DBAdapter extends BaseModel {
 		initialValues.put(KEY_NAME, act.getName());
 		initialValues.put(KEY_ICON, act.getIcon());
 		initialValues.put(KEY_DESCRIPTION, act.getDescription());
-		initialValues.put(KEY_START_DATE, act.getStart_date());
-		initialValues.put(KEY_END_DATE, act.getEnd_date());
-		initialValues.put(KEY_START_TIME, act.getStart_time());
-		initialValues.put(KEY_END_TIME, act.getEnd_time());
+		initialValues.put(KEY_START_DATE, act.getStartDate());
+		initialValues.put(KEY_END_DATE, act.getEndDate());
+		initialValues.put(KEY_START_TIME, act.getStartTime());
+		initialValues.put(KEY_END_TIME, act.getEndTime());
 		initialValues.put(KEY_LAT, act.getLat());
 		initialValues.put(KEY_LNG, act.getLng());
 		long rows_affected = db.insert(DATABASE_TABLE, null, initialValues);
@@ -116,33 +115,27 @@ public class DBAdapter extends BaseModel {
 	}
 
 	public List<ActivityEvent> getMostCloselyEvent() throws Exception {
-		Calendar caloffset = Calendar.getInstance();
-		Calendar calnow = Calendar.getInstance();
-		caloffset.add(Calendar.DATE, OFFSET_DAY);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
 		List<ActivityEvent> list = new ArrayList<ActivityEvent>();
-		Log.d("tag----->", "" + (sdf.format(caloffset.getTime())));
 		this.open();
-		Cursor c = db.rawQuery("SELECT * FROM activities ", null);
+		Cursor c = db.rawQuery(
+				"SELECT * FROM activities where " +
+				"(julianday(strftime('%Y-%m-%d', st_date) ) -  julianday(strftime('%Y-%m-%d', 'now'))  )  >= 0 " +
+				"order by st_date, st_time limit 1", null);
 
-		Log.d("tesss masuk db most ", "masuk db most");
 		while (c.moveToNext()) {
-			Log.d("tesss masuk db most ", " -> looping");
-			Date stdate = new Date();
-			stdate = sdf.parse(c.getString(c.getColumnIndex("st_date")));
-			long diff = (caloffset.getTime().getTime() - calnow.getTime()
-					.getTime()) / (1000 * 60 * 60 * 24);
-			;
 			ae = new ActivityEvent();
+			ae.setId(c.getInt(c.getColumnIndex("id")));
 			ae.setIcon(c.getString(c.getColumnIndex("icon")));
 			ae.setName(c.getString(c.getColumnIndex("name")));
 			ae.setDescription(c.getString(c.getColumnIndex("description")));
 			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
 			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
+			
+			ae.setStartDate(c.getString(c.getColumnIndex("st_date")));
+			ae.setStartTime(c.getString(c.getColumnIndex("st_time")));
 			ae.setStatus(c.getInt(c.getColumnIndex("status")));
 
-			ae.setStatus((diff >= 0) ? ActivityEvent.REMINDER_STATUS
-					: ActivityEvent.EXPIRED_STATUS);
+			
 			list.add(ae);
 		}
 		return list;
@@ -152,29 +145,27 @@ public class DBAdapter extends BaseModel {
 		this.open();
 		Cursor c = db
 				.rawQuery(
-						"select count(*) as count_record, icon from activities group by icon",
+						"select count(*) as count_record, icon " +
+						"from activities group by icon order by st_date, st_time",
 						null);
 		return c;
 	}
 
 	public Cursor getAllRecord() {
 		this.open();
-		String sql = "SELECT a.*, abs(julianday(strftime('%Y-%m-%d', st_date) ) - julianday(strftime('%Y-%m-%d', 'now')) ) as diffDay FROM activities a order by a.st_date, a.st_time";
-		Cursor c = db.rawQuery(sql, null);
-		// Cursor c = db.query(DATABASE_TABLE, new String[]{
-		// KEY_ROWID,
-		// KEY_NAME,
-		// KEY_ICON,
-		// KEY_DESCRIPTION,
-		// KEY_START_DATE,
-		// KEY_START_TIME,
-		// KEY_END_DATE,
-		// KEY_END_TIME,
-		// KEY_LAT,
-		// KEY_LNG,
-		// KEY_STATUS,
-		// KEY_DIFFDAY
-		// }, null, null, null, null, KEY_ICON);
+		 Cursor c = db.query(DATABASE_TABLE, new String[]{
+		 KEY_ROWID,
+		 KEY_NAME,
+		 KEY_ICON,
+		 KEY_DESCRIPTION,
+		 KEY_START_DATE,
+		 KEY_START_TIME,
+		 KEY_END_DATE,
+		 KEY_END_TIME,
+		 KEY_LAT,
+		 KEY_LNG,
+		 KEY_STATUS
+		 }, null, null, null, null, KEY_START_DATE+","+KEY_START_TIME);
 		return c;
 	}
 
@@ -183,7 +174,7 @@ public class DBAdapter extends BaseModel {
 		Cursor mCursor = db.query(true, DATABASE_TABLE, new String[] {
 				KEY_ROWID, KEY_NAME, KEY_ICON, KEY_DESCRIPTION, KEY_START_DATE,
 				KEY_START_TIME, KEY_END_DATE, KEY_END_TIME, KEY_LAT, KEY_LNG,
-				KEY_STATUS }, KEY_ROWID + "=" + rowId, null, null, null, null,
+				KEY_STATUS }, KEY_ROWID + "=" + rowId, null, null, null, KEY_START_DATE+","+KEY_START_TIME,
 				null);
 		if (mCursor != null) {
 			mCursor.moveToFirst();
@@ -198,7 +189,7 @@ public class DBAdapter extends BaseModel {
 				KEY_ROWID, KEY_NAME, KEY_ICON, KEY_DESCRIPTION, KEY_START_DATE,
 				KEY_START_TIME, KEY_END_DATE, KEY_END_TIME, KEY_LAT, KEY_LNG,
 				KEY_STATUS }, KEY_ICON + "='" + iconLabel + "'", null, null,
-				null, null, null);
+				null, KEY_START_DATE+","+KEY_START_TIME, null);
 		return mCursor;
 	}
 
@@ -208,10 +199,10 @@ public class DBAdapter extends BaseModel {
 		args.put(KEY_NAME, act.getName());
 		args.put(KEY_ICON, act.getIcon());
 		args.put(KEY_DESCRIPTION, act.getDescription());
-		args.put(KEY_START_DATE, act.getStart_date());
-		args.put(KEY_END_DATE, act.getEnd_date());
-		args.put(KEY_START_TIME, act.getStart_time());
-		args.put(KEY_END_TIME, act.getEnd_time());
+		args.put(KEY_START_DATE, act.getStartDate());
+		args.put(KEY_END_DATE, act.getEndDate());
+		args.put(KEY_START_TIME, act.getStartTime());
+		args.put(KEY_END_TIME, act.getEndTime());
 		args.put(KEY_LAT, act.getLat());
 		args.put(KEY_LNG, act.getLng());
 		boolean rows_affected = db.update(DATABASE_TABLE, args, KEY_ROWID + "="

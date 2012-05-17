@@ -38,10 +38,10 @@ public class DetailView extends BaseView implements OnClickListener{
 		ae.setName(c.getString(c.getColumnIndex("name")));
 		ae.setIcon(c.getString(c.getColumnIndex("icon")));
 		ae.setDescription(c.getString(c.getColumnIndex("description")));
-		ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-		ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-		ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-		ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+		ae.setStartDate(c.getString(c.getColumnIndex("st_date")));
+		ae.setStartTime(c.getString(c.getColumnIndex("st_time")));
+		ae.setEndDate(c.getString(c.getColumnIndex("end_date")));
+		ae.setEndTime(c.getString(c.getColumnIndex("end_time")));
 		ae.setLat(c.getDouble(c.getColumnIndex("lat")));
 		ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 			
@@ -72,10 +72,10 @@ public class DetailView extends BaseView implements OnClickListener{
 		
 		//set activity start/end date
 		TextView eStartDate = (TextView)findViewById(R.id.labelStart);
-		eStartDate.setText("Start : "+ae.getStart_date()+", "+ae.getStart_time());
+		eStartDate.setText("Start : "+ae.getStartDate()+", "+ae.getStartTime());
 
 		TextView eEndDate = (TextView)findViewById(R.id.labelEnd);
-		eEndDate.setText("End : "+ae.getEnd_date()+", "+ae.getEnd_time());
+		eEndDate.setText("End : "+ae.getEndDate()+", "+ae.getEndTime());
 
 		
 		

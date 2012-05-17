@@ -106,15 +106,15 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 		
 		//set activity start/end date
 		TextView eStartDate = (TextView)findViewById(R.id.tStarDate);
-		ae.setStart_date(eStartDate.getText().toString());
+		ae.setStartDate(eStartDate.getText().toString());
 		TextView eEndDate = (TextView)findViewById(R.id.tEndDate);
-		ae.setEnd_date(eEndDate.getText().toString());
+		ae.setEndDate(eEndDate.getText().toString());
 		
 		//set activity start/end time
 		TextView eStartTime = (TextView)findViewById(R.id.tStartTime);
-		ae.setStart_time(eStartTime.getText().toString());
+		ae.setStartTime(eStartTime.getText().toString());
 		TextView eEndTime = (TextView)findViewById(R.id.tEndTime);
-		ae.setEnd_time(eEndTime.getText().toString());
+		ae.setEndTime(eEndTime.getText().toString());
 		
 		//set activity lat/lng value
 		TextView eLat = (TextView)findViewById(R.id.edit_lat);
@@ -136,10 +136,10 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 			ae.setName(c.getString(c.getColumnIndex("name")));
 			ae.setIcon(c.getString(c.getColumnIndex("icon")));
 			ae.setDescription(c.getString(c.getColumnIndex("description")));
-			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+			ae.setStartDate(c.getString(c.getColumnIndex("st_date")));
+			ae.setStartTime(c.getString(c.getColumnIndex("st_time")));
+			ae.setEndDate(c.getString(c.getColumnIndex("end_date")));
+			ae.setEndTime(c.getString(c.getColumnIndex("end_time")));
 			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
 			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
 			
@@ -173,17 +173,17 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 		
 		//set activity start/end date
 		TextView eStartDate = (TextView)findViewById(R.id.tStarDate);
-		eStartDate.setText(ae.getStart_date());
+		eStartDate.setText(ae.getStartDate());
 
 		TextView eEndDate = (TextView)findViewById(R.id.tEndDate);
-		eEndDate.setText(ae.getEnd_date());
+		eEndDate.setText(ae.getEndDate());
 
 		//set activity start/end time
 		TextView eStartTime = (TextView)findViewById(R.id.tStartTime);
-		eStartTime.setText(ae.getStart_time());
+		eStartTime.setText(ae.getStartTime());
 		
 		TextView eEndTime = (TextView)findViewById(R.id.tEndTime);
-		eEndTime.setText(ae.getEnd_time());
+		eEndTime.setText(ae.getEndTime());
 		
 		
 		//set activity lat/lng value

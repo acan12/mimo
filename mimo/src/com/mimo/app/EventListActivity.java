@@ -90,22 +90,21 @@ public class EventListActivity extends BaseListActivity implements IApp,
 			ae.setName(c.getString(c.getColumnIndex("name")));
 			ae.setIcon(c.getString(c.getColumnIndex("icon")));
 			ae.setDescription(c.getString(c.getColumnIndex("description")));
-			ae.setStart_date(c.getString(c.getColumnIndex("st_date")));
-			ae.setStart_time(c.getString(c.getColumnIndex("st_time")));
-			ae.setEnd_date(c.getString(c.getColumnIndex("end_date")));
-			ae.setEnd_time(c.getString(c.getColumnIndex("end_time")));
+			ae.setStartDate(c.getString(c.getColumnIndex("st_date")));
+			ae.setStartTime(c.getString(c.getColumnIndex("st_time")));
+			ae.setEndDate(c.getString(c.getColumnIndex("end_date")));
+			ae.setEndTime(c.getString(c.getColumnIndex("end_time")));
 			ae.setLat(c.getDouble(c.getColumnIndex("lat")));
 			ae.setLng(c.getDouble(c.getColumnIndex("lng")));
-			ae.setDiffDay(c.getInt(c.getColumnIndex("diffDay")));
 			
 			o = new Items();
 			o.setItemId(c.getString(c.getColumnIndex("id")));
 			o.setItemName(ae.getIcon());
 
 			String description = ae.getName() + ", " + ae.getDescription()
-					+ "\nAt: \n " + ae.getStart_date() + " " + ae.getStart_time()
-					+ " - " + ae.getEnd_date() + " " + ae.getEnd_time()
-					+ "\n" + ae.getElapsedTime(ae.getStart_date(), ae.getStart_time()) ;
+					+ "\nAt: \n " + ae.getStartDate() + " " + ae.getStartTime()
+					+ " - " + ae.getEndDate() + " " + ae.getEndTime()
+					+ "\n" + ae.getElapsedTime(ae.getStartDate(), ae.getStartTime()) ;
 			o.setItemStatus(description);
 			o.setDrawableImage(icons.getIconFromLabel(ae.getIcon()));
 

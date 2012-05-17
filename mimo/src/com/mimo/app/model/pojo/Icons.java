@@ -2,6 +2,8 @@ package com.mimo.app.model.pojo;
 
 import org.apache.commons.lang.ArrayUtils;
 
+import android.util.Log;
+
 import com.mimo.app.R;
 
 public class Icons {
@@ -159,8 +161,9 @@ public class Icons {
 	 * @return
 	 */
 	public int getIconFromLabel(String label) {
-
+		Log.d("","----------label---"+label);
 		int index = ArrayUtils.indexOf(getLabels(), label);
+		Log.d("","----------index---"+index);
 		return icons[index];
 	}
 	
