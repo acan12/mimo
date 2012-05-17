@@ -14,7 +14,6 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -41,8 +40,6 @@ import com.mimo.app.view.adapter.ListDialogAdapter;
 
 //Test
 public class MapDashboardActivity extends MapActivity implements OnClickListener, IConfiguration, IBizProfileData {
-	private int EVENT_NOTIFY_ID = 1;
-	
 	private ActivityEvent ae;
 	private GeoPoint point;
 	private MapDashboardOverlays itemizedOverlay;
@@ -120,16 +117,24 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		}
 	}
 	
-	private void getEventToNotify() throws Exception{
+	private void getEventToNotify(){
 		DBAdapter db = new DBAdapter(this);
-		List<ActivityEvent> list = db.getMostCloselyEvent();
-		ActivityEvent ae = (ActivityEvent) list.get(0);
-		pushEventNotification(ae);
+		List<ActivityEvent> list;
+		try {
+			list = db.getMostCloselyEvent();
+		
+			ActivityEvent ae = (ActivityEvent) list.get(0);
+			pushEventNotification(ae);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private void pushEventNotification(ActivityEvent aex) throws Exception{
 		Icons icons = new Icons();
 		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		
 		int drawabaleId = icons.getIconFromLabel(aex.getIcon());
 		final Notification notification =
 			new Notification(drawabaleId, 
@@ -142,11 +147,15 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		Intent notificationIntent = new Intent(this, MapDashboardActivity.class);
 		
 		double[] loc = {drawabaleId, aex.getLat(), aex.getLng()};
-		notificationIntent.putExtra(INTENT_ACTIVITY_OBJECT_KEY, aex);
+		notificationIntent.putExtra(IAPP_INTENT_ACTIVITY_OBJECT_KEY, aex);
 		
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, Intent.FLAG_ACTIVITY_NEW_TASK);
+		
+		notification.flags = Notification.FLAG_AUTO_CANCEL;
+		
 		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
-		nm.notify(aex.getStatus(), notification);
+		nm.notify(1, notification);
+		
 		
 	}
 
@@ -250,7 +259,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		Bundle b = getIntent().getExtras();
 		
 		if(b != null){
-			ActivityEvent aex = (ActivityEvent) getIntent().getSerializableExtra(INTENT_ACTIVITY_OBJECT_KEY);
+			ActivityEvent aex = (ActivityEvent) getIntent().getSerializableExtra(IAPP_INTENT_ACTIVITY_OBJECT_KEY);
 			Icons icons = new Icons();
 			List<Overlay> mapOverlays;
 			Drawable drawable = this.getResources().getDrawable(icons.getIconFromLabel(aex.getIcon()));
@@ -276,18 +285,11 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
     		mv.getController().setCenter(point);
     		mv.getController().setZoom(16);
     		
-    		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    		nm.cancel(1);
 		}else{
 			setBizProfileToMap();
+			getEventToNotify();
 		}
 		
-		try{
-			getEventToNotify();
-		}catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	} 
 	
 
