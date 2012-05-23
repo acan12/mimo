@@ -176,7 +176,7 @@
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content">
-                  <ImageView 
+                  <!-- <ImageView 
                       android:layout_width="wrap_content" 
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_horizontal" 
@@ -197,7 +197,7 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
             </TableRow>
             
@@ -211,7 +211,7 @@
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-                  <ImageButton android:background="@null" 
+                  <!-- <ImageButton android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
                      android:src="@drawable/map" 
@@ -221,16 +221,16 @@
                   <TextView 
                       android:layout_weight="1"
                       android:gravity="center_vertical"
-                      android:text="biz location dsdsdsdsdsdsds"
+                      android:text="biz location"
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content">
-                  <ImageView 
+                  <!-- <ImageView 
                       android:layout_width="wrap_content" 
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_horizontal" 
@@ -251,7 +251,7 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
             </TableRow>
             
@@ -265,7 +265,7 @@
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-                  <ImageButton android:background="@null" 
+                  <!-- <ImageButton android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
                      android:id="@+id/MapButtonx" 
@@ -280,12 +280,12 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content">
-                  <ImageView 
+                  <!-- <ImageView 
                       android:layout_width="wrap_content" 
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_horizontal" 
@@ -306,7 +306,7 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
             </TableRow>
             
@@ -320,7 +320,7 @@
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-                  <ImageButton android:background="@null" 
+                  <!-- <ImageButton android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
                      android:id="@+id/MapButtonx" 
@@ -335,12 +335,12 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content">
-                  <ImageView 
+                  <!-- <ImageView 
                       android:layout_width="wrap_content" 
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_horizontal" 
@@ -354,7 +354,7 @@
                      android:layout_gravity="left"
                      android:padding="10dp">
                   </ImageButton>
-                  <TextView android:gravity="center_vertical" android:textStyle="bold" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="biz location dsdsdsdsdsdsds"></TextView>
+                  <TextView android:gravity="center_vertical" android:textStyle="bold" android:layout_weight="1" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="biz location dsdsdsdsdsdsds"></TextView> -->
                 </LinearLayout>
             </TableRow>
             
@@ -368,7 +368,7 @@
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content"> 
-                  <ImageButton android:background="@null" 
+                  <!-- <ImageButton android:background="@null" 
                      android:layout_width="wrap_content" 
                      android:layout_height="wrap_content" 
                      android:id="@+id/MapButtonx" 
@@ -383,12 +383,12 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
                 <LinearLayout android:layout_width="wrap_content"
                   android:background="@drawable/topbar_wide"
                   android:layout_height="wrap_content">
-                  <ImageView 
+                  <!-- <ImageView 
                       android:layout_width="wrap_content" 
                       android:layout_height="wrap_content"
                       android:layout_gravity="center_horizontal" 
@@ -409,7 +409,7 @@
                       android:textStyle="bold" 
                       android:layout_width="fill_parent"
                       android:layout_height="fill_parent">
-                  </TextView>
+                  </TextView> -->
                 </LinearLayout>
             </TableRow>
             
