@@ -1,5 +1,7 @@
 package com.mimo.app;
 
+import com.bugsense.trace.BugSenseHandler;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +19,9 @@ public class HomeActivity extends Activity implements OnClickListener{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        BugSenseHandler.setup(this, "56d1af98");
+        
         setContentView(R.layout.layout_dashboard);
           
         mapLayout = (LinearLayout) findViewById(R.id.map_layout);
@@ -34,6 +39,10 @@ public class HomeActivity extends Activity implements OnClickListener{
     
     @Override
     public void onClick(View v) {	
+    	
+    	BugSenseHandler.log("debugOfBugSense:", new Exception());
+    	
+    	
     	if(v == mapLayout){
     		intent = new Intent(this, MapDashboardActivity.class);
     	} else if(v == calendarLayout){
