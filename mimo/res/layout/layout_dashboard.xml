@@ -20,6 +20,7 @@
     
     <!-- all icon dashboard -->
     <ScrollView android:layout_weight="1" 
+      android:scrollbars="none" 
       android:layout_height="wrap_content" 
       android:layout_width="wrap_content" 
       android:id="@+id/scrollView1">
@@ -31,120 +32,114 @@
         
         <!-- table layout -->
         <TableLayout android:id="@+id/tableLayout1"  
-			    android:layout_width="wrap_content"  
-			    android:layout_height="wrap_content"
-			    android:shrinkColumns="*"  
-          android:stretchColumns="*">
+		    android:layout_width="wrap_content"  
+		    android:layout_height="wrap_content"
+		    android:shrinkColumns="*"  
+          	android:stretchColumns="*">
             <TableRow  
-				        android:id="@+id/tableRow4"  
-				        android:layout_height="wrap_content"  
-				        android:layout_width="wrap_content"  
-				        android:background="@drawable/topbar_wide"
-				        android:gravity="center_horizontal"> 
+		        android:id="@+id/tableRow4"  
+		        android:layout_height="wrap_content"  
+		        android:layout_width="wrap_content"  
+		        android:background="@drawable/topbar_wide"
+		        android:gravity="center_horizontal"> 
 				        <LinearLayout android:layout_width="wrap_content"
 				          android:id="@+id/map_layout" 
-                  android:background="@drawable/topbar_wide"
-                  android:layout_height="wrap_content"> 
-					        <ImageView android:background="@null" 
-			               android:layout_width="wrap_content" 
-			               android:layout_height="wrap_content" 
-			               android:src="@drawable/map" 
-			               android:layout_gravity="left"
-			               android:padding="10dp">
-			            </ImageView>
-			            <TextView 
-			                android:layout_weight="1"
-			                android:gravity="center_vertical"
-			                android:text="Map"
-			                android:textStyle="bold" 
-			                android:layout_width="fill_parent"
-			                android:layout_height="fill_parent">
-			            </TextView>
-			          </LinearLayout>
-		            <LinearLayout android:layout_width="wrap_content"
-		              android:id="@+id/new_layout" 
-				          android:background="@drawable/topbar_wide"
-				          android:layout_height="wrap_content">
-					        <ImageView 
-				              android:layout_width="wrap_content" 
-				              android:layout_height="wrap_content"
-				              android:layout_gravity="center_horizontal" 
-				              android:src="@drawable/separator">
-				          </ImageView>
-				          <ImageView android:background="@null" 
-			               android:layout_width="wrap_content" 
-			               android:layout_height="wrap_content" 
-			               android:src="@drawable/tags" 
-			               android:layout_gravity="left"
-			               android:padding="10dp">
-			            </ImageView>
-			            <TextView 
-                      android:layout_weight="1"
-                      android:gravity="center_vertical"
-                      android:text="Add Event"
-                      android:textStyle="bold" 
-                      android:layout_width="fill_parent"
-                      android:layout_height="fill_parent">
-                  </TextView>
-			          </LinearLayout>
+		                  android:background="@drawable/topbar_wide"
+		                  android:layout_height="wrap_content"> 
+					      	<ImageView android:background="@null" 
+				               android:layout_width="wrap_content" 
+				               android:layout_height="wrap_content" 
+				               android:src="@drawable/map" 
+				               android:layout_gravity="left"
+				               android:padding="10dp"/>
+				          	<TextView 
+				               android:layout_weight="1"
+				               android:gravity="center_vertical"
+				               android:text="Map"
+				               android:textStyle="bold" 
+				               android:layout_width="fill_parent"
+				               android:layout_height="fill_parent"/>
+			          	</LinearLayout>
+		            	<LinearLayout android:layout_width="wrap_content"
+				              android:id="@+id/new_layout" 
+						      android:background="@drawable/topbar_wide"
+						      android:layout_height="wrap_content">
+							      <ImageView 
+						          	android:layout_width="wrap_content" 
+						            android:layout_height="wrap_content"
+						            android:layout_gravity="center_horizontal" 
+						            android:src="@drawable/separator"/>
+						          <ImageView android:background="@null" 
+					               	android:layout_width="wrap_content" 
+					               	android:layout_height="wrap_content" 
+					               	android:src="@drawable/tags" 
+					               	android:layout_gravity="left"
+					               	android:padding="10dp"/>
+					            <TextView android:layout_weight="1"
+		                      		android:gravity="center_vertical"
+			                      	android:text="Add Event"
+			                      	android:textStyle="bold" 
+			                      	android:layout_width="fill_parent"
+	                      			android:layout_height="fill_parent"/>
+			          	</LinearLayout>
 				    </TableRow>
 				    
 				    <!-- second row -->
 				    <TableRow  
-                android:id="@+id/tableRow4"  
-                android:layout_height="wrap_content"  
-                android:layout_width="wrap_content"  
-                android:background="@drawable/topbar_wide"
-                android:gravity="center_horizontal"> 
-                <LinearLayout android:layout_width="wrap_content"
-                  android:id="@+id/event_layout"  
-                  android:background="@drawable/topbar_wide"
-                  android:layout_height="wrap_content"> 
-                  <ImageView android:background="@null" 
-                     android:layout_width="wrap_content" 
-                     android:layout_height="wrap_content" 
-                     android:src="@drawable/shopping" 
-                     android:layout_gravity="left"
-                     android:padding="10dp">
-                  </ImageView>
-                  <TextView 
-                      android:layout_weight="1"
-                      android:gravity="center_vertical"
-                      android:text="Detail"
-                      android:textStyle="bold" 
-                      android:layout_width="fill_parent"
-                      android:layout_height="fill_parent">
-                  </TextView>
-                </LinearLayout>
-                <LinearLayout android:layout_width="wrap_content"
-                  android:id="@+id/calendar_layout"
-                  android:background="@drawable/topbar_wide"
-                  android:clickable="true"
-                  android:focusableInTouchMode="true"
-                  android:layout_height="wrap_content">
-                  <ImageView 
-                      android:layout_width="wrap_content" 
-                      android:layout_height="wrap_content"
-                      android:layout_gravity="center_horizontal" 
-                      android:src="@drawable/separator">
-                  </ImageView>
-                  <ImageView android:background="@null" 
-                     android:layout_width="wrap_content" 
-                     android:layout_height="wrap_content" 
-                     android:src="@drawable/tags" 
-                     android:layout_gravity="left"
-                     android:padding="10dp">
-                  </ImageView>
-                  <TextView 
-                      android:layout_weight="1"
-                      android:gravity="center_vertical"
-                      android:text="Calendar"
-                      android:textStyle="bold" 
-                      android:layout_width="fill_parent"
-                      android:layout_height="fill_parent">
-                  </TextView>
-                </LinearLayout>
-            </TableRow>
+		                android:id="@+id/tableRow4"  
+		                android:layout_height="wrap_content"  
+		                android:layout_width="wrap_content"  
+		                android:background="@drawable/topbar_wide"
+		                android:gravity="center_horizontal"> 
+		                <LinearLayout android:layout_width="wrap_content"
+		                  android:id="@+id/event_layout"  
+		                  android:background="@drawable/topbar_wide"
+		                  android:layout_height="wrap_content"> 
+		                  <ImageView android:background="@null" 
+		                     android:layout_width="wrap_content" 
+		                     android:layout_height="wrap_content" 
+		                     android:src="@drawable/shopping" 
+		                     android:layout_gravity="left"
+		                     android:padding="10dp">
+		                  </ImageView>
+		                  <TextView 
+		                      android:layout_weight="1"
+		                      android:gravity="center_vertical"
+		                      android:text="Detail"
+		                      android:textStyle="bold" 
+		                      android:layout_width="fill_parent"
+		                      android:layout_height="fill_parent">
+		                  </TextView>
+		                </LinearLayout>
+		                <LinearLayout android:layout_width="wrap_content"
+		                  android:id="@+id/calendar_layout"
+		                  android:background="@drawable/topbar_wide"
+		                  android:clickable="true"
+		                  android:focusableInTouchMode="true"
+		                  android:layout_height="wrap_content">
+		                  <ImageView 
+		                      android:layout_width="wrap_content" 
+		                      android:layout_height="wrap_content"
+		                      android:layout_gravity="center_horizontal" 
+		                      android:src="@drawable/separator">
+		                  </ImageView>
+		                  <ImageView android:background="@null" 
+		                     android:layout_width="wrap_content" 
+		                     android:layout_height="wrap_content" 
+		                     android:src="@drawable/tags" 
+		                     android:layout_gravity="left"
+		                     android:padding="10dp">
+		                  </ImageView>
+		                  <TextView 
+		                      android:layout_weight="1"
+		                      android:gravity="center_vertical"
+		                      android:text="Calendar"
+		                      android:textStyle="bold" 
+		                      android:layout_width="fill_parent"
+		                      android:layout_height="fill_parent">
+		                  </TextView>
+		                </LinearLayout>
+            		</TableRow>
             
             <TableRow  
                 android:id="@+id/tableRow4"  
