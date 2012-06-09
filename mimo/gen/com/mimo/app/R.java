@@ -124,10 +124,11 @@ public final class R {
         public static final int btn_edit=0x7f090021;
         public static final int btn_map=0x7f090022;
         public static final int btn_submit=0x7f090031;
-        public static final int business=0x7f090056;
-        public static final int business1=0x7f090058;
-        public static final int business2=0x7f09005a;
+        public static final int business=0x7f090058;
+        public static final int business1=0x7f09005a;
+        public static final int business2=0x7f09005c;
         public static final int calendar_layout=0x7f090012;
+        public static final int cancel=0x7f090056;
         public static final int close_img_button=0x7f090004;
         public static final int container_button_linearLayout=0x7f090043;
         public static final int detail_layout=0x7f090015;
@@ -136,7 +137,7 @@ public final class R {
         public static final int edit_lng=0x7f090026;
         public static final int edit_name=0x7f090027;
         public static final int event_layout=0x7f090011;
-        public static final int exit=0x7f090057;
+        public static final int exit=0x7f090059;
         public static final int geocode=0x7f09003f;
         public static final int header=0x7f09000a;
         public static final int hidden_value=0x7f090019;
@@ -168,18 +169,19 @@ public final class R {
         public static final int mapview=0x7f090041;
         public static final int new_layout=0x7f090010;
         public static final int next_map=0x7f090040;
+        public static final int ok=0x7f090055;
         public static final int placename=0x7f09003e;
         public static final int reload=0x7f090054;
         public static final int scroll=0x7f090042;
         public static final int scrollView1=0x7f09000c;
-        public static final int setting=0x7f090055;
+        public static final int setting=0x7f090057;
         public static final int tEndDate=0x7f09002d;
         public static final int tEndTime=0x7f09002f;
         public static final int tStarDate=0x7f090029;
         public static final int tStartTime=0x7f09002b;
         public static final int tableLayout1=0x7f09000d;
         public static final int tableRow4=0x7f09000e;
-        public static final int tags2=0x7f090059;
+        public static final int tags2=0x7f09005b;
         public static final int text=0x7f090044;
         public static final int textView1=0x7f090033;
         public static final int textView2=0x7f09003d;
@@ -211,7 +213,8 @@ public final class R {
     }
     public static final class menu {
         public static final int biz_options_menu=0x7f080000;
-        public static final int options_menu=0x7f080001;
+        public static final int map_location_menu=0x7f080001;
+        public static final int options_menu=0x7f080002;
     }
     public static final class plurals {
         /**  Shown above search results when we receive a search request. 

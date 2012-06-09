@@ -9,7 +9,11 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -46,14 +50,14 @@ public class MapLocationActivity extends MapActivity implements IApp {
 		mv.getController().setCenter(point);
 		mv.getController().setZoom(13);
 
-		 List<Overlay> mapOverlays = mv.getOverlays();
-		 Drawable drawable =
-		 getResources().getDrawable(R.drawable.ic_map_marker);
-		 MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false,
-		 false, true, paramid);
-		 OverlayItem overlayitem = new OverlayItem(point, "", "");
-		 itemizedoverlay.addOverlay(overlayitem);
-		 mapOverlays.add(itemizedoverlay);
+		List<Overlay> mapOverlays = mv.getOverlays();
+		Drawable drawable = getResources().getDrawable(R.drawable.ic_map_marker);
+		MapOverlays itemizedoverlay = new MapOverlays(drawable, this, false,
+		false, true, paramid);
+		OverlayItem overlayitem = new OverlayItem(point, "", "");
+		itemizedoverlay.addOverlay(overlayitem);
+		mapOverlays.add(itemizedoverlay);
+		
 
 		ImageButton geocode = (ImageButton) findViewById(R.id.geocode);
 		geocode.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +131,19 @@ public class MapLocationActivity extends MapActivity implements IApp {
 			}
 
 		});
+	}
+	
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo){
+		super.onCreateContextMenu(menu, v, menuInfo);
+		
+		getMenuInflater().inflate(R.menu.map_location_menu, menu);
+		menu.setHeaderIcon(android.R.drawable.ic_input_add).setHeaderTitle("Timer Controls");
+	}
+	
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.map_location_menu, menu);
+	    return true;
 	}
 
 	private GeoPoint getPoint(double lat, double lng) {

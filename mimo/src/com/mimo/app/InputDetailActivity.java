@@ -58,16 +58,14 @@ public class InputDetailActivity extends FormInputView implements IConfiguration
 	
 	@Override 
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {   
-		Log.e("--------------- debug paramlat:xxxxx: ", "dodol");
-		Bundle bundle = data.getExtras();
+		if(data == null) return;  // if nothing happen push to return
 		
+		Bundle bundle = data.getExtras();
 		tLat = (TextView)findViewById(R.id.edit_lat);
 		tLng = (TextView)findViewById(R.id.edit_lng);
 		
 		tLat.setText(bundle.getDouble("paramlat")+"");
 		tLng.setText(bundle.getDouble("paramlng")+"");
-		
-		Log.e("--------------- debug paramlat:xxxxx", bundle.getDouble("paramlat")+"");
 	}
 	
 	
