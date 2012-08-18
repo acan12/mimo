@@ -1,13 +1,13 @@
 package com.mimo.app;
 
-import com.bugsense.trace.BugSenseHandler;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
+
+import com.bugsense.trace.BugSenseHandler;
  
  
 public class HomeActivity extends Activity implements OnClickListener{
@@ -24,7 +24,7 @@ public class HomeActivity extends Activity implements OnClickListener{
         
         setContentView(R.layout.layout_dashboard);
           
-        mapLayout = (LinearLayout) findViewById(R.id.map_layout);
+		mapLayout = (LinearLayout) findViewById(R.id.map_layout);
         eventLayout = (LinearLayout) findViewById(R.id.event_layout);
         calendarLayout = (LinearLayout) findViewById(R.id.calendar_layout);
         bizLayout = (LinearLayout) findViewById(R.id.biz_layout);
