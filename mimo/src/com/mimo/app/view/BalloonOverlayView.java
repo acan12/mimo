@@ -1,4 +1,5 @@
 package com.mimo.app.view;
+
 import android.content.Context;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -10,8 +11,6 @@ import android.widget.TextView;
 
 import com.google.android.maps.OverlayItem;
 import com.mimo.app.R;
-import com.mimo.app.R.id;
-import com.mimo.app.R.layout;
 
 /**
  * A view representing a MapView marker information balloon.
@@ -27,7 +26,7 @@ import com.mimo.app.R.layout;
  * </p>
  * 
  * @author Jeff Gilfelt
- *
+ * 
  */
 public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 
@@ -39,15 +38,18 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	/**
 	 * Create a new BalloonOverlayView.
 	 * 
-	 * @param context - The activity context.
-	 * @param balloonBottomOffset - The bottom padding (in pixels) to be applied
-	 * when rendering this view.
+	 * @param context
+	 *            - The activity context.
+	 * @param balloonBottomOffset
+	 *            - The bottom padding (in pixels) to be applied when rendering
+	 *            this view.
 	 */
 	public BalloonOverlayView(Context context, int balloonBottomOffset) {
 
 		super(context);
 
-		setPadding(10, 0, 10, balloonBottomOffset+this.CUSTOM_BALLOON_BOTTOM_OFFSET);
+		setPadding(10, 0, 10, balloonBottomOffset
+				+ this.CUSTOM_BALLOON_BOTTOM_OFFSET);
 		layout = new LinearLayout(context);
 		layout.setVisibility(VISIBLE);
 
@@ -75,9 +77,10 @@ public class BalloonOverlayView<Item extends OverlayItem> extends FrameLayout {
 	/**
 	 * Sets the view data from a given overlay item.
 	 * 
-	 * @param item - The overlay item containing the relevant view data 
-	 * (title and snippet). 
-	 */ 
+	 * @param item
+	 *            - The overlay item containing the relevant view data (title
+	 *            and snippet).
+	 */
 	public void setData(Item item) {
 
 		layout.setVisibility(VISIBLE);

@@ -14,8 +14,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.HTTP;
@@ -50,6 +52,12 @@ public class HttpUtil {
 			break;
 		case POST:
 			requestBase = new HttpPost(url);
+			break;
+		case PUT:
+			requestBase = new HttpPut(url);
+			break;
+		case DELETE:
+			requestBase = new HttpDelete(url);
 			break;
 		default:
 			break;
