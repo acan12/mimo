@@ -12,7 +12,7 @@ public class BaseActivity extends Activity {
 	protected Intent intent;
 
 	public BaseActivity(){
-		
+		 
 	}
 	
 	/**
