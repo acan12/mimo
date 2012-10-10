@@ -181,6 +181,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 				double lat = Double.parseDouble(loc.getText().toString().split(",")[0]);
 				double lng = Double.parseDouble(loc.getText().toString().split(",")[1]);
 				int icon = icons.getIconFromLabel(iconlabel.getText().toString());
+				
 				mv.getController().setZoom(13);
 				point_link = getPoint(lat, lng);
 				mv.getController().setCenter(point_link);
