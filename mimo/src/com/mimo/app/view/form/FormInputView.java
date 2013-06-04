@@ -26,7 +26,7 @@ import com.mimo.app.R;
 import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 import com.mimo.app.view.BaseView;
 
 public class FormInputView extends BaseView implements OnClickListener, IConfiguration{
@@ -42,13 +42,13 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 			mTimeDisplay, 
 			mTimeDisplayEnd;
 	protected int action;
-	protected Icons idIcon;
+	protected Icon idIcon;
 	protected ImageButton homeButton;
 	
 	protected void initialize(int layout){
 		setContentView(layout);
 		
-		idIcon = new Icons();
+		idIcon = new Icon();
 		homeButton = (ImageButton) findViewById(R.id.home_button);
 		homeButton.setOnClickListener(this);
 		
@@ -126,7 +126,7 @@ public class FormInputView extends BaseView implements OnClickListener, IConfigu
 	
 	protected ActivityEvent showForm(int id){
 		DBAdapter db = new DBAdapter(this);
-		Icons idIcon = new Icons();
+		Icon idIcon = new Icon();
 		Cursor c = db.getRecord(id);
 		
 		ActivityEvent ae ;

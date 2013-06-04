@@ -17,7 +17,7 @@ import com.mimo.app.component.COrderAdapter;
 import com.mimo.app.component.IComponentFactory;
 import com.mimo.app.interfaces.IMenuInstance;
 import com.mimo.app.model.pojo.Business;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 import com.mimo.app.model.pojo.Items;
 import com.mimo.app.worker.BusinessWorker;
 import com.mimo.app.worker.IBusinessWorker;
@@ -122,7 +122,7 @@ public class BusinessLIstActivity extends BaseListActivity implements
 			sb.append("\n" + biz.getEvent());
 			o.setItemStatus(sb.toString());
 			o.setData("lat:" + biz.getLat() + ",lng:" + biz.getLng());
-			o.setDrawableImage(Icons.getInstances().getIconFromBizLabel(
+			o.setDrawableImage(Icon.getInstances().getIconFromBizLabel(
 					biz.getBizname()));
 			items.add(o);
 		}

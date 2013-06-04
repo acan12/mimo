@@ -11,16 +11,16 @@ import android.widget.TextView;
 import com.mimo.app.R;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 import com.mimo.app.view.BaseView;
 
 public class DetailView extends BaseView implements OnClickListener{
 
-	protected Icons idIcon;
+	protected Icon idIcon;
 	
 	protected void initialize(int layout){
 		setContentView(layout);
-		idIcon = new Icons();
+		idIcon = new Icon();
 		Button bDetail = (Button)findViewById(R.id.btn_edit);
 		bDetail.setOnClickListener(this);
 		Button bMap = (Button)findViewById(R.id.btn_map);

@@ -17,7 +17,7 @@ import com.mimo.app.component.IComponentFactory;
 import com.mimo.app.interfaces.IApp;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 import com.mimo.app.model.pojo.Items;
 
 public class EventListActivity extends BaseListActivity implements IApp,
@@ -83,7 +83,7 @@ public class EventListActivity extends BaseListActivity implements IApp,
 		DBAdapter db = new DBAdapter(this);
 		Cursor c = db.getAllRecord(); // retrieve all records
 
-		Icons icons = new Icons();
+		Icon icons = new Icon();
 		while (c.moveToNext()) {
  
 			ae = new ActivityEvent();

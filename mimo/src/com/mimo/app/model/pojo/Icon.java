@@ -6,8 +6,8 @@ import android.util.Log;
 
 import com.mimo.app.R;
 
-public class Icons {
-	private static Icons icon;
+public class Icon {
+	private static Icon icon;
 	
 	private static final String[] labels = {
 
@@ -117,9 +117,9 @@ public class Icons {
 	};
 
 	
-	public static Icons getInstances(){
+	public static Icon getInstances(){
 		if(icon == null){
-			icon = new Icons();
+			icon = new Icon();
 		}
 		return icon;
 	}

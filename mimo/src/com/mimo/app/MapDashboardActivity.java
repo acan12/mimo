@@ -34,7 +34,7 @@ import com.mimo.app.interfaces.IBizProfileData;
 import com.mimo.app.interfaces.IConfiguration;
 import com.mimo.app.model.adapter.DBAdapter;
 import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 import com.mimo.app.view.MapDashboardOverlays;
 import com.mimo.app.view.adapter.ListDialogAdapter;
 
@@ -75,9 +75,9 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		List<Overlay> mapOverlays ;
 		GeoPoint point;
 		Drawable drawable;
-		final Icons icons = new Icons() ;
+		final Icon icons = new Icon() ;
 
-		String labelIcon = Icons.getLabels()[v.getId()];
+		String labelIcon = Icon.getLabels()[v.getId()];
 		int value = 0;
 		for(int i=0; i<getIconButton().length; i++){
 			if(labelIcon.equalsIgnoreCase(getIconButton()[i].split("@")[0])){
@@ -102,7 +102,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 			point = getPoint(ae.getLat(), ae.getLng());
 			
 			mapOverlays = mv.getOverlays();
-			drawable = this.getResources().getDrawable(new Icons().getIconFromLabel(ae.getIcon()));
+			drawable = this.getResources().getDrawable(new Icon().getIconFromLabel(ae.getIcon()));
 	        
 	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
 	        OverlayItem overlayItem = new OverlayItem(point, 
@@ -132,7 +132,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	}
 	
 	private void pushEventNotification(ActivityEvent aex) throws Exception{
-		Icons icons = new Icons();
+		Icon icons = new Icon();
 		NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		
 		int drawabaleId = icons.getIconFromLabel(aex.getIcon());
@@ -161,7 +161,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 
 	private void showEventDialog(final MapView mv, final String key) {
 		
-		final Icons icons = new Icons();
+		final Icon icons = new Icon();
 		final ListDialogAdapter adapter = new ListDialogAdapter(this, getListEvent(key) );
 		AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 		   
@@ -225,7 +225,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		mapOverlays = mv.getOverlays();
 
 		// Biz profile Carrefour
-		int carefourIcon = Icons.getInstances().getIconFromBizLabel("Carefour");
+		int carefourIcon = Icon.getInstances().getIconFromBizLabel("Carefour");
 		Drawable drawable = this.getResources().getDrawable(carefourIcon);
         itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
         for(int i=0; i< biz[CARREFOUR].length; i++){
@@ -239,7 +239,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
         
         
         // Biz location 7-11
-        int sevenIcon = Icons.getInstances().getIconFromBizLabel("7eleven");
+        int sevenIcon = Icon.getInstances().getIconFromBizLabel("7eleven");
         drawable = this.getResources().getDrawable(sevenIcon);
         itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
         for(int i=0; i< biz[SEVEN_ELEVEN].length; i++){
@@ -261,7 +261,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		
 		if(b != null){
 			ActivityEvent aex = (ActivityEvent) getIntent().getSerializableExtra(IAPP_INTENT_ACTIVITY_OBJECT_KEY);
-			Icons icons = new Icons();
+			Icon icons = new Icon();
 			List<Overlay> mapOverlays;
 			Drawable drawable = this.getResources().getDrawable(icons.getIconFromLabel(aex.getIcon()));
 	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, false);
@@ -270,7 +270,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 	        
 	        mapOverlays = mv.getOverlays();
 
-	        drawable = this.getResources().getDrawable(new Icons().getIconFromLabel(aex.getIcon()));
+	        drawable = this.getResources().getDrawable(new Icon().getIconFromLabel(aex.getIcon()));
 	        itemizedOverlay = new MapDashboardOverlays(drawable, mv, true);
 			
 	        
@@ -318,7 +318,7 @@ public class MapDashboardActivity extends MapActivity implements OnClickListener
 		LinearLayout ll = (LinearLayout) findViewById(R.id.container_button_linearLayout);
 		
 		LayoutInflater inflater = LayoutInflater.from(this);
-		Icons icons = new Icons();
+		Icon icons = new Icon();
 		for(int i=0; i<iconLabel.length; i++){ 
 			ImageButton imb = new ImageButton(this);
 			ImageView sep = new ImageView(this);

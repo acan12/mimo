@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.mimo.app.R;
 import com.mimo.app.model.pojo.ActivityEvent;
-import com.mimo.app.model.pojo.Icons;
+import com.mimo.app.model.pojo.Icon;
 
 public class ListDialogAdapter extends ArrayAdapter {
 	private Context mContext;
@@ -22,7 +22,7 @@ public class ListDialogAdapter extends ArrayAdapter {
 
 	ViewHolder holder;
 	Drawable icon;
-	Icons icons = new Icons();
+	Icon icons = new Icon();
 
 	class ViewHolder {
 		ImageView icon;
